@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-start:
 int main (void)
 {
     start:

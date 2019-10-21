@@ -2,7 +2,6 @@
 #include <math.h>
 
 /*Dette er en simulering af tallene fra 0 til uendelig*/
-
 int main (void)
 {
     int n;

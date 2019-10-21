@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <math.h>
 
-start:
+/*Dette er en simulering af tallene fra 0 til uendelig*/
+
 int main (void)
 {
-    start:
+    int n;
+    n=0;
+start:
+    printf("%d\n", n);
+    n=n+1;
     goto start;
 
 

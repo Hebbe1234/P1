@@ -20,9 +20,7 @@ This is the repository for all software developed for the P1 project of group A4
 
     #include "../headers/main.h"
 
-    /**
-     * A comment for doxygen explaining the implementation
-     */
+    /* A description of the function */
     int main(void) {
 
         example_function(1, 10);
@@ -31,9 +29,7 @@ This is the repository for all software developed for the P1 project of group A4
 
     }
 
-    /**
-     * A comment for doxygen explaining the implementation
-     */
+     /* A description of the function */
     void example_function(int start, int limit) {
 
         int i = 0;
@@ -48,9 +44,7 @@ This is the repository for all software developed for the P1 project of group A4
 - And each .c source file containing ANY function or procedure must have an associated .h header file
 
 ```C
-    /**
-     * A comment for doxygen explaing the thoughts of the function
-     */
+     /* A description of the function */
     void example_function(int start, int limit);
 
 ```

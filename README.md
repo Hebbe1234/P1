@@ -6,7 +6,7 @@ This is the repository for all software developed for the P1 project of group A4
 
 ## Coding conventions
 
-- The code must clearly show that it has been developed through a paradigm of top-down programming med trinvis forfindelse
+- The code must clearly show that it has been developed through a paradigm of top-down programmering med trinvis forfindelse
   - General code at the top of the file
   - More and more specific code as the file goes on´
 

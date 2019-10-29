@@ -55,7 +55,7 @@ This is the repository for all software developed for the P1 project of group A4
 
 ```
 
-- There is no reason for the use of "goto" in the code
+- There is reason for the use of "goto" in the code
   - If one wishes to use this structure in their code (looking at you Martin), its existence must be well argued in the pull request, since
      it will be put under a lot of scrutiny.
 

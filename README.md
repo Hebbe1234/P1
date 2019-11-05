@@ -87,4 +87,3 @@ This is the repository for all software developed for the P1 project of group A4
 
 - All functions should be testable.
 - All functions should be fully covered by unit tests.
-

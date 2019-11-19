@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../headers/main.h"
+#include "headers/main.h"
 
 int main (void)
 {

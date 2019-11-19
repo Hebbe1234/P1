@@ -8,8 +8,5 @@ int main (void)
     start:
     goto start;
 
-    sd
-
-
     return(0);
 }

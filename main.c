@@ -19,7 +19,7 @@ int main (void)
             inteference_flag;
         struct passenger* spotting;
     } passenger;
-    
+     
 
 /*Defining the aircraft as a struct type */
     typedef struct aircraft 

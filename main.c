@@ -9,7 +9,7 @@ int main (void)
 {
 
 /*Defining passenger as a struct type */
-    typedef struct
+    typedef struct passenger
     {
         int destination, 
             location, 
@@ -22,9 +22,8 @@ int main (void)
     
 
 /*Defining the aircraft as a struct type */
-    typedef struct 
+    typedef struct aircraft 
     {
-        passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
         passenger v_left;
         passenger h_right;
         int entrance;
@@ -32,8 +31,10 @@ int main (void)
     } aircraft ;
     
 /*Herunder virker det ikke*/
-    passenger example;
-    passenger p1;
+    struct passenger example;
+    struct passenger p1;
+    struct aircraft plane;
+
 
     p1.destination = 54;
     p1.location = 5;
@@ -49,13 +50,15 @@ int main (void)
     example.carry_on = 1;
     example.wait_time = 0;
     example.inteference_flag = 0;
-    example.spotting = ((void*)&p1);
+    example.spotting = &p1;
 
+    plane.v_left = p1;
 
-    printf("%d ", example.spotting->destination);
+    printf("%d\n", example.spotting->destination);
 
+    printf("%d\n", plane.v_left.destination);
     
-    printf("%d %d %d %d %d", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
+    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
 
 
 

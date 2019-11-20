@@ -52,7 +52,7 @@ int main (void)
     example.spotting = ((void*)&p1);
 
 
-    printf("%d ", example.spotting->destination);
+  //  printf("%d ", example.spotting->destination);
 
     
     printf("%d %d %d %d %d", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);

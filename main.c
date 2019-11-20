@@ -55,6 +55,7 @@ int main (void)
     example.inteference_flag = 0;
     example.spotting = &p1;
 
+
     plane.v_left = p1;
 
     printf("%d\n", example.spotting->destination);

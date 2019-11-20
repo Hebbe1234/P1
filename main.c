@@ -16,7 +16,7 @@ int main (void)
             finish, 
             carry_on, 
             wait_time, 
-            inteference_flag;s 
+            inteference_flag;
         struct passenger* spotting;
     } passenger;
      

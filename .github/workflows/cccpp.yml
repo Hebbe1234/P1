@@ -1,6 +1,6 @@
-name: builds
+name: Compilation
 
-on: [push]
+on:[pull_request]
 
 jobs:
   build:
@@ -9,5 +9,5 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: configure
-
+    - name: make
+      run: make

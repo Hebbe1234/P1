@@ -31,7 +31,7 @@ int main (void)
         int inteference[2*NUMBER_OF_ROWS];
     } aircraft ;
     
-
+/*Herunder virker det ikke*/
     passenger example;
     passenger p1;
 
@@ -55,7 +55,7 @@ int main (void)
     printf("%d ", example.spotting->destination);
 
     
-    printf("%d %d %d %d %d", p1.inteference_flag,p1.finish,p1.destination,p1.location, p1.carry_on);
+    printf("%d %d %d %d %d", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
 
 
 

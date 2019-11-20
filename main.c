@@ -27,6 +27,10 @@ int main (void)
         passenger v_left;
         passenger h_right;
         int entrance;
+        /*
+            TODO: This should not be statically sized. 
+            Use int* instead and dynamically allocate memory from a parameter given by the user
+        */
         int inteference[2*NUMBER_OF_ROWS];
     } aircraft ;
     

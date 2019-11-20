@@ -34,9 +34,9 @@ int main (void)
         int inteference[2*NUMBER_OF_ROWS];
     } aircraft ;
 
-    struct passenger example;
-    struct passenger p1;
-    struct aircraft plane;
+    passenger example;
+    passenger p1;
+    aircraft plane;
 
 
     p1.destination = 54;

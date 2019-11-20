@@ -11,7 +11,7 @@
  * CuStr
  *-------------------------------------------------------------------------*/
 
-char* CuStrAlloc(int size)
+char* CuStrAlloc(int size) 
 {
 	char* newStr = (char*) malloc( sizeof(char) * (size) );
 	return newStr;

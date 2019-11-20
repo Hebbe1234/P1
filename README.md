@@ -1,6 +1,6 @@
 # P1 - A411 
 
-This is the repository for all software developed for the P1 project of group A411 of first semester at AAU during semester E19.
+This is the repository for all software developed for the P1 project by group A411 of first semester at AAU during semester E19.
 
 ----------
 ![Master check](https://github.com/Hebbe1234/P1/workflows/Compilation/badge.svg)

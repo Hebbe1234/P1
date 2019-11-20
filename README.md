@@ -1,5 +1,5 @@
 # P1 - A411 
-![](https://github.com/Hebbe1234/compiles/workflows/.github/workflows/ccpp.yml/badge.svg)
+![](https://github.com/Hebbe1234/P1/workflows/.github/workflows/ccpp.yml/badge.svg)
 
 
 This is the repository for all software developed for the P1 project of group A411 of first semester at AAU during semester E19.

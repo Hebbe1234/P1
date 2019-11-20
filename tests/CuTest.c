@@ -5,13 +5,13 @@
 #include <string.h>
 #include <math.h>
 
-#include "CuTest.h"
+#include "../headers/CuTest.h"
 
 /*-------------------------------------------------------------------------*
  * CuStr
  *-------------------------------------------------------------------------*/
 
-char* CuStrAlloc(int size)
+char* CuStrAlloc(int size) 
 {
 	char* newStr = (char*) malloc( sizeof(char) * (size) );
 	return newStr;

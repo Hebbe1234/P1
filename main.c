@@ -6,7 +6,6 @@
 #define ENTRANCE_PLACEMENT 4 
 
 /*Defining passenger as a struct type */
-<<<<<<< HEAD
 typedef struct passenger
 {
     int destination, 
@@ -17,19 +16,6 @@ typedef struct passenger
         inteference_flag;
     struct passenger* spotting;
 } passenger;
-=======
-    typedef struct passenger
-    {
-        int destination, 
-            location, 
-            finish, 
-            carry_on, 
-            wait_time, 
-            inteference_flag;
-        struct passenger* spotting;
-    } passenger;
-     
->>>>>>> 083ca3c96618b3bde64c493e1f5d1913782bfa3b
 
 /*Defining the aircraft as a struct type */
 typedef struct aircraft 
@@ -72,12 +58,7 @@ int main (void)
     example.inteference_flag = 0;
     example.spotting = &p1;
 
-<<<<<<< HEAD
     plane.v_left = example;
-=======
-
-    plane.v_left = p1;
->>>>>>> 083ca3c96618b3bde64c493e1f5d1913782bfa3b
 
     printf("%d ", example.spotting->location);
 

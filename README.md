@@ -4,7 +4,6 @@ This is the repository for all software developed for the P1 project by group A4
 
 ----------
 ![Master check](https://github.com/Hebbe1234/P1/workflows/Compilation/badge.svg)
-![Non master check](https://github.com/Hebbe1234/P1/workflows/Non-master%20Compilation/badge.svg)
 ----------
 
 ## Coding conventions

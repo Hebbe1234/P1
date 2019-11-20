@@ -18,7 +18,7 @@ int main (void)
             wait_time, 
             inteference_flag;
         struct passenger* spotting;
-    } passenger s;
+    } passenger;
      
 
 /*Defining the aircraft as a struct type */

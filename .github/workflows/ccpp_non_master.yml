@@ -1,0 +1,18 @@
+name: Non-master compilation
+
+on:
+  push:
+    branches:    
+      - '*'         # matches every branch
+      - '*/*'       # matches every branch containing a single '/'
+      - '!master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: make
+      run: make
+

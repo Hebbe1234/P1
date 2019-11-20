@@ -5,35 +5,42 @@
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
 
+/*Defining passenger as a struct type */
+typedef struct passenger
+{
+    int destination, 
+        location, 
+        finish, 
+        carry_on, 
+        wait_time, 
+        inteference_flag;
+    struct passenger* spotting;
+} passenger;
+
+/*Defining the aircraft as a struct type */
+typedef struct aircraft 
+{
+    passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
+    passenger v_left;
+    passenger h_right;
+    int entrance;
+    /*
+        TODO: This should not be statically sized. 
+        Use int* instead and dynamically allocate memory from a parameter given by the user
+    */
+    int inteference[2*NUMBER_OF_ROWS];
+} aircraft ;
+
+
+
 int main (void)
 {
 
-/*Defining passenger as a struct type */
-    typedef struct
-    {
-        int destination, 
-            location, 
-            finish, 
-            carry_on, 
-            wait_time, 
-            inteference_flag;
-        struct passenger* spotting;
-    } passenger;
-    
 
-/*Defining the aircraft as a struct type */
-    typedef struct 
-    {
-        passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
-        passenger v_left;
-        passenger h_right;
-        int entrance;
-        int inteference[2*NUMBER_OF_ROWS];
-    } aircraft ;
-    
-/*Herunder virker det ikke*/
-    passenger example;
-    passenger p1;
+    struct passenger example;
+    struct passenger p1;
+    struct aircraft plane;
+
 
     p1.destination = 54;
     p1.location = 5;
@@ -49,13 +56,15 @@ int main (void)
     example.carry_on = 1;
     example.wait_time = 0;
     example.inteference_flag = 0;
-    example.spotting = ((void*)&p1);
+    example.spotting = &p1;
 
+    plane.v_left = example;
 
-/*  printf("%d ", example.spotting->destination);*/
+    printf("%d ", example.spotting->location);
 
+    printf("%d\n", plane.v_left.spotting->location);
     
-    printf("%d %d %d %d %d", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
+    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
 
 
 

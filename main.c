@@ -33,8 +33,7 @@ int main (void)
         */
         int inteference[2*NUMBER_OF_ROWS];
     } aircraft ;
-    
-/*Herunder virker det ikke*/
+
     struct passenger example;
     struct passenger p1;
     struct aircraft plane;

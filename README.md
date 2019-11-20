@@ -65,6 +65,7 @@ This is the repository for all software developed for the P1 project of group A4
 
 ## Conventions for use of git and GitHub
 
+- For an introduction to GitHub see: [Brams file about GitHub](https://paper.dropbox.com/doc/Git-cheat-sheet-hRMHn3gcZbv485DFLHQap)
 - The master branch of the repository is NEVER for development of new code.
   - The only way the master branch changes is through pull requests of tested code.
 

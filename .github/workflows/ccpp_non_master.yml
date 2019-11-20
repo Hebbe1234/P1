@@ -1,4 +1,4 @@
-name: Non-master compilation
+name: Non-master_compilation
 
 on:
   push:

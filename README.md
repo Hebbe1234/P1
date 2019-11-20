@@ -15,7 +15,7 @@ This is the repository for all software developed for the P1 project by group A4
 - No actual execution of logic may take place in main().
   - main() is allowed to handle command line options (e.g --test and --silent).
 
-- As a rule, the code should be formatted as shown here:
+- As a rule, the code should be formatted as shown here: 
 
 ```C
     #include <stdio.h>

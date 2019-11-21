@@ -6,7 +6,7 @@ typedef struct passenger
         finish, 
         carry_on, 
         wait_time, 
-        inteference_flag;
+        interference_flag;
     struct passenger* spotting;
 } passenger;
 

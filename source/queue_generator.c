@@ -3,6 +3,14 @@
 #include <stdlib.h>
 #include "../headers/main.h"
 #include <time.h>
+
+#ifndef STRUCTS
+#define STRUCTS
+
+#include "../headers/structs.h"
+
+#endif
+
 #define NUMBER_OF_PASSENGERS_BOARDING 57
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
@@ -11,43 +19,13 @@
 /* Der er brug for flyets indgang som input for at få dette til at virke*/
 
 
-
-/*Defining passenger as a struct type */
-typedef struct passenger
-{
-    int destination, 
-        location, 
-        finish, 
-        carry_on, 
-        wait_time, 
-        interference_flag;
-    struct passenger* spotting;
-} passenger;
-
-/*Defining the aircraft as a struct type */
-typedef struct aircraft 
-{
-    passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
-    passenger v_left;
-    passenger h_right;
-    int entrance;
-    /*
-        TODO: This should not be statically sized. 
-        Use int* instead and dynamically allocate memory from a parameter given by the user
-    */
-    int inteference[2*NUMBER_OF_ROWS];
-} aircraft ;
-
-
-
+/* TODO: These prototypes must be moved to a header file */
 void get_random_number(int *k,int *j);
 void get_random_array(int random_destination[]);
 void passenger_get_random_destination(int *random_destination, passenger boarding[]);
 int find_illegal_seat(int i);
 void initialize_passenger_array(passenger boarding[]);
 void reset_passenger_array(passenger boarding[]);
-
-
 
 int main(void){
     int i, random_destination[60];
@@ -58,13 +36,6 @@ int main(void){
     reset_passenger_array(boarding);
 
     initialize_passenger_array(boarding);
-
-
-
-
-
-
-
 
     get_random_array(random_destination);
 
@@ -81,6 +52,7 @@ int main(void){
 /* Every passenger in boarding gets set to 0*/
 void reset_passenger_array(passenger boarding[]) {
     int i;
+    /*TODO: Remove magic number 57*/
     for (i = 0; i < 57; i=i+1) {
         boarding[i].destination = 0;
         boarding[i].location = 0;
@@ -99,6 +71,7 @@ void initialize_passenger_array(passenger boarding[]) {
     int i = 0;
 
     boarding[0].spotting = NULL;
+    /* TODO: Remove magic number 57 - function should take the length of the arrays as an input */
     for(i=1; i<57; i=i+1)
     {
         boarding[i].spotting = &(boarding[i-1]);    
@@ -110,7 +83,7 @@ void passenger_get_random_destination(int *random_destination, passenger boardin
     int *p_array, i;
 
     p_array = random_destination;
-
+    /* TODO: Remove magic number and change i = i+1 to i++ */
     for(i=0; i<57; i=i+1)
     {
         while(*(p_array+i)== (find_illegal_seat(0)) || *(p_array+i) == (find_illegal_seat(1)) || *(p_array+i) == (find_illegal_seat(2))) {
@@ -127,7 +100,7 @@ int find_illegal_seat(int i) {
 }
 
 
-
+/* TODO: Remove magic numbers */
 void get_random_array(int random_destination[]) {
     int i, j, k, tmp_plads;
     i=j=k=tmp_plads=0;
@@ -143,6 +116,7 @@ void get_random_array(int random_destination[]) {
     }
 }
 
+/* TODO: This function needs a better name */
 void get_random_number(int *k,int *j) {
     *k = (rand() % 60);
     *j = (rand() % 60);

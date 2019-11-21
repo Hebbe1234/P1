@@ -12,5 +12,5 @@ jobs:
     - name: make
       run: make tests
     - name: Run tests
-      run: ./test.exe
+      run: ./unit_test.exe
 

@@ -71,7 +71,11 @@ int main (void)
     return(0);
 }
 
-void initialize_passenger
-{
+void initialize_passenger(passenger* passengers, aircraft plane) {
+    int i;
+
+    for (i = 0; i < NUMBER_OF_PASSENGERS_BOARDING; i++){
+        
+    }
     
 }

@@ -8,13 +8,13 @@
 #include <stdlib.h>
 
 void print_passenger_function (passenger *passengers) {
-    int P_D = passenger.destination, 
-        P_L = passenger.location, 
-        P_F = passenger.finish, 
-        P_S = passenger.spotting->location,
-        P_C = passenger.carry_on, 
-        P_W = passenger.wait_time, 
-        P_I = passenger.interference_flag;
+    int P_D = passengers.destination, 
+        P_L = passengers.location, 
+        P_F = passengers.finish, 
+        P_S = passengers.spotting->location,
+        P_C = passengers.carry_on, 
+        P_W = passengers.wait_time, 
+        P_I = passengers.interference_flag;
         
 
     printf(" Destination: %d\n Location: %d\n Finish: %d\n Location of passenger infront: %d\n Carry-on: %d\n Wait time: %d\n Interference: %d\n",

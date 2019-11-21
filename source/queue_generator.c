@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "headers/main.h"
+#include "../headers/main.h"
 #include <time.h>
 #define NUMBER_OF_PASSENGERS_BOARDING 57
 #define NUMBER_OF_ROWS 10
@@ -136,17 +136,17 @@ int find_illegal_seat(int i) {
 
 
 void get_random_array(int random_destination[]) {
-    int i, j, k, plads;
-    i=j=k=plads=0;
+    int i, j, k, tmp_plads;
+    i=j=k=tmp_plads=0;
 
     for(i=0; i<60; i=i+1)
         random_destination[i]=i;
 
     for(i=0; i<1000000; i=i+1) {
         get_random_number(&k,&j);
-        plads = random_destination[k];
+        tmp_plads = random_destination[k];
         random_destination[k] = random_destination[j];
-        random_destination[j] = plads;
+        random_destination[j] = tmp_plads;
     }
 }
 

@@ -94,6 +94,7 @@ void reset_passenger_array(passenger boarding[]) {
 
 
 /*Passengers look at each other, P0 looks a nothing, P1 looks at P0...*/
+/*Der skal gøres så alt sker herinde, dvs. at random destination sker, og carryon sker herinde. */
 void initialize_passenger_array(passenger boarding[]) {
     int i = 0;
 

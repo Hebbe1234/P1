@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 #include "headers/main.h"
+#include "headers/finalising.h"
+
+#ifndef INIT
+#define INIT
 #define NUMBER_OF_PASSENGERS_BOARDING 27
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
@@ -31,7 +35,7 @@ typedef struct aircraft
     int inteference[2*NUMBER_OF_ROWS];
 } aircraft ;
 
-
+void finalising(passenger* p1);
 
 int main (void)
 {
@@ -42,15 +46,16 @@ int main (void)
     aircraft plane;
 
 
-    p1.destination = 54;
+    p1.destination = 31;
     p1.location = 5;
     p1.finish = 0;
-    p1.carry_on = 1;
+    p1.carry_on = 0;
     p1.wait_time = 0;
-    p1.inteference_flag = 0;
+    p1.inteference_flag = 2;
     p1.spotting = NULL;
 
-    example.destination = 55;
+
+    example.destination = 30;
     example.location = 4;
     example.finish = 0;
     example.carry_on = 1;
@@ -66,9 +71,23 @@ int main (void)
     
     printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
 
+    printf("___________________\n");
 
+    finalising(&p1);
 
     return(0);
 }
 
+void finalising(passenger* p1) {
 
+       /* for(int i = 0; i <= (passenger_array); i++) */
+
+        if(p1->location == p1->destination/6 && p1->carry_on == 0 && p1->wait_time == 0 && p1->inteference_flag == 2){
+            p1->finish = 1;
+        } 
+        else {
+            printf("Passenger not finished!\n");
+        }
+
+        printf("%d\n", p1->finish);
+}

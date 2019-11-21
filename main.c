@@ -1,37 +1,26 @@
 #include <stdio.h>
 #include <math.h>
 #include "headers/main.h"
+
+#ifndef INIT
+#define INIT
+
+#include "headers/initializing.h"
+
+#endif
+
+#ifndef STRUCTS
+#define STRUCTS
+
+#include "headers/structs.h"
+
+#endif
+
 #define NUMBER_OF_PASSENGERS_BOARDING 2
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
 
-/*Defining passenger as a struct type */
-typedef struct passenger
-{
-    int destination, 
-        location, 
-        finish, 
-        carry_on, 
-        wait_time, 
-        inteference_flag;
-    struct passenger* spotting;
-} passenger;
 
-/*Defining the aircraft as a struct type */
-typedef struct aircraft 
-{
-    passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
-    passenger v_left;
-    passenger h_right;
-    int entrance;
-    /*
-        TODO: This should not be statically sized. 
-        Use int* instead and dynamically allocate memory from a parameter given by the user
-    */
-    int inteference[2*NUMBER_OF_ROWS];
-} aircraft ;
-
-void initialize_passenger(passenger* passengers, aircraft plane);
 
 int main (void)
 {
@@ -40,7 +29,7 @@ int main (void)
     passenger example;
     passenger p1;
     aircraft plane;
-
+    passenger test[2];
 
     p1.destination = 54;
     p1.location = -1;
@@ -60,11 +49,12 @@ int main (void)
 
     plane.v_left = example;
 
-    //printf("%d ", example.spotting->location);
+    /*printf("%d ", example.spotting->location);
 
-    //printf("%d\n", plane.v_left.spotting->location);
+    printf("%d\n", plane.v_left.spotting->location);*/
     
-    passenger test[2]={example, p1};
+    test[0] = example;
+    test[1] = p1;
     plane.entrance = ENTRANCE_PLACEMENT;
 
     initialize_passenger(test, plane);
@@ -75,20 +65,3 @@ int main (void)
     return(0);
 }
 
-void initialize_passenger(passenger* passengers, aircraft plane) {
-    int i, 
-    P_E = plane.entrance;
-
-    for (i = 0; i < NUMBER_OF_PASSENGERS_BOARDING; i++){
-        int P_L = passengers[i].location;
-        if (P_L == -1 && passengers[i].spotting->location != P_E && passengers[i].spotting->location != -1 || passengers[i].spotting == NULL)
-        {
-            passengers[i].location = P_E;
-        }    
-    }  
-
-    for(int i = 0; i < 2; i++)
-    {
-        printf("%d\n", passengers[i].location);
-    }
-}

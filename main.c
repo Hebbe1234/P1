@@ -5,34 +5,37 @@
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
 
+/*Defining passenger as a struct type */
+typedef struct passenger
+{
+    int destination, 
+        location, 
+        finish, 
+        carry_on, 
+        wait_time, 
+        inteference_flag;
+    struct passenger* spotting;
+} passenger;
+
+/*Defining the aircraft as a struct type */
+typedef struct aircraft 
+{
+    passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
+    passenger v_left;
+    passenger h_right;
+    int entrance;
+    /*
+        TODO: This should not be statically sized. 
+        Use int* instead and dynamically allocate memory from a parameter given by the user
+    */
+    int inteference[2*NUMBER_OF_ROWS];
+} aircraft ;
+
+
+
 int main (void)
 {
 
-/*Defining passenger as a struct type */
-    typedef struct passenger
-    {
-        int destination, 
-            location, 
-            finish, 
-            carry_on, 
-            wait_time, 
-            inteference_flag;
-        struct passenger* spotting;
-    } passenger;
-     
-
-/*Defining the aircraft as a struct type */
-    typedef struct aircraft 
-    {
-        passenger v_left;
-        passenger h_right;
-        int entrance;
-        /*
-            TODO: This should not be statically sized. 
-            Use int* instead and dynamically allocate memory from a parameter given by the user
-        */
-        int inteference[2*NUMBER_OF_ROWS];
-    } aircraft ;
 
     passenger example;
     passenger p1;
@@ -55,12 +58,11 @@ int main (void)
     example.inteference_flag = 0;
     example.spotting = &p1;
 
+    plane.v_left = example;
 
-    plane.v_left = p1;
+    printf("%d ", example.spotting->location);
 
-    printf("%d\n", example.spotting->destination);
-
-    printf("%d\n", plane.v_left.destination);
+    printf("%d\n", plane.v_left.spotting->location);
     
     printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
 

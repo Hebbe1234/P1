@@ -7,14 +7,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_passenger_function (passenger *passengers) {
-    int P_D = passengers.destination, 
-        P_L = passengers.location, 
-        P_F = passengers.finish, 
-        P_S = passengers.spotting->location,
-        P_C = passengers.carry_on, 
-        P_W = passengers.wait_time, 
-        P_I = passengers.interference_flag;
+void print_passenger_function (passenger person) {
+    int P_D = person.destination, 
+        P_L = person.location, 
+        P_F = person.finish, 
+        P_S = person.spotting->location,
+        P_C = person.carry_on, 
+        P_W = person.wait_time, 
+        P_I = person.inteference_flag;
         
 
     printf(" Destination: %d\n Location: %d\n Finish: %d\n Location of passenger infront: %d\n Carry-on: %d\n Wait time: %d\n Interference: %d\n",

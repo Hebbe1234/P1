@@ -19,4 +19,4 @@ run: $(TARGET)
 	@$(TARGET)
 
 tests: $(TEST_TARGET)
-	@$(TEST_TARGET)
+	

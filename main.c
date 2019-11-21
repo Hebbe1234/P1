@@ -36,7 +36,7 @@ int main (void)
     p1.finish = 0;
     p1.carry_on = 1;
     p1.wait_time = 0;
-    p1.inteference_flag = 0;
+    p1.interference_flag = 0;
     p1.spotting = &example;
 
     example.destination = 55;
@@ -44,7 +44,7 @@ int main (void)
     example.finish = 0;
     example.carry_on = 1;
     example.wait_time = 0;
-    example.inteference_flag = 0;
+    example.interference_flag = 0;
     example.spotting = NULL;
 
     plane.v_left = example;
@@ -59,8 +59,8 @@ int main (void)
 
     initialize_passenger(test, plane);
 
-    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
-    printf("%d %d %d %d %d\n", example.inteference_flag, example.finish, example.destination, test[0].location, example.carry_on);
+    printf("%d %d %d %d %d\n", p1.interference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
+    printf("%d %d %d %d %d\n", example.interference_flag, example.finish, example.destination, test[0].location, example.carry_on);
 
     return(0);
 }

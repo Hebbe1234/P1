@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "headers/main.h"
-#define NUMBER_OF_PASSENGERS_BOARDING 27
+#define NUMBER_OF_PASSENGERS_BOARDING 2
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
 
@@ -66,7 +66,10 @@ int main (void)
     
     printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
 
+    passenger test[2]={p1,example};
+    plane.entrance = ENTRANCE_PLACEMENT;
 
+    initialize_passenger(test, plane);
 
     return(0);
 }

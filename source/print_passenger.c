@@ -7,6 +7,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* 
+    You need to remember that this function only takes a struct (or a pointer to a struct) as input.
+    Depending on whether or not, you use the value of the struct, you access the fields using either:
+
+    struct.<name_of_field>
+    struct_pointer-><name_of_field>
+
+    But instead of writing <name_of_field> you write the actual name of the field e.g destination, location, etc.
+*/
+
 void print_passenger_function (passenger *passengers) {
     int P_D = passenger.destination, 
         P_L = passenger.location, 

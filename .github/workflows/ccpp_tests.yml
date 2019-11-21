@@ -1,0 +1,16 @@
+name: Unit_Tests
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: make
+      run: make tests
+    - name: Run tests
+      run: ./unit_test.exe
+

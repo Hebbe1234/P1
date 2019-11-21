@@ -40,9 +40,6 @@ void get_random_array(int random_destination[]) {
     for(i=0, plads=0; i<60; i=i+1, plads=plads+1) {
         printf("%d , %d \n", random_destination[i], plads);
     }
-
-
-
 }
 
 void get_random_number(int *k,int *j) {

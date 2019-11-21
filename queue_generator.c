@@ -20,7 +20,7 @@ typedef struct passenger
         finish, 
         carry_on, 
         wait_time, 
-        inteference_flag;
+        interference_flag;
     struct passenger* spotting;
 } passenger;
 
@@ -44,7 +44,8 @@ void get_random_number(int *k,int *j);
 void get_random_array(int random_destination[]);
 void passenger_get_random_destination(int *random_destination, passenger boarding[]);
 int find_illegal_seat(int i);
-
+void initialize_passenger_array(passenger boarding[]);
+void reset_passenger_array(passenger boarding[]);
 
 
 
@@ -53,6 +54,17 @@ int main(void){
     passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
     int random_destination[60];
     srand(time(0));
+
+    reset_passenger_array(boarding);
+
+    initialize_passenger_array(boarding);
+
+
+
+
+
+
+
 
     get_random_array(random_destination);
 
@@ -65,6 +77,31 @@ int main(void){
     return (0);
 }
 
+void reset_passenger_array(passenger boarding[]) {
+    int i;
+    for (i = 0; i < 57; ++i) {
+        boarding[i].destination = 0;
+        boarding[i].location = 0;
+        boarding[i].carry_on = 0;
+        boarding[i].wait_time = 0;
+        boarding[i].finish = 0;
+        boarding[i].interference_flag = 0;
+        boarding[i].spotting = NULL;
+    }
+
+}
+
+
+
+void initialize_passenger_array(passenger boarding[]) {
+    int i = 0;
+
+    boarding[0].spotting = NULL;
+    for(i=1; i<57; i=i+1)
+    {
+        boarding[i].spotting = &(boarding[i-1]);    
+    }
+}
 
 
 void passenger_get_random_destination(int *random_destination, passenger boarding[]) {

@@ -4,14 +4,14 @@ TARGET = prog
 TEST_TARGET = test
 BASEDIR = ../..
 
-SOURCE =  $(BASEDIR)/source
+SOURCE =  $(wildcard source/*.c)
 TESTS =  $(wildcard tests/*.c)
 
 $(TARGET): main.c
-	$(CC) $(CFLAGS) main.c -o $(TARGET)
+	$(CC) $(CFLAGS) main.c $(SOURCE) -o $(TARGET)
 
 $(TEST_TARGET): 
-	$(CC) $(CFLAGS) $(TESTS) -o $(TEST_TARGET)
+	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) -o $(TEST_TARGET)
 
 run: $(TARGET)
 	@$(TARGET)

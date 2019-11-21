@@ -31,7 +31,7 @@ typedef struct aircraft
     int inteference[2*NUMBER_OF_ROWS];
 } aircraft ;
 
-
+void initialize_passenger(passenger* passengers, aircraft plane);
 
 int main (void)
 {
@@ -43,33 +43,34 @@ int main (void)
 
 
     p1.destination = 54;
-    p1.location = 5;
+    p1.location = -1;
     p1.finish = 0;
     p1.carry_on = 1;
     p1.wait_time = 0;
     p1.inteference_flag = 0;
-    p1.spotting = NULL;
+    p1.spotting = &example;
 
     example.destination = 55;
-    example.location = 4;
+    example.location = ENTRANCE_PLACEMENT+1;
     example.finish = 0;
     example.carry_on = 1;
     example.wait_time = 0;
     example.inteference_flag = 0;
-    example.spotting = &p1;
+    example.spotting = NULL;
 
     plane.v_left = example;
 
-    printf("%d ", example.spotting->location);
+    //printf("%d ", example.spotting->location);
 
-    printf("%d\n", plane.v_left.spotting->location);
+    //printf("%d\n", plane.v_left.spotting->location);
     
-    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
-
-    passenger test[2]={p1,example};
+    passenger test[2]={example, p1};
     plane.entrance = ENTRANCE_PLACEMENT;
 
     initialize_passenger(test, plane);
+
+    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
+    printf("%d %d %d %d %d\n", example.inteference_flag, example.finish, example.destination, test[0].location, example.carry_on);
 
     return(0);
 }
@@ -80,9 +81,14 @@ void initialize_passenger(passenger* passengers, aircraft plane) {
 
     for (i = 0; i < NUMBER_OF_PASSENGERS_BOARDING; i++){
         int P_L = passengers[i].location;
-        if (P_L == -1 && (passengers[i].spotting->location != P_E && passengers[i].spotting->location != -1) || passengers[i].spotting == NULL)
+        if (P_L == -1 && passengers[i].spotting->location != P_E && passengers[i].spotting->location != -1 || passengers[i].spotting == NULL)
         {
             passengers[i].location = P_E;
         }    
     }  
+
+    for(int i = 0; i < 2; i++)
+    {
+        printf("%d\n", passengers[i].location);
+    }
 }

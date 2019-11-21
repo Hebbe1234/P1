@@ -72,10 +72,14 @@ int main (void)
 }
 
 void initialize_passenger(passenger* passengers, aircraft plane) {
-    int i;
+    int i, 
+    P_E = plane.entrance;
 
     for (i = 0; i < NUMBER_OF_PASSENGERS_BOARDING; i++){
-        
-    }
-    
+        int P_L = passengers[i].location;
+        if (P_L == -1 && (passengers[i].spotting->location != P_E && passengers[i].spotting->location != -1) || passengers[i].spotting == NULL)
+        {
+            passengers[i].location = P_E;
+        }    
+    }  
 }

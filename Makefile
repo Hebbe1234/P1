@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -ansi 
 TARGET = prog
-TEST_TARGET = test
+TEST_TARGET = unit_test
 BASEDIR = ../..
 
 EXT = .exe
@@ -17,5 +17,8 @@ $(TEST_TARGET):
 
 run: $(TARGET)
 	@$(TARGET)
+
+test: $(TEST_TARGET)
+	@$(TEST_TARGET)$(EXT)
 
 tests: $(TEST_TARGET)

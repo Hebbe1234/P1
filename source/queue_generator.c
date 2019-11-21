@@ -50,9 +50,9 @@ void reset_passenger_array(passenger boarding[]);
 
 
 int main(void){
-    int i;
+    int i, random_destination[60];
     passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
-    int random_destination[60];
+
     srand(time(0));
 
     reset_passenger_array(boarding);
@@ -77,9 +77,11 @@ int main(void){
     return (0);
 }
 
+
+/* Every passenger in boarding gets set to 0*/
 void reset_passenger_array(passenger boarding[]) {
     int i;
-    for (i = 0; i < 57; ++i) {
+    for (i = 0; i < 57; i=i+1) {
         boarding[i].destination = 0;
         boarding[i].location = 0;
         boarding[i].carry_on = 0;
@@ -88,11 +90,11 @@ void reset_passenger_array(passenger boarding[]) {
         boarding[i].interference_flag = 0;
         boarding[i].spotting = NULL;
     }
-
 }
 
 
-
+/*Passengers look at each other, P0 looks a nothing, P1 looks at P0...*/
+/*Der skal gøres så alt sker herinde, dvs. at random destination sker, og carryon sker herinde. */
 void initialize_passenger_array(passenger boarding[]) {
     int i = 0;
 
@@ -105,27 +107,18 @@ void initialize_passenger_array(passenger boarding[]) {
 
 
 void passenger_get_random_destination(int *random_destination, passenger boarding[]) {
-    int *pointer_array, i;
+    int *p_array, i;
 
-    pointer_array = random_destination;
+    p_array = random_destination;
 
     for(i=0; i<57; i=i+1)
     {
-        if(*(pointer_array+i)== (find_illegal_seat(0)) || *(pointer_array+i) == (find_illegal_seat(1)) || *(pointer_array+i) == (find_illegal_seat(2))) {
-            pointer_array = pointer_array+1;
-
-            if(*(pointer_array+i)==(find_illegal_seat(0)) || *(pointer_array+i) == (find_illegal_seat(1)) || *(pointer_array+i) == (find_illegal_seat(2))) {
-                pointer_array = pointer_array+1;
-
-                if(*(pointer_array+i)==(find_illegal_seat(0)) || *(pointer_array+i) == (find_illegal_seat(1)) || *(pointer_array+i) == (find_illegal_seat(2))) {
-                    pointer_array = pointer_array+1;
-                }
-            }
+        while(*(p_array+i)== (find_illegal_seat(0)) || *(p_array+i) == (find_illegal_seat(1)) || *(p_array+i) == (find_illegal_seat(2))) {
+            p_array = p_array+1;
         }
-        boarding[i].destination = *(pointer_array+i);
+        boarding[i].destination = *(p_array+i);
     }
 }
-
 
 
 

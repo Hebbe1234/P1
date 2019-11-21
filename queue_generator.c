@@ -3,12 +3,14 @@
 #include <stdlib.h>
 #include "headers/main.h"
 #include <time.h>
-#define NUMBER_OF_PASSENGERS_BOARDING 60
+#define NUMBER_OF_PASSENGERS_BOARDING 57
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
+#define SEATS_PER_ROW 6
 
-void get_random_number(int *k,int *j);
-void get_random_array(int random_destination[]);
+/* Der er brug for flyets indgang som input for at få dette til at virke*/
+
+
 
 /*Defining passenger as a struct type */
 typedef struct passenger
@@ -38,35 +40,61 @@ typedef struct aircraft
 
 
 
-
-
-
-
-
-
-
+void get_random_number(int *k,int *j);
+void get_random_array(int random_destination[]);
+void passenger_get_random_destination(int *random_destination, passenger boarding[]);
+int find_illegal_seat(int i);
 
 
 
 
 int main(void){
-
+    int i;
     passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
     int random_destination[60];
     srand(time(0));
 
     get_random_array(random_destination);
 
+    passenger_get_random_destination(random_destination, boarding);
 
-
-
-
-
-
+    printf("\n\n\n");
+    for(i=0; i<57; i=i+1) {
+        printf("%d , %d \n", boarding[i].destination, i);
+    }
     return (0);
 }
 
 
+
+void passenger_get_random_destination(int *random_destination, passenger boarding[]) {
+    int *pointer_array, i;
+
+    pointer_array = random_destination;
+
+    for(i=0; i<57; i=i+1)
+    {
+        if(*(pointer_array+i)== (find_illegal_seat(0)) || *(pointer_array+i) == (find_illegal_seat(1)) || *(pointer_array+i) == (find_illegal_seat(2))) {
+            pointer_array = pointer_array+1;
+
+            if(*(pointer_array+i)==(find_illegal_seat(0)) || *(pointer_array+i) == (find_illegal_seat(1)) || *(pointer_array+i) == (find_illegal_seat(2))) {
+                pointer_array = pointer_array+1;
+
+                if(*(pointer_array+i)==(find_illegal_seat(0)) || *(pointer_array+i) == (find_illegal_seat(1)) || *(pointer_array+i) == (find_illegal_seat(2))) {
+                    pointer_array = pointer_array+1;
+                }
+            }
+        }
+        boarding[i].destination = *(pointer_array+i);
+    }
+}
+
+
+
+
+int find_illegal_seat(int i) {
+    return ((ENTRANCE_PLACEMENT * SEATS_PER_ROW) + (SEATS_PER_ROW/2) + i);
+}
 
 
 
@@ -82,10 +110,6 @@ void get_random_array(int random_destination[]) {
         plads = random_destination[k];
         random_destination[k] = random_destination[j];
         random_destination[j] = plads;
-    }
-
-    for(i=0, plads=0; i<60; i=i+1, plads=plads+1) {
-        printf("%d , %d \n", random_destination[i], plads);
     }
 }
 

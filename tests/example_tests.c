@@ -9,7 +9,7 @@ void testgange(CuTest *tc)
 {
     double result;
     result = gange(3, 0);
-    CuAssertTrue(tc, result == 1);
+    CuAssertTrue(tc, result == 0);
 }
 
 void testgange0(CuTest *tc)

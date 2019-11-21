@@ -4,14 +4,16 @@ TARGET = prog
 TEST_TARGET = test
 BASEDIR = ../..
 
+EXT = .exe
+
 SOURCE =  $(wildcard source/*.c)
 TESTS =  $(wildcard tests/*.c)
 
 $(TARGET): main.c
-	$(CC) $(CFLAGS) main.c $(SOURCE) -o $(TARGET)
+	$(CC) $(CFLAGS) main.c $(SOURCE) -o $(TARGET)$(EXT)
 
 $(TEST_TARGET): 
-	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) -o $(TEST_TARGET)
+	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) -o $(TEST_TARGET)$(EXT)
 
 run: $(TARGET)
 	@$(TARGET)

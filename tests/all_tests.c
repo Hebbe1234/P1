@@ -1,11 +1,13 @@
 #include "../headers/CuTest.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 CuSuite* get_example_suit(void); 
 CuSuite *get_initialization_suit(void);
 
 
-void runalltest(void)
+int runalltest(void)
 {
     CuString *output = CuStringNew();
     CuSuite *suite   = CuSuiteNew();
@@ -17,11 +19,16 @@ void runalltest(void)
     CuSuiteSummary(suite, output);
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
+
+    if (strstr(output->buffer, "!!!FAILURES!!!") != NULL) {
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
 }
 
 int main(void)
 {
-    runalltest();
-    return(0);
+    return runalltest();
 }
 

@@ -24,15 +24,16 @@ This is the repository for all software developed for the P1 project by group A4
 
     /* A description of the function */
     int main(void) {
-
-        example_function(1, 10);
+        int i = 0;
+      
+        example_function(1, 10, &i);
 
         return 0;
 
     }
 
      /* A description of the function */
-    void example_function(int start, int limit) {
+    void example_function(int start, int limit, int *pointer) {
 
         int i = 0;
 

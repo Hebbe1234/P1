@@ -71,4 +71,7 @@ int main (void)
     return(0);
 }
 
-
+void initialize_passenger
+{
+    
+}

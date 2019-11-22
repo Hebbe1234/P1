@@ -9,6 +9,13 @@
 
 #endif
 
+#ifndef PRINT_PASSENGER
+#define PRINT_PASSENGER
+
+#include "headers/print_passenger.h"
+
+#endif
+
 #ifndef STRUCTS
 #define STRUCTS
 

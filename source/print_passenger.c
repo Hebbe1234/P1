@@ -7,8 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-void print_passenger_function (passenger person) {
+void print_passenger (passenger person) {
     int P_D = person.destination, 
         P_L = person.location, 
         P_F = person.finish, 

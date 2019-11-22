@@ -65,7 +65,6 @@ int main (void)
     plane.entrance = ENTRANCE_PLACEMENT;
 
     initialize_passenger(test, plane);
-    print_passenger(p1);
 
     printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
     printf("%d %d %d %d %d\n", example.inteference_flag, example.finish, example.destination, test[0].location, example.carry_on);

@@ -20,7 +20,7 @@ void print_aircraft(aircraft plane) {
     O, V, H, E);
     for (i = 0; i < SIZE_OF_INTERFERENCE; i++)
     {
-        printf("%d\n", plane.interference[i]);
+        printf("Intereference of half row %d: %d\n", i+1, plane.interference[i]);
     }
     
 }

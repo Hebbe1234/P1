@@ -1,41 +1,27 @@
 #include <stdio.h>
 #include <math.h>
 #include "headers/main.h"
-#include "headers/finalising.h"
 
 #ifndef INIT
 #define INIT
-#define NUMBER_OF_PASSENGERS_BOARDING 27
+
+#include "headers/initializing.h"
+
+#endif
+
+#ifndef STRUCTS
+#define STRUCTS
+
+#include "headers/structs.h"
+
+#endif
+
+#define NUMBER_OF_PASSENGERS_BOARDING 2
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
 
-/*Defining passenger as a struct type */
-typedef struct passenger
-{
-    int destination, 
-        location, 
-        finish, 
-        carry_on, 
-        wait_time, 
-        inteference_flag;
-    struct passenger* spotting;
-} passenger;
-
-/*Defining the aircraft as a struct type */
-typedef struct aircraft 
-{
-    passenger boarding[NUMBER_OF_PASSENGERS_BOARDING];
-    passenger v_left;
-    passenger h_right;
-    int entrance;
-    /*
-        TODO: This should not be statically sized. 
-        Use int* instead and dynamically allocate memory from a parameter given by the user
-    */
-    int inteference[2*NUMBER_OF_ROWS];
-} aircraft ;
-
 void finalising(passenger* p1);
+
 
 int main (void)
 {
@@ -44,7 +30,7 @@ int main (void)
     passenger example;
     passenger p1;
     aircraft plane;
-
+    passenger test[2];
 
     p1.destination = 31;
     p1.location = 5;
@@ -61,33 +47,27 @@ int main (void)
     example.carry_on = 1;
     example.wait_time = 0;
     example.inteference_flag = 0;
-    example.spotting = &p1;
+    example.spotting = NULL;
 
     plane.v_left = example;
 
-    printf("%d ", example.spotting->location);
+    /*printf("%d ", example.spotting->location);
 
-    printf("%d\n", plane.v_left.spotting->location);
+    printf("%d\n", plane.v_left.spotting->location);*/
     
-    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
+    test[0] = example;
+    test[1] = p1;
+    plane.entrance = ENTRANCE_PLACEMENT;
 
     printf("___________________\n");
 
     finalising(&p1);
+    initialize_passenger(test, plane);
+
+    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
+    printf("%d %d %d %d %d\n", example.inteference_flag, example.finish, example.destination, test[0].location, example.carry_on);
 
     return(0);
 }
 
-void finalising(passenger* p1) {
 
-       /* for(int i = 0; i <= (passenger_array); i++) */
-
-        if(p1->location == p1->destination/6 && p1->carry_on == 0 && p1->wait_time == 0 && p1->inteference_flag == 2){
-            p1->finish = 1;
-        } 
-        else {
-            printf("Passenger not finished!\n");
-        }
-
-        printf("%d\n", p1->finish);
-}

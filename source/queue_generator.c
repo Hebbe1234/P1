@@ -29,7 +29,7 @@ void reset_passenger_array(passenger passengers [], int length_of_array);
 void initialize_spotting(passenger passengers[], int length_of_array);
 void get_carryon(passenger passengers[], int length_of_array);
 
-
+/* Der må IKKE være en main function. The queue_generator must be a function of its own. */
 int main(void){
     int i;
     int length_of_array = 57;
@@ -128,7 +128,7 @@ void passenger_get_random_destination(int *random_destination, passenger passeng
     /* TODO: Remove magic number and change i = i+1 to i++ */
     for(i=0; i < length_of_array; i=i+1)
     {
-        while(*(p_array+i)== (find_illegal_seat(0)) || *(p_array+i) == (find_illegal_seat(1)) || *(p_array+i) == (find_illegal_seat(2))) {
+        while(*(p_array+i) == find_illegal_seat(0) || *(p_array+i) == find_illegal_seat(1) || *(p_array+i) == find_illegal_seat(2)) {
             p_array = p_array+1;
         }
         passengers [i].destination = *(p_array+i);

@@ -8,5 +8,7 @@
 #include <stdlib.h>
 
 void print_aircraft(aircraft plane) {
-    int O = sizeof(aircraft.boarding);
+    int O = sizeof(plane.boarding),
+        V = plane.v_left->location,
+        H = plane.h_right;
 }

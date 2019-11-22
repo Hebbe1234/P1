@@ -21,5 +21,5 @@ typedef struct aircraft
         TODO: This should not be statically sized. 
         Use int* instead and dynamically allocate memory from a parameter given by the user
     */
-    int inteference[2*10];
+    int interference[2*10];
 } aircraft;

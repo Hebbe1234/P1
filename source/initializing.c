@@ -17,7 +17,7 @@ void initialize_passenger(passenger* passengers, aircraft plane) {
     for (i = 0; i < 2; i++) {
         p = passengers[i];
         P_L = p.location;
-        if (P_L == -1 && (p.spotting == NULL || ( p.spotting->location != P_E && p.spotting->location != -1 ))) {
+        if (P_L == -1 && (( p.spotting->location != P_E && p.spotting->location != -1 ) || p.spotting == NULL)) {
             passengers[i].location = P_E;
         }    
     }  

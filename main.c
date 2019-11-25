@@ -30,7 +30,6 @@
 #define ENTRANCE_PLACEMENT 4 
 
 
-
 int main (void)
 {
 
@@ -48,13 +47,13 @@ int main (void)
     p1.destination = 54;
     p1.location = -1;
     p1.finish = 0;
-    p1.carry_on = 1;
+    p1.carry_on = 0;
     p1.wait_time = 0;
     p1.interference_flag = 0;
     p1.spotting = &example;
 
-    example.destination = 55;
-    example.location = ENTRANCE_PLACEMENT+1;
+    example.destination = 30;
+    example.location = 4;
     example.finish = 0;
     example.carry_on = 1;
     example.wait_time = 0;
@@ -76,11 +75,12 @@ int main (void)
     t.entrance = ENTRANCE_PLACEMENT;
     printf("%d\n", t.entrance);
 
-    initialize_passenger(&t);
+    initialize_passenger(&t, 2);
 
     printf("%d %d %d %d %d\n", p1.interference_flag, p1.finish, p1.destination, t.passengers[0].location, p1.carry_on);
     printf("%d %d %d %d %d\n", example.interference_flag, example.finish, example.destination, t.passengers[1].location, example.carry_on);
 
     return(0);
 }
+
 

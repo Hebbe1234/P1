@@ -12,6 +12,10 @@
 
 #endif
 
+<<<<<<< HEAD
+=======
+#define SEATS_PER_ROW 6
+>>>>>>> 3e2746c33a752154b73de9e0d108c8be80b472a2
 
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
 void initialize_passenger_array(int carryon_percentage, int length_of_array, int seats_per_row, 

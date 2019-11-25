@@ -22,5 +22,4 @@ void initialize_passenger(transition_system *t) {
             t->passengers[i].location = P_E;
         }    
     }  
-
 }

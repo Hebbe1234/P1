@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Checks if entire transition system is finished */
 int is_finished (transition_system *t, int length) {
     int finished = 1;
     int i;

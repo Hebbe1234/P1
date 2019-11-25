@@ -5,6 +5,7 @@
 
 CuSuite* get_example_suit(void); 
 CuSuite *get_initialization_suit(void);
+CuSuite *get_finished_suit(void);
 
 
 int runalltest(void)

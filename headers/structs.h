@@ -21,5 +21,6 @@ typedef struct transition_system {
     passenger passengers[60];
     int *destinations;
     int entrance;
+    wait_times wait;
 
 } transition_system;

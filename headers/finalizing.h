@@ -5,6 +5,6 @@
 
 #endif
 
-void finalising(passenger* p1);
+void finalising_passenger(passenger* passengers);
 
 

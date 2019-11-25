@@ -20,8 +20,6 @@
 #define NUMBER_OF_ROWS 10
 #define ENTRANCE_PLACEMENT 4 
 
-void finalising(passenger* p1);
-
 
 int main (void)
 {
@@ -61,7 +59,6 @@ int main (void)
 
     printf("___________________\n");
 
-    finalising(&p1);
     initialize_passenger(test, plane);
 
     printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);

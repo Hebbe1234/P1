@@ -10,15 +10,16 @@ void testFinalizing_first(CuTest *tc) {
 
     passenger p1;
     passenger p2; 
-    aircraft plane;
-    passenger* test[1];
+    passenger test[2];
+
+    int E = 4;
 
     p1.destination = 31;
     p1.location = 5;
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;
-    p1.inteference_flag = 2;
+    /*p1.inteference_flag = 2;*/
     p1.spotting = NULL;
 
     p2.destination = 24;
@@ -26,14 +27,16 @@ void testFinalizing_first(CuTest *tc) {
     p2.finish = 0;
     p2.carry_on = 0;
     p2.wait_time = 0;
-    p2.inteference_flag = 0;
+    /*p2.inteference_flag = 0;*/
     p2.spotting = NULL;
 
-    passenger* test_pas[1] = {&p1, &p2};
+    test[0] = p1;
+    test[1] = p2;
+    
+    finalising_passenger(test);
 
-    test[0] = test_pas[1];
-    finalising(test_pas[1]);
-    CuAssertTrue(tc, test_pas[1] == 1);
+    CuAssertTrue(tc, test[0].location == 5);
+    CuAssertTrue(tc, test[1].location == 4);
 
 
 /*  plane.v_left = p1;

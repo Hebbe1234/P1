@@ -13,12 +13,25 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 
-void finalising(passenger* p1) {
+void finalising_passenger(*t passengers) {
+    int P_L, i;
+    *t p;
 
-       /* for(int i = 0; i <= (passenger_array); i++) */
-
-        if(p1->location == p1->destination/6 && p1->carry_on == 0 && p1->wait_time == 0 && p1->inteference_flag == 2){
+    for (i = 0; i < 2; i++)
+    {
+        p  = passengers[i];
+        P_L = p.location;
+        if (P_L == p.destination/6 && p.carry_on == 0 && p.wait_time == 0){
+            p.finish = 1;
+            printf("Finish");
+        }
+    printf("Not finish");
+        
+    }
+    
+        /*if(test[]->location == test[]->destination/6 && test[]->carry_on == 0 && test[]->wait_time == 0){
             p1->finish = 1;
         } 
         else {
@@ -26,4 +39,5 @@ void finalising(passenger* p1) {
         }
 
         printf("%d\n", p1->finish);
+        }*/
 }

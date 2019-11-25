@@ -8,18 +8,17 @@ typedef struct passenger
         wait_time, 
         interference_flag;
     struct passenger* spotting;
-} passenger;
 
-/*Defining the aircraft as a struct type */
-typedef struct aircraft 
-{
-    passenger boarding[60];
-    passenger v_left;
-    passenger h_right;
+
+
+typedef struct wait_times {
+    int t_c, t_m, t_0, t_1, t_2, t_3;
+} wait_times;
+
+typedef struct transition_system {
+
+    passenger passengers[60];
+    int *destinations;
     int entrance;
-    /*
-        TODO: This should not be statically sized. 
-        Use int* instead and dynamically allocate memory from a parameter given by the user
-    */
-    int inteference[2*10];
-} aircraft;
+
+} transition_system;

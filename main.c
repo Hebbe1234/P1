@@ -70,7 +70,7 @@ int main (void)
     t.entrance = ENTRANCE_PLACEMENT;
     printf("%d\n", t.entrance);
 
-    initialize_passenger(&t);
+    initialize_passenger(&t, 2);
 
     printf("%d %d %d %d %d\n", p1.interference_flag, p1.finish, p1.destination, t.passengers[0].location, p1.carry_on);
     printf("%d %d %d %d %d\n", example.interference_flag, example.finish, example.destination, t.passengers[1].location, example.carry_on);

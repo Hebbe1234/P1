@@ -35,7 +35,7 @@ void get_random_number(int *k,int *j);
 
 
 
-
+/* Der må IKKE være en main function. The queue_generator must be a function of its own. */
 int main(void){
     int i;
     int length_of_array = 57;
@@ -99,11 +99,22 @@ void get_random_array(int random_destinations[], int length_of_array) {
     for(i = 0; (i < length_of_array + (SEATS_PER_ROW/2)); i=i+1)
         random_destinations[i]=i;
 
+<<<<<<< HEAD
     for(i = 0; i < 1000000; i = i + 1) {
         get_random_number(&k,&j);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];
         random_destinations[j] = tmp_plads;
+=======
+    p_array = random_destination;
+    /* TODO: Remove magic number and change i = i+1 to i++ */
+    for(i=0; i < length_of_array; i=i+1)
+    {
+        while(*(p_array+i) == find_illegal_seat(0) || *(p_array+i) == find_illegal_seat(1) || *(p_array+i) == find_illegal_seat(2)) {
+            p_array = p_array+1;
+        }
+        passengers [i].destination = *(p_array+i);
+>>>>>>> ed72d608741e43a48093db4f214227b10ec6d1ee
     }
 }
 

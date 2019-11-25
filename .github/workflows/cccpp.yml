@@ -1,4 +1,4 @@
-name: build
+name: Pull Request Compiles
 
 on:
   pull_request:

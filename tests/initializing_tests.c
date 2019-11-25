@@ -12,6 +12,7 @@ void testInitializing_first(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
 
@@ -35,7 +36,7 @@ void testInitializing_first(CuTest *tc) {
     ps[1] = example;
 
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 
@@ -56,6 +57,7 @@ void testInitializing_second(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
 
@@ -73,7 +75,7 @@ void testInitializing_second(CuTest *tc) {
     ps[1] = example;
 
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 
@@ -97,6 +99,7 @@ void testInitializing_third(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
 
@@ -114,7 +117,7 @@ void testInitializing_third(CuTest *tc) {
     ps[1] = example;
 
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 
@@ -137,6 +140,7 @@ void testInitializing_fourth(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
     p1.destination = 54;
@@ -153,7 +157,7 @@ void testInitializing_fourth(CuTest *tc) {
     ps[1] = example;
 
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 
@@ -174,6 +178,7 @@ void testInitializing_fifth(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
     p1.destination = 54;
@@ -189,7 +194,7 @@ void testInitializing_fifth(CuTest *tc) {
     ps[1] = example;
 
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 
@@ -210,6 +215,7 @@ void testInitializing_sixth(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
     p1.destination = 54;
@@ -225,7 +231,7 @@ void testInitializing_sixth(CuTest *tc) {
     ps[0] = p1;
     ps[1] = example;
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 
@@ -245,6 +251,7 @@ void testInitializing_seventh(CuTest *tc) {
     transition_system t;
     passenger ps[2];
     int i;
+    int queue = 2;
     int E = 4;
 
     p1.destination = 54;
@@ -261,7 +268,7 @@ void testInitializing_seventh(CuTest *tc) {
     ps[1] = example;
 
     
-    for(i = 0; i < 2; i++){
+    for(i = 0; i < queue; i++){
         t.passengers[i] = ps[i];
     }
 

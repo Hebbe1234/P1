@@ -5,4 +5,4 @@
 
 #endif
 
-void initialize_passenger(passenger* passengers, aircraft plane);
+void initialize_passenger(transition_system *t);

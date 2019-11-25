@@ -14,30 +14,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void finalising_passenger(transition_system *t) {
     int P_L, i;
     passenger p;
+    int queue = 1;
 
-    for (i = 0; i < 2; i++)
+    for (i = 0; i < queue; i++)
     {
         p  = t->passengers[i];
         P_L = p.location;
-        if (P_L == p.destination/6 && p.carry_on == 0 && p.wait_time == 0){
+        if (P_L == floor(p.destination/6) && p.carry_on == 0 && p.wait_time == 0){
             t->passengers[i].finish = 1;
-            printf("Finish");
         }
-    printf("Not finish");
-        
     }
-    
-        /*if(test[]->location == test[]->destination/6 && test[]->carry_on == 0 && test[]->wait_time == 0){
-            p1->finish = 1;
-        } 
-        else {
-            printf("Passenger not finished!\n");
-        }
-
-        printf("%d\n", p1->finish);
-        }*/
 }

@@ -5,53 +5,130 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-void testFinalizing_first(CuTest *tc) {
+/* If p1 is not in plane */
+void finalizingtest_first(CuTest *tc) {
 
     passenger p1;
-    passenger p2; 
-    passenger test[2];
+    transition_system t;
 
-    int E = 4;
-
-    p1.destination = 31;
-    p1.location = 5;
+    p1.destination = 54;
+    p1.location = -1;
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;
-    /*p1.inteference_flag = 2;*/
-    p1.spotting = NULL;
 
-    p2.destination = 24;
-    p2.location = 4;
-    p2.finish = 0;
-    p2.carry_on = 0;
-    p2.wait_time = 0;
-    /*p2.inteference_flag = 0;*/
-    p2.spotting = NULL;
-
-    test[0] = p1;
-    test[1] = p2;
+    t.passengers[0] = p1;
     
-    finalising_passenger(test);
+    finalising_passenger(&t);
 
-    CuAssertTrue(tc, test[0].location == 5);
-    CuAssertTrue(tc, test[1].location == 4);
+    CuAssertTrue(tc, t.passengers[0].location == -1);
+    CuAssertTrue(tc, t.passengers[0].finish == 0);
 
+}
 
-/*  plane.v_left = p1;
+/* in destination is true but carry on is 1 */
+void finalizingtest_second(CuTest *tc) {
+    passenger p1;
+    transition_system t;
 
-    test[0] = p1;
+    p1.destination = 54;
+    p1.location = 0;
+    p1.finish = 0;
+    p1.carry_on = 1;
+    p1.wait_time = 0;
 
-    finalising(&p1);
+    t.passengers[0] = p1;
+    
+    finalising_passenger(&t);
 
-    CuAssertTrue(tc, p1.finish == 1); */
+    CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+}
+
+/* in destination is true but carry on is 1 and wait is > 0*/
+void finalizingtest_third(CuTest *tc) {
+    passenger p1;
+    transition_system t;
+
+    p1.destination = 54;
+    p1.location = 0;
+    p1.finish = 0;
+    p1.carry_on = 1;
+    p1.wait_time = 2;
+
+    t.passengers[0] = p1;
+    
+    finalising_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+}
+
+/* in destination and carry on is 0 but wait is > 0*/
+void finalizingtest_fourth(CuTest *tc) {
+    passenger p1;
+    transition_system t;
+
+    p1.destination = 54;
+    p1.location = 0;
+    p1.finish = 0;
+    p1.carry_on = 0;
+    p1.wait_time = 2;
+    
+    t.passengers[0] = p1;
+    
+    finalising_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+}
+
+/* in destination but carry on and wait is 0 */
+void finalizingtest_fifth(CuTest *tc) {
+    passenger p1;
+    transition_system t;
+
+    p1.destination = 54;
+    p1.location = 9;
+    p1.finish = 0;
+    p1.carry_on = 0;
+    p1.wait_time = 0;
+
+    t.passengers[0] = p1;
+    
+    finalising_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[0].finish == 1);
+
+}
+
+/* not in destination but carry on and wait is 0 */
+void finalizingtest_sixth(CuTest *tc) {
+    passenger p1;
+    transition_system t;
+
+    p1.destination = 54;
+    p1.location = 2;
+    p1.finish = 0;
+    p1.carry_on = 0;
+    p1.wait_time = 0;
+
+    t.passengers[0] = p1;
+    
+    finalising_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[0].finish == 0);
 
 }
 
 CuSuite *get_finalizing_suit(void) /*Dette skal op i toppen af alltests.c*/
 {
     CuSuite *suite = CuSuiteNew();
-    SUITE_ADD_TEST(suite, testFinalizing_first);
+    SUITE_ADD_TEST(suite, finalizingtest_first);
+    SUITE_ADD_TEST(suite, finalizingtest_second);
+    SUITE_ADD_TEST(suite, finalizingtest_third);
+    SUITE_ADD_TEST(suite, finalizingtest_fourth);
+    SUITE_ADD_TEST(suite, finalizingtest_fifth);
+    SUITE_ADD_TEST(suite, finalizingtest_sixth);
     return suite;
 }

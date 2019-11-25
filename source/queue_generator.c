@@ -54,9 +54,11 @@ int main(void){
 
 
     printf("\n\n\n");
-    for(i=0; i<57; i=i+1) {
+    for(i=0; i < length_of_array; i=i+1) {
         printf("%d , %d \n", passengers[i].destination, i);
     }
+
+    free(passengers);
     return (0);
 }
 
@@ -72,7 +74,7 @@ void initialize_passenger_array(passenger passengers [], int length_of_array) {
     passenger_get_random_destinations(random_destinations, passengers, length_of_array);
     initialize_spotting(passengers, length_of_array);
     get_carryon(passengers, length_of_array);
-
+    free(random_destinations);
 }
 
 
@@ -113,7 +115,6 @@ void passenger_get_random_destinations(int *random_destinations, passenger passe
     int *p_array, i;
 
     p_array = random_destinations;
-    /* TODO: Remove magic number and change i = i+1 to i++ */
     for(i=0; i < length_of_array; i=i+1)
     {
         while(*(p_array+i)== (is_illegal_seat(0)) || *(p_array+i) == (is_illegal_seat(1)) || *(p_array+i) == (is_illegal_seat(2))) {
@@ -142,7 +143,6 @@ void initialize_spotting(passenger passengers[], int length_of_array) {
     for(i=1; i<57; i=i+1) {
         printf("%d , %d \n", passengers[i].spotting->destination, i);
     }
-
 */
 }
 

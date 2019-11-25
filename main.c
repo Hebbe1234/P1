@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 #include "headers/main.h"
+#include <time.h>
+#include <stdlib.h>
 
 #ifndef INIT
 #define INIT

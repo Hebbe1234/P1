@@ -188,7 +188,6 @@ void test_get_random_array(CuTest *tc){
     int destination[60] = {0};
     int destination1[18] = {0};
 
-
     get_random_array(destination, 57);
 
     for(i=0, flag0=1; i<60; i++){

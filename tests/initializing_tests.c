@@ -78,10 +78,8 @@ void testInitializing_second(CuTest *tc) {
     }
 
     t.entrance = E;
-    printf("%d\n", t.entrance);
 
     initialize_passenger(&t);
-
    
 
     CuAssertTrue(tc, t.passengers[0].location == -1);

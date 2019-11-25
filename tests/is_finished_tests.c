@@ -8,17 +8,18 @@
 void test_finished_first(CuTest *tc) {
     passenger example;
     passenger p1;
-    passenger test[2];
+    transition_system t;
+    int finished = 0;
 
     p1.finish = 0;
     example.finish = 0;
 
-    test[0] = p1;
-    test[1] = example;
+    t.passengers[0] = p1;
+    t.passengers[1] = example;
 
-    is_finished(*t, 2);
+    finished = is_finished(&t, 2);
 
-    CuAssert(tc, finished == 0);
+    CuAssertTrue(tc, finished == 0);
 
 }
 

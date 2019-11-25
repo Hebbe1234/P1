@@ -9,9 +9,10 @@
 
 int is_finished (transition_system *t, int length) {
     int finished = 1;
+    int i;
 
     for (i = 0; i < length; i++) {
-        if (p.finish == 0) {
+        if (t->passengers[i].finish == 0) {
             finished = 0;
         }
     }

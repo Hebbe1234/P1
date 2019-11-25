@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void testget_random_number(CuTest *tc) {
+void test_get_random_number_80(CuTest *tc) {
     int k, j, i;
     
     for (i = 0; i < 100; ++i) {
@@ -11,6 +11,11 @@ void testget_random_number(CuTest *tc) {
         CuAssertTrue(tc, (k >= 0) && (k < 83));
         CuAssertTrue(tc, (j >= 0) && (j < 83));
     }
+}
+
+void test_get_random_number_15(CuTest *tc) {
+    int k, j, i;
+    
     for (i = 0; i < 100; ++i) {
         get_random_number(&k, &j, 15);
         CuAssertTrue(tc, (k >= 0) && (k < 18));
@@ -18,22 +23,27 @@ void testget_random_number(CuTest *tc) {
     }
 }
 
-void testis_illegal_seat(CuTest *tc) {
+void test_is_illegal_seat_E4(CuTest *tc) {
     int result, j, i;
     
     for (i = 0, j = 4; i < 3; ++i) {
         result = is_illegal_seat(i, j);
         CuAssertTrue(tc, result-i == 27);
     }
-    for (i = 0, j = 0; i < 3; ++i) {
+}
+
+void test_is_illegal_seat_E0(CuTest *tc) {
+   int result, j, i;
+
+   for (i = 0, j = 0; i < 3; ++i) {
         result = is_illegal_seat(i, j);
         CuAssertTrue(tc, result-i == 3);
     }
 }
 
-void test_get_carryon(CuTest *tc) {
+void test_get_carryon_A57_CP50(CuTest *tc) {
     struct passenger *passengers;
-    int i, flag0, flag1, flag2;
+    int i, flag0;
     passengers = (struct passenger*)calloc(57, sizeof(passenger));
 
     get_carryon(passengers, 57, 50);
@@ -43,6 +53,12 @@ void test_get_carryon(CuTest *tc) {
             flag0=0;
     }
     free(passengers);
+    CuAssertTrue(tc, flag0 == 1);
+}
+
+void test_get_carryon_A51_CP100(CuTest *tc) {
+    struct passenger *passengers;
+    int i, flag1;
 
     passengers = (struct passenger*)calloc(51, sizeof(passenger));
 
@@ -53,6 +69,14 @@ void test_get_carryon(CuTest *tc) {
     }    
     free(passengers);
 
+    CuAssertTrue(tc, flag1 == 1);
+}
+
+
+void test_get_carryon_A51_CP0(CuTest *tc) {
+    struct passenger *passengers;
+    int i, flag2;
+
     passengers = (struct passenger*)calloc(51, sizeof(passenger));
 
     get_carryon(passengers, 51, 0);
@@ -61,11 +85,10 @@ void test_get_carryon(CuTest *tc) {
             flag2=0;
     }    
     free(passengers);
-    CuAssertTrue(tc, flag0 == 1);
-    CuAssertTrue(tc, flag1 == 1);
-    CuAssertTrue(tc, flag2 == 1);
 
+    CuAssertTrue(tc, flag2 == 1);
 }
+
 
 /*Der produceres et passenger array. 
   Der gives destination fra 0 til 57 til passasgerene. 
@@ -75,7 +98,7 @@ void test_get_carryon(CuTest *tc) {
   ved at tjekke at destinationen på den de kigger på, er korrekt*/
 void test_initialize_spotting(CuTest *tc){
     struct passenger *passengers;
-    int i, flag0=1, flag1=1;
+    int i, flag1=1;
 
     passengers = (struct passenger*)calloc(57, sizeof(passenger));
 
@@ -86,30 +109,28 @@ void test_initialize_spotting(CuTest *tc){
     initialize_spotting(passengers, 57);
 
     if(passengers[0].spotting!=NULL)
-        flag0=0;
+        flag1=0;
 
     for(i=1; i < 57; i=i+1) {
         if(passengers[i].spotting->destination != passengers[i-1].destination)
             flag1=0;
     }
 
-    CuAssertTrue(tc, flag0 == 1);
     CuAssertTrue(tc, flag1 == 1);
-
-
 }
 
 
-void test_get_random_destinations(CuTest *tc){
+void test_get_random_destinations_array57_entrance4(CuTest *tc){
     struct passenger *passengers;
-    int i, j, flag0=1, flag1=1;
+    int i, j, flag0=1;
     int destination[60] = {0};
-    int destination1[54] = {0};
 
     for(i=0; i<60; i++){
         destination[i] = i;
     }
+
     passengers = (struct passenger*)calloc(57, sizeof(passenger));
+
     passenger_get_random_destinations(destination, passengers, 57, 4);
     for(i=0, flag0=1; i<57; i++){
         if((passengers[i].destination == 27) ||
@@ -126,13 +147,24 @@ void test_get_random_destinations(CuTest *tc){
     }
     free(passengers);
 
+    CuAssertTrue(tc, flag0 == 1);
+}
+
+
+
+void test_get_random_destinations_array51_entrance0(CuTest *tc){
+    struct passenger *passengers;
+    int i, j, flag1=1;
+    int destination1[54] = {0};
+
     passengers = (struct passenger*)calloc(51, sizeof(passenger));
+
 
 
     get_random_array(destination1,51);
 
 
-    passenger_get_random_destinations(destination, passengers, 51, 0);
+    passenger_get_random_destinations(destination1, passengers, 51, 0);
 
     for(i=0, flag1=1; i<51; i++){
         if((passengers[i].destination == 3) ||
@@ -148,7 +180,6 @@ void test_get_random_destinations(CuTest *tc){
         }        
     }
 
-    CuAssertTrue(tc, flag0 == 1);
     CuAssertTrue(tc, flag1 == 1);
 }
 
@@ -183,18 +214,15 @@ void test_reset_passenger_array(CuTest *tc){
 }
 
 
-void test_get_random_array(CuTest *tc){
-    int i, j, flag0=1, flag1=0;
+void test_get_random_array_array57(CuTest *tc){
+    int i, j, flag0;
     int destination[60] = {0};
-    int destination1[18] = {0};
 
     get_random_array(destination, 57);
 
     for(i=0, flag0=1; i<60; i++){
         if(!(destination[i]>=0 && destination[i]<60))
             flag0=0;
-
-
 
         for(j=0; j<60; j++){
             if(i==j)
@@ -203,6 +231,13 @@ void test_get_random_array(CuTest *tc){
                 flag0=0;
         }
     }
+
+    CuAssertTrue(tc, flag0 == 1);
+}
+
+void test_get_random_array_array15(CuTest *tc){
+    int i, j, flag1;
+    int destination1[18] = {0};
 
     get_random_array(destination1, 15);
 
@@ -217,23 +252,26 @@ void test_get_random_array(CuTest *tc){
         }
     }
 
-    CuAssertTrue(tc, flag0 == 1);
     CuAssertTrue(tc, flag1 == 1);
 
 }
 
 
-
 CuSuite *get_generator_suit(void) { /*Dette skal op i toppen af alltests.c*/
     CuSuite *suite = CuSuiteNew();
-    SUITE_ADD_TEST(suite, testget_random_number);
-    SUITE_ADD_TEST(suite, testis_illegal_seat);
-    SUITE_ADD_TEST(suite, test_get_carryon);
+    SUITE_ADD_TEST(suite, test_get_random_number_80);
+    SUITE_ADD_TEST(suite, test_is_illegal_seat_E4);
+    SUITE_ADD_TEST(suite, test_is_illegal_seat_E0);
+    SUITE_ADD_TEST(suite, test_get_carryon_A57_CP50);
+    SUITE_ADD_TEST(suite, test_get_carryon_A51_CP100);
+    SUITE_ADD_TEST(suite, test_get_carryon_A51_CP0);
     SUITE_ADD_TEST(suite, test_initialize_spotting);
-    SUITE_ADD_TEST(suite, test_get_random_destinations);
+    SUITE_ADD_TEST(suite, test_get_random_destinations_array51_entrance0);
+    SUITE_ADD_TEST(suite, test_get_random_destinations_array57_entrance4);
     SUITE_ADD_TEST(suite, test_reset_passenger_array);
-    SUITE_ADD_TEST(suite, test_get_random_array);
-
+    SUITE_ADD_TEST(suite, test_get_random_array_array15);
+    SUITE_ADD_TEST(suite, test_get_random_array_array57);
+    SUITE_ADD_TEST(suite, test_get_random_number_15);
 
     return suite;
 }

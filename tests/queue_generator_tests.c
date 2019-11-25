@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 void test_get_random_number_80(CuTest *tc) {
     int k, j, i;
     
     for (i = 0; i < 100; ++i) {
-        get_random_number(&k, &j, 80);
+        get_random_number(&k, &j, 80, 6);
         CuAssertTrue(tc, (k >= 0) && (k < 83));
         CuAssertTrue(tc, (j >= 0) && (j < 83));
     }
@@ -17,7 +18,7 @@ void test_get_random_number_15(CuTest *tc) {
     int k, j, i;
     
     for (i = 0; i < 100; ++i) {
-        get_random_number(&k, &j, 15);
+        get_random_number(&k, &j, 15, 6);
         CuAssertTrue(tc, (k >= 0) && (k < 18));
         CuAssertTrue(tc, (j >= 0) && (j < 18));
     }
@@ -27,7 +28,7 @@ void test_is_illegal_seat_E4(CuTest *tc) {
     int result, j, i;
     
     for (i = 0, j = 4; i < 3; ++i) {
-        result = is_illegal_seat(i, j);
+        result = is_illegal_seat(i, j, 6);
         CuAssertTrue(tc, result-i == 27);
     }
 }
@@ -36,7 +37,7 @@ void test_is_illegal_seat_E0(CuTest *tc) {
    int result, j, i;
 
    for (i = 0, j = 0; i < 3; ++i) {
-        result = is_illegal_seat(i, j);
+        result = is_illegal_seat(i, j, 6);
         CuAssertTrue(tc, result-i == 3);
     }
 }
@@ -120,7 +121,7 @@ void test_initialize_spotting(CuTest *tc){
 }
 
 
-void test_get_random_destinations_array57_entrance4(CuTest *tc){
+void test_passenger_get_random_destinations_array57_entrance4(CuTest *tc){
     struct passenger *passengers;
     int i, j, flag0=1;
     int destination[60] = {0};
@@ -131,7 +132,7 @@ void test_get_random_destinations_array57_entrance4(CuTest *tc){
 
     passengers = (struct passenger*)calloc(57, sizeof(passenger));
 
-    passenger_get_random_destinations(destination, passengers, 57, 4);
+    passenger_get_random_destinations(destination, passengers, 57, 4, 6);
     for(i=0, flag0=1; i<57; i++){
         if((passengers[i].destination == 27) ||
           (passengers[i].destination == 28) ||
@@ -152,7 +153,7 @@ void test_get_random_destinations_array57_entrance4(CuTest *tc){
 
 
 
-void test_get_random_destinations_array51_entrance0(CuTest *tc){
+void test_passenger_get_random_destinations_array51_entrance0(CuTest *tc){
     struct passenger *passengers;
     int i, j, flag1=1;
     int destination1[54] = {0};
@@ -161,10 +162,10 @@ void test_get_random_destinations_array51_entrance0(CuTest *tc){
 
 
 
-    get_random_array(destination1,51);
+    get_random_array(destination1,51, 6);
 
 
-    passenger_get_random_destinations(destination1, passengers, 51, 0);
+    passenger_get_random_destinations(destination1, passengers, 51, 0, 6);
 
     for(i=0, flag1=1; i<51; i++){
         if((passengers[i].destination == 3) ||
@@ -218,7 +219,7 @@ void test_get_random_array_array57(CuTest *tc){
     int i, j, flag0;
     int destination[60] = {0};
 
-    get_random_array(destination, 57);
+    get_random_array(destination, 57,6);
 
     for(i=0, flag0=1; i<60; i++){
         if(!(destination[i]>=0 && destination[i]<60))
@@ -239,7 +240,7 @@ void test_get_random_array_array15(CuTest *tc){
     int i, j, flag1;
     int destination1[18] = {0};
 
-    get_random_array(destination1, 15);
+    get_random_array(destination1, 15, 6);
 
     for(i=0, flag1=1; i<18; i++){
         if(!(destination1[i]>=0 && destination1[i]<18))
@@ -266,8 +267,8 @@ CuSuite *get_generator_suit(void) { /*Dette skal op i toppen af alltests.c*/
     SUITE_ADD_TEST(suite, test_get_carryon_A51_CP100);
     SUITE_ADD_TEST(suite, test_get_carryon_A51_CP0);
     SUITE_ADD_TEST(suite, test_initialize_spotting);
-    SUITE_ADD_TEST(suite, test_get_random_destinations_array51_entrance0);
-    SUITE_ADD_TEST(suite, test_get_random_destinations_array57_entrance4);
+    SUITE_ADD_TEST(suite, test_passenger_get_random_destinations_array51_entrance0);
+    SUITE_ADD_TEST(suite, test_passenger_get_random_destinations_array57_entrance4);
     SUITE_ADD_TEST(suite, test_reset_passenger_array);
     SUITE_ADD_TEST(suite, test_get_random_array_array15);
     SUITE_ADD_TEST(suite, test_get_random_array_array57);

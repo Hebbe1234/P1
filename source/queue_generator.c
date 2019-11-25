@@ -12,28 +12,20 @@
 
 #endif
 
-#define SEATS_PER_ROW 6
-
-/*                   DETTE SKAL RBUGES TIL AT PRODUCERE PASSENGER ARRAY DYNAMISK 
-    struct passenger *passengers;
-    passengers = (struct passenger*)calloc(length_of_array, sizeof(passenger));
-*/ 
-
 
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
-void initialize_passenger_array(int carryon_percentage, int length_of_array, int row_number, 
+void initialize_passenger_array(int carryon_percentage, int length_of_array, int seats_per_row, 
                                 int entrance_placement, passenger passengers[]) {
     int *random_destinations; 
 
-    random_destinations = (int*)calloc(length_of_array + (SEATS_PER_ROW/2), sizeof(int));
+    random_destinations = (int*)calloc(length_of_array + (seats_per_row/2), sizeof(int));
 
     reset_passenger_array(passengers, length_of_array);
-    get_random_array(random_destinations, length_of_array);
-    passenger_get_random_destinations(random_destinations, passengers, length_of_array,entrance_placement);
+    get_random_array(random_destinations, length_of_array, seats_per_row);
+    passenger_get_random_destinations(random_destinations, passengers, length_of_array,entrance_placement, seats_per_row);
     initialize_spotting(passengers, length_of_array);
     get_carryon(passengers, length_of_array, carryon_percentage);
     free(random_destinations);
-    free(passengers);
 }
 
 
@@ -52,15 +44,15 @@ void reset_passenger_array(passenger passengers [], int length_of_array) {
 }
 
 /*Produces an array with random numbers, from 0 to that number of seats*/
-void get_random_array(int random_destinations[], int length_of_array) {
+void get_random_array(int random_destinations[], int length_of_array, int seats_per_row) {
     int i, j, k, tmp_plads;
     i = j = k = tmp_plads=0;
 
-    for(i = 0; (i < length_of_array + (SEATS_PER_ROW/2)); i++)
+    for(i = 0; (i < length_of_array + (seats_per_row/2)); i++)
         random_destinations[i]=i;
 
     for(i = 0; i < 1000000; i = i + 1) {
-        get_random_number(&k,&j, length_of_array);
+        get_random_number(&k,&j, length_of_array, seats_per_row);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];
         random_destinations[j] = tmp_plads;
@@ -68,17 +60,16 @@ void get_random_array(int random_destinations[], int length_of_array) {
 }
 
 
-
-
 /* The passenger array gets filled with random destination, based on the random_destination array*/
-void passenger_get_random_destinations(int *random_destinations, passenger passengers [], int length_of_array, int entrance_placement) {
-    int *p_array, i;
+void passenger_get_random_destinations(int *random_destinations, passenger passengers [], int length_of_array, int entrance_placement, int seats_per_row) {
+    int *p_array, i, j;
 
     p_array = random_destinations;
     for(i=0; i < length_of_array; i++)
     {
-        while(*(p_array+i)== (is_illegal_seat(0, entrance_placement)) || *(p_array+i) == (is_illegal_seat(1,entrance_placement)) || *(p_array+i) == (is_illegal_seat(2,entrance_placement))) {
-            p_array = p_array+1;
+        for(j=0; j<(seats_per_row/2); j++){
+            if((*(p_array+i)) == is_illegal_seat(j,entrance_placement, seats_per_row))
+                p_array++;
         }
         passengers [i].destination = *(p_array+i);
     }
@@ -86,8 +77,8 @@ void passenger_get_random_destinations(int *random_destinations, passenger passe
 
 
 /*Tests if the seat is replaced by a door, and therefore illegal*/
-int is_illegal_seat(int i, int entrance_placement) {
-    return ((entrance_placement * SEATS_PER_ROW) + (SEATS_PER_ROW/2) + i);
+int is_illegal_seat(int i, int entrance_placement, int seats_per_row) {
+    return ((entrance_placement * seats_per_row) + (seats_per_row/2) + i);
 }
 
 /*Passenger 0 is initialized to 0, and the rest, looks at the person in front*/
@@ -117,10 +108,9 @@ void get_carryon(passenger passengers[], int length_of_array, int carry_on_perce
 }
 
 
-
 /*Used to create random destination, by generating 2 random numbers*/
-void get_random_number(int *k,int *j,int length_of_array) {
-    *k = (rand() % (length_of_array+(SEATS_PER_ROW/2)));
-    *j = (rand() % (length_of_array+(SEATS_PER_ROW/2)));
+void get_random_number(int *k,int *j,int length_of_array, int seats_per_row) {
+    *k = (rand() % (length_of_array+(seats_per_row/2)));
+    *j = (rand() % (length_of_array+(seats_per_row/2)));
 }
 

@@ -20,4 +20,4 @@ void get_carryon(passenger passengers[], int length_of_array, int carry_on_perce
 /*Tests if the seat is replaced by a door, and therefore illegal*/
 int is_illegal_seat(int i, int entrance_placement);
 /*Used to create random destination, by generating 2 random numbers*/
-void get_random_number(int *k,int *j);
+void get_random_number(int *k,int *j, int length_of_array);

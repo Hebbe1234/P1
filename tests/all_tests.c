@@ -5,6 +5,7 @@
 
 CuSuite* get_example_suit(void); 
 CuSuite *get_initialization_suit(void);
+CuSuite *get_generator_suit(void);
 
 
 int runalltest(void)
@@ -14,6 +15,8 @@ int runalltest(void)
 
     CuSuiteAddSuite(suite, get_example_suit());
     CuSuiteAddSuite(suite, get_initialization_suit());
+    CuSuiteAddSuite(suite, get_generator_suit());
+
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

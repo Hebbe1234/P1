@@ -40,7 +40,7 @@ void initialize_passenger_array(int carryon_percentage, int length_of_array, int
 /* Resets that passenger array, and gives location -1*/
 void reset_passenger_array(passenger passengers [], int length_of_array) {
     int i;
-    for (i = 0; i < length_of_array; i=i+1) {
+    for (i = 0; i < length_of_array; i++) {
         passengers [i].destination = 0;
         passengers [i].location = -1;
         passengers [i].carry_on = 0;
@@ -56,11 +56,11 @@ void get_random_array(int random_destinations[], int length_of_array) {
     int i, j, k, tmp_plads;
     i = j = k = tmp_plads=0;
 
-    for(i = 0; (i < length_of_array + (SEATS_PER_ROW/2)); i=i+1)
+    for(i = 0; (i < length_of_array + (SEATS_PER_ROW/2)); i++)
         random_destinations[i]=i;
 
     for(i = 0; i < 1000000; i = i + 1) {
-        get_random_number(&k,&j);
+        get_random_number(&k,&j, length_of_array);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];
         random_destinations[j] = tmp_plads;
@@ -75,7 +75,7 @@ void passenger_get_random_destinations(int *random_destinations, passenger passe
     int *p_array, i;
 
     p_array = random_destinations;
-    for(i=0; i < length_of_array; i=i+1)
+    for(i=0; i < length_of_array; i++)
     {
         while(*(p_array+i)== (is_illegal_seat(0, entrance_placement)) || *(p_array+i) == (is_illegal_seat(1,entrance_placement)) || *(p_array+i) == (is_illegal_seat(2,entrance_placement))) {
             p_array = p_array+1;
@@ -83,6 +83,7 @@ void passenger_get_random_destinations(int *random_destinations, passenger passe
         passengers [i].destination = *(p_array+i);
     }
 }
+
 
 /*Tests if the seat is replaced by a door, and therefore illegal*/
 int is_illegal_seat(int i, int entrance_placement) {
@@ -96,14 +97,8 @@ void initialize_spotting(passenger passengers[], int length_of_array) {
     passengers [0].spotting = NULL;
 
     for(i=1; i < length_of_array; i=i+1) {
-        passengers [i].spotting = &(passengers [i-1]);    
+        passengers[i].spotting = &(passengers [i-1]);    
     }
-
- /*   
-    for(i=1; i<57; i=i+1) {
-        printf("%d , %d \n", passengers[i].spotting->destination, i);
-    }
-*/
 }
 
 /*Based on a carryon percentage, the passengers gets carryon*/
@@ -119,19 +114,13 @@ void get_carryon(passenger passengers[], int length_of_array, int carry_on_perce
             passengers[i].carry_on = 0;        
         }
     }
-/*  printf("\n\n\n");
-    for(i=0; i<57; i=i+1) {
-        printf("%d , %d \n", passengers[i].carry_on, i);
-    }
-*/
 }
 
 
 
 /*Used to create random destination, by generating 2 random numbers*/
-void get_random_number(int *k,int *j) {
-    *k = (rand() % 60);
-    *j = (rand() % 60);
+void get_random_number(int *k,int *j,int length_of_array) {
+    *k = (rand() % (length_of_array+(SEATS_PER_ROW/2)));
+    *j = (rand() % (length_of_array+(SEATS_PER_ROW/2)));
 }
-
 

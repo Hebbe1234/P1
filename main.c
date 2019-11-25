@@ -37,8 +37,10 @@ int main (void)
 
     passenger example;
     passenger p1;
-    aircraft plane;
-    passenger test[2];
+    transition_system t;
+    passenger ps[2];
+    int i;
+    
 
     srand(time(0));
 
@@ -59,20 +61,30 @@ int main (void)
     example.interference_flag = 0;
     example.spotting = NULL;
 
-    plane.v_left = example;
+    ps[0] = p1;
+    ps[1] = example;
 
     /*printf("%d ", example.spotting->location);
 
     printf("%d\n", plane.v_left.spotting->location);*/
     
-    test[0] = example;
-    test[1] = p1;
-    plane.entrance = ENTRANCE_PLACEMENT;
+    for(i = 0; i < 2; i++){
+        t.passengers[i] = ps[i];
+        printf("T Location i: %d\n", t.passengers[i].location);
+    }
 
-    initialize_passenger(test, plane);
+    t.entrance = ENTRANCE_PLACEMENT;
+    printf("%d\n", t.entrance);
 
+    initialize_passenger(&t);
+
+<<<<<<< HEAD
     printf("%d %d %d %d %d\n", p1.interference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
     printf("%d %d %d %d %d\n", example.interference_flag, example.finish, example.destination, test[0].location, example.carry_on);
+=======
+    printf("%d %d %d %d %d\n", p1.interference_flag, p1.finish, p1.destination, t.passengers[0].location, p1.carry_on);
+    printf("%d %d %d %d %d\n", example.interference_flag, example.finish, example.destination, t.passengers[1].location, example.carry_on);
+>>>>>>> master
 
     return(0);
 }

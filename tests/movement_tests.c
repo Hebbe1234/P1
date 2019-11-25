@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 /* If both passengers are standing outside the plane*/
-void movement_test_first(CuTest *tc){
+void test_outside_plane(CuTest *tc){
 
     passenger p1, p2;
     transition_system t;
@@ -31,7 +31,7 @@ void movement_test_first(CuTest *tc){
 }
 
 /* One passenger is standing outside the plane and the other is inside */
-void movement_test_second(CuTest *tc){
+void test_in_and_out(CuTest *tc){
 
     passenger p1, p2;
     transition_system t;
@@ -56,7 +56,7 @@ void movement_test_second(CuTest *tc){
 }
 
 /* Passenger two is standing one 'place' in front of passenger one, two can move, one can't*/
-void movement_test_third(CuTest *tc){
+void test_in_front_of(CuTest *tc){
 
     passenger p1, p2;
     transition_system t;
@@ -81,7 +81,7 @@ void movement_test_third(CuTest *tc){
 }
 
 /*One passenger is able to move left, the other can move right*/
-void movement_test_fourth(CuTest *tc){
+void test_different_direction(CuTest *tc){
 
     passenger p1, p2;
     transition_system t;
@@ -106,7 +106,7 @@ void movement_test_fourth(CuTest *tc){
 }
 
 /*Both being able to move right*/
-void movement_test_fifth(CuTest *tc){
+void test_one_direction(CuTest *tc){
 
     passenger p1, p2;
     transition_system t;
@@ -131,7 +131,7 @@ void movement_test_fifth(CuTest *tc){
 }
 
 /*If location is wrong, jack shit happens*/
-void movement_test_sixth(CuTest *tc){
+void test_location_wrong(CuTest *tc){
     passenger p1;
     transition_system t;
 
@@ -147,8 +147,8 @@ void movement_test_sixth(CuTest *tc){
 
     CuAssertTrue(tc, t.passengers[0].location == -5);
 }
-
-void movement_test_seventh(CuTest *tc){
+/*testing if multiple passengers can move at once*/
+void test_multiple_passengers(CuTest *tc){
 
     passenger p1, p2, p3;
     transition_system t;
@@ -178,8 +178,8 @@ void movement_test_seventh(CuTest *tc){
     CuAssertTrue(tc, t.passengers[1].location == 4);
     CuAssertTrue(tc, t.passengers[2].location == 2);
 }
-
-void movement_test_eigth(CuTest *tc){
+/*Testing if it's possible for multiple people to move in different directions*/
+void test_multiple_different_directions(CuTest *tc){
 
     passenger p1, p2, p3;
     transition_system t;
@@ -213,13 +213,13 @@ void movement_test_eigth(CuTest *tc){
 CuSuite *get_movement_suit(void) /*Dette skal op i toppen af alltests.c*/
 {
     CuSuite *suite = CuSuiteNew();
-    SUITE_ADD_TEST(suite, movement_test_first);
-    SUITE_ADD_TEST(suite, movement_test_second);
-    SUITE_ADD_TEST(suite, movement_test_third);
-    SUITE_ADD_TEST(suite, movement_test_fourth);
-    SUITE_ADD_TEST(suite, movement_test_fifth);
-    SUITE_ADD_TEST(suite, movement_test_sixth);
-    SUITE_ADD_TEST(suite, movement_test_seventh);
-    SUITE_ADD_TEST(suite, movement_test_eigth);
+    SUITE_ADD_TEST(suite, test_outside_plane);
+    SUITE_ADD_TEST(suite, test_in_and_out);
+    SUITE_ADD_TEST(suite, test_in_front_of);
+    SUITE_ADD_TEST(suite, test_different_direction);
+    SUITE_ADD_TEST(suite, test_one_direction);
+    SUITE_ADD_TEST(suite, test_location_wrong);
+    SUITE_ADD_TEST(suite, test_multiple_passengers);
+    SUITE_ADD_TEST(suite, test_multiple_different_directions);
     return suite;
 }

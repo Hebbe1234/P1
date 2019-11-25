@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 #include "headers/main.h"
+#include <time.h>
+#include <stdlib.h>
 
 #ifndef INIT
 #define INIT
@@ -39,8 +41,11 @@ int main (void)
     int i;
     
 
-    p1.destination = 31;
-    p1.location = 5;
+    srand(time(0));
+
+
+    p1.destination = 54;
+    p1.location = -1;
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;

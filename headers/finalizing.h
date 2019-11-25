@@ -5,6 +5,6 @@
 
 #endif
 
-void finalising_passenger(passenger* passengers);
+void finalising_passenger(transition_system *t);
 
 

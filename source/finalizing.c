@@ -15,16 +15,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void finalising_passenger(*t passengers) {
+void finalising_passenger(transition_system *t) {
     int P_L, i;
-    *t p;
+    passenger p;
 
     for (i = 0; i < 2; i++)
     {
-        p  = passengers[i];
+        p  = t->passengers[i];
         P_L = p.location;
         if (P_L == p.destination/6 && p.carry_on == 0 && p.wait_time == 0){
-            p.finish = 1;
+            t->passengers[i].finish = 1;
             printf("Finish");
         }
     printf("Not finish");

@@ -7,18 +7,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void initialize_passenger(passenger* passengers, aircraft plane) {
+void initialize_passenger(transition_system *t) {
     int i, 
         P_L,
-        P_E = plane.entrance;
+        P_E = t->entrance;
     
+
     passenger p;
 
     for (i = 0; i < 2; i++) {
-        p = passengers[i];
+        p = t->passengers[i];
         P_L = p.location;
         if (P_L == -1 && (p.spotting == NULL || ( p.spotting->location != P_E && p.spotting->location != -1 ))) {
-            passengers[i].location = P_E;
+            t->passengers[i].location = P_E;
         }    
     }  
 }

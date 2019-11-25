@@ -8,7 +8,7 @@ typedef struct passenger
         wait_time, 
         interference_flag;
     struct passenger* spotting;
-
+} passenger;
 
 
 typedef struct wait_times {

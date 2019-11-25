@@ -1,4 +1,4 @@
-# P1 - A411 
+# P1 - A411   
 
 This is the repository for all software developed for the P1 project by group A411 of first semester at AAU during semester E19.
 
@@ -70,7 +70,7 @@ This is the repository for all software developed for the P1 project by group A4
 
 - For an introduction to GitHub see: [Brams file about GitHub](https://paper.dropbox.com/doc/Git-cheat-sheet-hRMHn3gcZbv485DFLHQap)
 - The master branch of the repository is NEVER for development of new code.
-  - The only way the master branch changes is through pull requests of tested code.
+  - The only way for the master branch to change, is through pull requests of tested code.
 
 - A new branch should be created for each new feature.
 - Remember to "git pull" at regular intervals, and at least every time you have been away from development.

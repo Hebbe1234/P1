@@ -9,6 +9,13 @@
 
 #endif
 
+#ifndef PRINT_PASSENGER
+#define PRINT_PASSENGER
+
+#include "headers/print_passenger.h"
+
+#endif
+
 #ifndef STRUCTS
 #define STRUCTS
 
@@ -27,42 +34,46 @@ int main (void)
 
     passenger example;
     passenger p1;
-    aircraft plane;
-    passenger test[2];
+    transition_system t;
+    passenger ps[2];
+    int i;
+    
 
     p1.destination = 31;
     p1.location = 5;
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;
-    p1.inteference_flag = 2;
-    p1.spotting = NULL;
-
+    p1.interference_flag = 0;
+    p1.spotting = &example;
 
     example.destination = 30;
     example.location = 4;
     example.finish = 0;
     example.carry_on = 1;
     example.wait_time = 0;
-    example.inteference_flag = 0;
+    example.interference_flag = 0;
     example.spotting = NULL;
 
-    plane.v_left = example;
+    ps[0] = p1;
+    ps[1] = example;
 
     /*printf("%d ", example.spotting->location);
 
     printf("%d\n", plane.v_left.spotting->location);*/
     
-    test[0] = example;
-    test[1] = p1;
-    plane.entrance = ENTRANCE_PLACEMENT;
+    for(i = 0; i < 2; i++){
+        t.passengers[i] = ps[i];
+        printf("T Location i: %d\n", t.passengers[i].location);
+    }
 
-    printf("___________________\n");
+    t.entrance = ENTRANCE_PLACEMENT;
+    printf("%d\n", t.entrance);
 
-    initialize_passenger(test, plane);
+    initialize_passenger(&t);
 
-    printf("%d %d %d %d %d\n", p1.inteference_flag, p1.finish, p1.destination, p1.location, p1.carry_on);
-    printf("%d %d %d %d %d\n", example.inteference_flag, example.finish, example.destination, test[0].location, example.carry_on);
+    printf("%d %d %d %d %d\n", p1.interference_flag, p1.finish, p1.destination, t.passengers[0].location, p1.carry_on);
+    printf("%d %d %d %d %d\n", example.interference_flag, example.finish, example.destination, t.passengers[1].location, example.carry_on);
 
     return(0);
 }

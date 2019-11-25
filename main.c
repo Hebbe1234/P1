@@ -38,6 +38,9 @@ int main (void)
     aircraft plane;
     passenger test[2];
 
+    srand(time(0));
+
+
     p1.destination = 54;
     p1.location = -1;
     p1.finish = 0;

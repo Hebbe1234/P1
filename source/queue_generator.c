@@ -14,12 +14,6 @@
 
 #define SEATS_PER_ROW 6
 
-/*                   DETTE SKAL RBUGES TIL AT PRODUCERE PASSENGER ARRAY DYNAMISK 
-    struct passenger *passengers;
-    passengers = (struct passenger*)calloc(length_of_array, sizeof(passenger));
-*/ 
-
-
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
 void initialize_passenger_array(int carryon_percentage, int length_of_array, int row_number, 
                                 int entrance_placement, passenger passengers[]) {

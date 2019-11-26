@@ -6,8 +6,7 @@
 #include <stdio.h>
 
 
-void test_person_in_front(CuTest *tc)
-{
+void test_person_in_front(CuTest *tc) {
     passenger p1, p2, p3, p4;
     transition_system t;
 
@@ -51,8 +50,7 @@ void test_person_in_front(CuTest *tc)
 }
 
 
-CuSuite *get_person_in_front(void) /*Dette skal op i toppen af alltests.c*/
-{
+CuSuite *get_person_in_front(void) { /*Dette skal op i toppen af alltests.c*/
     CuSuite *suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, test_person_in_front);
     return suite;

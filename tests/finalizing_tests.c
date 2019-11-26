@@ -16,6 +16,7 @@ void finalizingtest_first(CuTest *tc) {
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;
+    p1.interference_flag = 0;
 
     t.passengers[0] = p1;
     

@@ -37,6 +37,7 @@ void finalizingtest_second(CuTest *tc) {
     p1.finish = 0;
     p1.carry_on = 1;
     p1.wait_time = 0;
+    p1.interference_flag = 1;
 
     t.passengers[0] = p1;
     
@@ -56,6 +57,7 @@ void finalizingtest_third(CuTest *tc) {
     p1.finish = 0;
     p1.carry_on = 1;
     p1.wait_time = 2;
+    p1.interference_flag = 1;
 
     t.passengers[0] = p1;
     
@@ -75,7 +77,8 @@ void finalizingtest_fourth(CuTest *tc) {
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 2;
-    
+    p1.interference_flag = 1;
+
     t.passengers[0] = p1;
     
     finalising_passenger(&t);
@@ -94,7 +97,8 @@ void finalizingtest_fifth(CuTest *tc) {
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;
-
+    p1.interference_flag = 1;
+    
     t.passengers[0] = p1;
     
     finalising_passenger(&t);
@@ -113,6 +117,27 @@ void finalizingtest_sixth(CuTest *tc) {
     p1.finish = 0;
     p1.carry_on = 0;
     p1.wait_time = 0;
+    p1.interference_flag = 1;
+
+    t.passengers[0] = p1;
+    
+    finalising_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+}
+
+/* not in destination but carry on and wait is 0 */
+void finalizingtest_seventh(CuTest *tc) {
+    passenger p1;
+    transition_system t;
+
+    p1.destination = 13;
+    p1.location = 2;
+    p1.finish = 0;
+    p1.carry_on = 1;
+    p1.wait_time = 0;
+    p1.interference_flag = 0;
 
     t.passengers[0] = p1;
     
@@ -131,5 +156,7 @@ CuSuite *get_finalizing_suit(void) /*Dette skal op i toppen af alltests.c*/
     SUITE_ADD_TEST(suite, finalizingtest_fourth);
     SUITE_ADD_TEST(suite, finalizingtest_fifth);
     SUITE_ADD_TEST(suite, finalizingtest_sixth);
+    SUITE_ADD_TEST(suite, finalizingtest_seventh);
+
     return suite;
 }

@@ -1,6 +1,8 @@
 #include "../headers/CuTest.h"
 
-double gange(double a, double b)
+#include "../headers/rear.h"
+
+int gange(double a, double b)
 {
     return a * b;
 }
@@ -19,7 +21,7 @@ void testgange0(CuTest *tc)
     CuAssertTrue(tc, result == 9);
 }
 
-CuSuite *get_example_suit(void) /*Dette skal op i toppen af alltests.c*/
+CuSuite *get_rear_suit(void) /*Dette skal op i toppen af alltests.c*/
 {
     CuSuite *suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, testgange);

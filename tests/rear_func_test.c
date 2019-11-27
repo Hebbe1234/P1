@@ -2,29 +2,68 @@
 
 #include "../headers/rear.h"
 
-int gange(double a, double b)
-{
-    return a * b;
-}
+#include <stdlib.h>
+#include <stdio.h>
 
-void testgange(CuTest *tc)
+/* p1 looking at p2 going same way */
+void test_rear_basic(CuTest *tc)
 {
-    double result;
-    result = gange(3, 0);
+    passenger p1, p2;
+    transition_system t;
+    int result = 0;
+
+    p1.destination = 20;
+    p1.location = 4;
+    p1.spotting = NULL;
+    p1.finish = 0;
+
+    p2.destination = 25;
+    p2.location = 2;
+    p2.spotting = &p1;
+    p2.finish = 0;
+
+    t.passengers[0] = p1;
+    t.passengers[1] = p2;
+    t.length = 2;
+    t.entrance = 0;
+    t.seats_row = 6;
+    t.rows= 5;
+
+    result = rear_function(&t, 1);
+
     CuAssertTrue(tc, result == 0);
 }
 
-void testgange0(CuTest *tc)
+/* both seeing no person */
+void test_rear_noperson(CuTest *tc)
 {
-    double result;
-    result = gange(3, 3);
-    CuAssertTrue(tc, result == 9);
+    passenger p1, p2;
+    transition_system t;
+
+    p1.destination = 20;
+    p1.location = 4;
+    p1.spotting = NULL;
+    p1.finish = 0;
+
+    p2.destination = 0;
+    p2.location = 2;
+    p2.spotting = NULL;
+    p2.finish = 0;
+
+    t.passengers[0] = p1;
+    t.passengers[1] = p2;
+    t.length = 2;
+    t.entrance = 4;
+
+    rear_function(&t, 0);
+
 }
+
 
 CuSuite *get_rear_suit(void) /*Dette skal op i toppen af alltests.c*/
 {
     CuSuite *suite = CuSuiteNew();
-    SUITE_ADD_TEST(suite, testgange);
-    SUITE_ADD_TEST(suite, testgange0);
+    SUITE_ADD_TEST(suite, test_rear_basic);
+    /*SUITE_ADD_TEST(suite, test_rear_noperson); */
     return suite;
 }

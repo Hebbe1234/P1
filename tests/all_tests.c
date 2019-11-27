@@ -7,6 +7,7 @@ CuSuite* get_example_suit(void);
 CuSuite *get_initialization_suit(void);
 CuSuite *get_finished_suit(void);
 CuSuite *get_finalizing_suit(void);
+CuSuite *get_rear_suit(void);
 
 
 
@@ -18,6 +19,7 @@ int runalltest(void)
     CuSuiteAddSuite(suite, get_example_suit());
     CuSuiteAddSuite(suite, get_initialization_suit());
     CuSuiteAddSuite(suite, get_finalizing_suit());
+    CuSuiteAddSuite(suite, get_rear_suit());
 
 
     CuSuiteRun(suite);

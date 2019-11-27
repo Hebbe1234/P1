@@ -19,7 +19,7 @@ int rear_function (transition_system *t, int i) {
     if (t->entrance <= floor(t->passengers[i].destination / t->seats_row) 
                       && t->passengers[i].finish == 0 && t->passengers[i].location != -1) {
 
-        q.location = (t->length / t->seats_row) - 1;
+        q.location = t->rows - 1;
 
         for(i = 0; i < t->length; i++) {
 
@@ -28,7 +28,7 @@ int rear_function (transition_system *t, int i) {
                 q = t->passengers[i];
                 index = i;
             }
-        }
+        } 
     }
 
     else if (t->entrance > floor(t->passengers[i].destination / t->seats_row) 

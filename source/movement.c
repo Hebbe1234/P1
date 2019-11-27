@@ -10,13 +10,13 @@
 
 /* function that defines the direction the passenger moves
     and changes passengers location */
-void movement (transition_system *t, int length) {
+void movement (transition_system *t) {
     int i = 0, 
         dir = 0;
     int P_L, P_D, P_SL;
     passenger *P_S;
 
-    for(i = 0; i < length; i++) {
+    for(i = 0; i < t->length; i++) {
         P_L = t->passengers[i].location;
         P_D = t->passengers[i].destination;
         P_S = t->passengers[i].spotting;

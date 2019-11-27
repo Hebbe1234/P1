@@ -17,7 +17,7 @@
 #include <math.h>
 
 
-/*This function takes the transiionsystem, and changes who is spotting who, based on finished passengers. */
+/*This function takes the transitionsystem, and changes who is spotting who, based on finished passengers. */
 void person_in_front(transition_system *t, int length_of_array){
     int i;
     

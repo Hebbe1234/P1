@@ -26,7 +26,9 @@ void testInitializing_first(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    t.length = 2;
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == 4);
     CuAssertTrue(tc, t.passengers[1].location == 5); 
@@ -54,7 +56,9 @@ void testInitializing_second(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    t.length = 2;
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
@@ -82,7 +86,9 @@ void testInitializing_third(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    t.length = 2;
+
+    initialize_passenger(&t);
 
 
     CuAssertTrue(tc, t.passengers[0].location == 5);
@@ -111,7 +117,9 @@ void testInitializing_fourth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 3);
+    t.length = 3;
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
@@ -139,7 +147,9 @@ void testInitializing_fifth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    t.length = 2;
+
+    initialize_passenger(&t);
 
 
     CuAssertTrue(tc, t.passengers[0].location == 4);
@@ -168,7 +178,9 @@ void testInitializing_sixth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    t.length = 2;
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == -1); 
@@ -195,8 +207,10 @@ void testInitializing_seventh(CuTest *tc) {
     t.passengers[1] = p2;
 
     t.entrance = E;
+    
+    t.length = 2;
 
-    initialize_passenger(&t, 2);
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
@@ -229,7 +243,9 @@ void testInitializing_eigth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 3);
+    t.length = 3;
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == 7);
     CuAssertTrue(tc, t.passengers[1].location == 5); 

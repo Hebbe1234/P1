@@ -24,7 +24,10 @@ void test_outside_plane(CuTest *tc){
     t.passengers[0] = p1;
     t.passengers[1] = p2;
 
-    movement(&t, 2);
+    t.length = 2;
+
+    movement(&t);
+
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == -1);
@@ -48,8 +51,9 @@ void test_in_and_out(CuTest *tc){
 
     t.passengers[0] = p1;
     t.passengers[1] = p2;
+    t.length = 2;
 
-    movement(&t, 2);
+    movement(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 1);
@@ -73,8 +77,10 @@ void test_in_front_of(CuTest *tc){
 
     t.passengers[0] = p1;
     t.passengers[1] = p2;
+    
+    t.length = 2;
 
-    movement(&t, 2);
+    movement(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == 4);
     CuAssertTrue(tc, t.passengers[1].location == 6);
@@ -99,7 +105,9 @@ void test_different_direction(CuTest *tc){
     t.passengers[0] = p1;
     t.passengers[1] = p2;
 
-    movement(&t, 2);
+    t.length = 2;
+
+    movement(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == 9);
     CuAssertTrue(tc, t.passengers[1].location == 8);
@@ -124,7 +132,10 @@ void test_one_direction(CuTest *tc){
     t.passengers[0] = p1;
     t.passengers[1] = p2;
 
-    movement(&t, 2);
+    t.length = 2;
+
+    movement(&t);
+
 
     CuAssertTrue(tc, t.passengers[0].location == 3);
     CuAssertTrue(tc, t.passengers[1].location == 6);
@@ -143,7 +154,10 @@ void test_location_wrong(CuTest *tc){
 
     t.passengers[0] = p1;
 
-    movement(&t, 1);
+    t.length = 2;
+
+    movement(&t);
+
 
     CuAssertTrue(tc, t.passengers[0].location == -5);
 }
@@ -172,7 +186,10 @@ void test_multiple_passengers(CuTest *tc){
     t.passengers[1] = p2;
     t.passengers[2] = p3;
 
-    movement(&t, 3);
+    t.length = 3;
+
+    movement(&t);
+
 
     CuAssertTrue(tc, t.passengers[0].location == 6);
     CuAssertTrue(tc, t.passengers[1].location == 4);
@@ -203,7 +220,10 @@ void test_multiple_different_directions(CuTest *tc){
     t.passengers[1] = p2;
     t.passengers[2] = p3;
 
-    movement(&t, 3);
+    t.length = 3;
+
+    movement(&t);
+
 
     CuAssertTrue(tc, t.passengers[0].location == 6);
     CuAssertTrue(tc, t.passengers[1].location == 4);

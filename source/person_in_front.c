@@ -18,10 +18,10 @@
 
 
 /*This function takes the transitionsystem, and changes who is spotting who, based on finished passengers. */
-void person_in_front(transition_system *t, int length_of_array){
+void person_in_front(transition_system *t){
     int i;
     
-    for(i = 0; i < length_of_array; i++){
+    for(i = 0; i < t->length; i++){
         while(t->passengers[i].spotting != NULL && t->passengers[i].spotting->finish == 1)
             t->passengers[i].spotting = t->passengers[i].spotting->spotting;
     }

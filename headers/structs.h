@@ -1,14 +1,7 @@
 /*Defining passenger as a struct type */
-typedef struct passenger
-{
-    int destination, 
-        location, 
-        finish, 
-        carry_on, 
-        wait_time, 
-        interference_flag;
-    struct passenger* spotting;
-
+typedef struct passenger {
+  int destination, location, finish, carry_on, wait_time, interference_flag;
+  struct passenger *spotting;
 } passenger;
 
 

@@ -10,7 +10,6 @@ CuSuite *get_finished_suit(void);
 CuSuite *get_finalizing_suit(void);
 CuSuite *get_movement_suit(void);
 CuSuite *get_person_in_front(void);
-CuSuite *get_input_t_system_suit(void);
 
 int runalltest(void)
 {
@@ -23,7 +22,6 @@ int runalltest(void)
     CuSuiteAddSuite(suite, get_finalizing_suit());
     CuSuiteAddSuite(suite, get_movement_suit());
     CuSuiteAddSuite(suite, get_person_in_front());
-    CuSuiteAddSuite(suite, get_input_t_system_suit());
 
 
     CuSuiteRun(suite);

@@ -18,6 +18,7 @@ void finalizingtest_first(CuTest *tc) {
     p1.wait_time = 0;
     p1.interference_flag = 0;
 
+    t.length = 1;
     t.passengers[0] = p1;
     
     finalising_passenger(&t);
@@ -39,6 +40,7 @@ void finalizingtest_second(CuTest *tc) {
     p1.wait_time = 0;
     p1.interference_flag = 1;
 
+    t.length = 1;
     t.passengers[0] = p1;
     
     finalising_passenger(&t);
@@ -61,6 +63,7 @@ void finalizingtest_third(CuTest *tc) {
 
     t.passengers[0] = p1;
     
+    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
@@ -78,9 +81,10 @@ void finalizingtest_fourth(CuTest *tc) {
     p1.carry_on = 0;
     p1.wait_time = 2;
     p1.interference_flag = 1;
-
+    
     t.passengers[0] = p1;
     
+    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
@@ -101,6 +105,7 @@ void finalizingtest_fifth(CuTest *tc) {
     
     t.passengers[0] = p1;
     
+    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 1);
@@ -121,6 +126,7 @@ void finalizingtest_sixth(CuTest *tc) {
 
     t.passengers[0] = p1;
     
+    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
@@ -141,9 +147,41 @@ void finalizingtest_seventh(CuTest *tc) {
 
     t.passengers[0] = p1;
     
+    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+}
+
+/* Two passengers needs to finish */
+void finalizingtest_eight(CuTest *tc) {
+    passenger p1, p2;
+    transition_system t;
+
+    p1.destination = 13;
+    p1.location = 2;
+    p1.finish = 0;
+    p1.carry_on = 0;
+    p1.wait_time = 0;
+    p1.interference_flag = 1;
+
+    p2.destination = 13;
+    p2.location = 2;
+    p2.finish = 0;
+    p2.carry_on = 0;
+    p2.wait_time = 0;
+    p2.interference_flag = 1;
+
+    t.passengers[0] = p1;
+    t.passengers[1] = p2;
+
+    t.length = 2;
+    finalising_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[0].finish == 1);
+    CuAssertTrue(tc, t.passengers[1].finish == 1);
+
 
 }
 
@@ -157,6 +195,7 @@ CuSuite *get_finalizing_suit(void) /*Dette skal op i toppen af alltests.c*/
     SUITE_ADD_TEST(suite, finalizingtest_fifth);
     SUITE_ADD_TEST(suite, finalizingtest_sixth);
     SUITE_ADD_TEST(suite, finalizingtest_seventh);
+    SUITE_ADD_TEST(suite, finalizingtest_eight);
 
     return suite;
 }

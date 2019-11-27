@@ -20,9 +20,8 @@
 void finalising_passenger(transition_system *t) {
     int P_L, i;
     passenger p;
-    int queue = 1;
 
-    for (i = 0; i < queue; i++)
+    for (i = 0; i < t->length; i++)
     {
         p  = t->passengers[i];
         P_L = p.location;

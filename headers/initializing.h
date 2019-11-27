@@ -5,4 +5,4 @@
 
 #endif
 
-void initialize_passenger(transition_system *t, int length);
+void initialize_passenger(transition_system *t);

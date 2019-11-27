@@ -16,11 +16,13 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+/*This function takes the transiionsystem, and changes who is spotting who, based on finished passengers. */
 void person_in_front(transition_system *t, int length_of_array){
     int i;
     
     for(i = 0; i < length_of_array; i++){
-        if( t->passengers[i].spotting != NULL && t->passengers[i].spotting->finish == 1)
+        if(t->passengers[i].spotting != NULL && t->passengers[i].spotting->finish == 1)
             t->passengers[i].spotting = t->passengers[i].spotting->spotting;
     }
 }

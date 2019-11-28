@@ -6,7 +6,7 @@
 #endif
 
 #ifndef INPUT
-#define FINAL
+#define INPUT
 
 #include "../headers/input.h"
 

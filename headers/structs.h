@@ -13,6 +13,10 @@ typedef struct transition_system {
 
   passenger passengers[60];
   int *destinations;
-  int entrance, seats_row, length;
+  int entrance;
+  int seats_row;
+  int rows;
+  int length;
+
 
 } transition_system;

@@ -20,8 +20,8 @@ void print_t_system (transition_system t_system){
     printf("\n");
     printf("Wait time carry-on \t%d \n", t_system.wait.t_c);
     printf("Wait time movement \t%d \n", t_system.wait.t_m);
-    printf("Wait time inteference 0 \t%d \n", t_system.wait.t_0);
-    printf("Wait time inteference 1 \t%d \n", t_system.wait.t_1);
-    printf("Wait time inteference 2 \t%d \n", t_system.wait.t_2);
-    printf("Wait time inteference 3 \t%d \n", t_system.wait.t_3);
+    printf("Wait time interference 0 \t%d \n", t_system.wait.t_0);
+    printf("Wait time interference 1 \t%d \n", t_system.wait.t_1);
+    printf("Wait time interference 2 \t%d \n", t_system.wait.t_2);
+    printf("Wait time interference 3 \t%d \n", t_system.wait.t_3);
 }

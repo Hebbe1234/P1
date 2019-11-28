@@ -40,10 +40,10 @@ transition_system input_t_system(void){
     t_system.wait = struct_wait;
 
     printf("Write the amount of passengers\n");
-    scanf("%d", &t_system.array_length);
+    scanf("%d", &t_system.destination_length);
     
     printf("\nWrite the amount of seats\n");
-    scanf("%d", &t_system.seats);    
+    scanf("%d", &t_system.length);    
 
     printf("\nWrite entrance placement\n");
     scanf("%d", &t_system.entrance);
@@ -54,7 +54,7 @@ transition_system input_t_system(void){
     printf("\nWrite the number of simulations desired\n");
     scanf("%d", &t_system.iterations);
 
-    t_system.passengers = (passenger*)calloc(t_system.array_length, sizeof(passenger));
+    t_system.passengers = (passenger*)calloc(t_system.length, sizeof(passenger));
 
     return t_system;
 }

@@ -5,8 +5,8 @@
 
 #endif
 
-#ifndef FINAL
-#define FINAL
+#ifndef INPUT
+#define INPUT
 
 #include "../headers/input.h"
 
@@ -21,22 +21,22 @@ transition_system input_t_system(void){
     transition_system t_system ={0};
     wait_times struct_wait = {0};
 
-    printf("\nWrite carryon time\n");
+    printf("\nWrite carry-on wait time\n");
     scanf("%d", &struct_wait.t_c);
 
     printf("\nWrite movement time\n");
     scanf("%d", &struct_wait.t_m);
     
-    printf("\nWrite type 0 inteference\n");
+    printf("\nWrite type 0 interference time\n");
     scanf("%d", &struct_wait.t_0);
 
-    printf("\nWrite type 1 inteference\n");
+    printf("\nWrite type 1 interference time\n");
     scanf("%d", &struct_wait.t_1);
 
-    printf("\nWrite type 2 inteference\n");
+    printf("\nWrite type 2 interference time\n");
     scanf("%d", &struct_wait.t_2);
 
-    printf("\nWrite type 3 inteference\n");
+    printf("\nWrite type 3 interference time\n");
     scanf("%d", &struct_wait.t_3);
 
     t_system.wait = struct_wait;
@@ -53,7 +53,7 @@ transition_system input_t_system(void){
     printf("\nWrite entrance placement\n");
     scanf("%d", &t_system.entrance);
 
-    printf("\nWrite the desired carryon percentage\n");
+    printf("\nWrite the desired carry-on percentage\n");
     scanf("%d", &t_system.carryon_percentage);
 
     printf("\nWrite the number of simulations desired\n");

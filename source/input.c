@@ -27,23 +27,29 @@ transition_system input_t_system(void){
 
     printf("\nWrite movement time\n");
     scanf("%d", &struct_wait.t_m);
+    
+    printf("\nWrite type 0 inteference\n");
+    scanf("%d", &struct_wait.t_0);
 
-    printf("\nWrite type 1 inteference");
+    printf("\nWrite type 1 inteference\n");
     scanf("%d", &struct_wait.t_1);
 
-    printf("\nWrite type 1 inteference");
+    printf("\nWrite type 2 inteference\n");
     scanf("%d", &struct_wait.t_2);
 
-    printf("\nWrite type 1 inteference");
+    printf("\nWrite type 3 inteference\n");
     scanf("%d", &struct_wait.t_3);
 
     t_system.wait = struct_wait;
 
     printf("Write the amount of passengers\n");
     scanf("%d", &t_system.destination_length);
+
+    printf("Write the amount of seats per row\n");
+    scanf("%d", &t_system.seats_per_row);
     
-    printf("\nWrite the amount of seats\n");
-    scanf("%d", &t_system.length);    
+    printf("\nWrite the amount of rows\n");
+    scanf("%d", &t_system.rows);    
 
     printf("\nWrite entrance placement\n");
     scanf("%d", &t_system.entrance);
@@ -54,9 +60,9 @@ transition_system input_t_system(void){
     printf("\nWrite the number of simulations desired\n");
     scanf("%d", &t_system.iterations);
 
+    t_system.destination_length = t_system.rows * t_system.seats_per_row;
+
     t_system.passengers = (passenger*)calloc(t_system.length, sizeof(passenger));
 
     return t_system;
 }
-
-

@@ -27,7 +27,7 @@ transition_system input_t_system(void){
     printf("\nWrite movement time\n");
     scanf("%d", &struct_wait.t_m);
     
-    printf("\nWrite type 0 inteference\n");
+    printf("\nWrite type 0 interference time\n");
     scanf("%d", &struct_wait.t_0);
 
     printf("\nWrite type 1 interference time\n");

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -pedantic -ansi
+CFLAGS = -Wall -pedantic -ansi 
 TARGET = prog
 TEST_TARGET = unit_test
 BASEDIR = ../..

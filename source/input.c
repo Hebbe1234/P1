@@ -36,7 +36,7 @@ transition_system input_t_system(void){
     printf("\nWrite type 2 interference time\n");
     scanf("%d", &struct_wait.t_2);
 
-    printf("\nWrite type 3 inteference\n");
+    printf("\nWrite type 3 interference time\n");
     scanf("%d", &struct_wait.t_3);
 
     t_system.wait = struct_wait;

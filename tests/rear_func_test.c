@@ -12,6 +12,10 @@ void test_rear_basic(CuTest *tc)
     transition_system t;
     int result = 0;
 
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
+
     p1.destination = 20;
     p1.location = 4;
     p1.finish = 0;
@@ -29,6 +33,8 @@ void test_rear_basic(CuTest *tc)
 
     result = rear_function(&t, 1);
 
+    free(t.passengers);
+
     CuAssertTrue(tc, result == 0);
 }
 
@@ -40,6 +46,9 @@ void test_rear_noperson(CuTest *tc)
     passenger p1, p2;
     transition_system t;
 
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.destination = 20;
     p1.location = 4;
     p1.finish = 0;
@@ -50,12 +59,14 @@ void test_rear_noperson(CuTest *tc)
 
     t.passengers[0] = p1;
     t.passengers[1] = p2;
-    t.length = 2;
     t.entrance = 3;
     t.seats_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 1);
+
+    free(t.passengers);
+
     CuAssertTrue(tc, result == 0);
 
 }
@@ -66,6 +77,9 @@ void test_rear_manyperson(CuTest *tc)
 
     passenger p0, p1, p2, p3, p4;
     transition_system t;
+
+    t.length = 5;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p0.destination = 2;
     p0.location = 3;
@@ -94,12 +108,15 @@ void test_rear_manyperson(CuTest *tc)
     t.passengers[3] = p3;
     t.passengers[4] = p4;
 
-    t.length = 5;
     t.entrance = 3;
     t.seats_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 0);
+
+    free(t.passengers);
+
+
     CuAssertTrue(tc, result == 1);
 
 }
@@ -109,6 +126,9 @@ void test_rear_weird(CuTest *tc)
     passenger p1, p2;
     transition_system t;
     int result = 0;
+
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p1.destination = 2;
     p1.location = 1;
@@ -120,12 +140,14 @@ void test_rear_weird(CuTest *tc)
 
     t.passengers[0] = p1;
     t.passengers[1] = p2;
-    t.length = 2;
+
     t.entrance = 2;
     t.seats_row = 2;
     t.rows= 7;
 
     result = rear_function(&t, 1);
+
+    free(t.passengers);
 
     CuAssertTrue(tc, result == 0);
 }
@@ -136,6 +158,10 @@ void test_rear_forward(CuTest *tc)
     passenger p1, p2, p3;
     transition_system t;
     int result = 0;
+
+    t.length = 3;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 2;
     p1.location = 2;
@@ -153,12 +179,14 @@ void test_rear_forward(CuTest *tc)
     t.passengers[0] = p1;
     t.passengers[1] = p2;
     t.passengers[2] = p3;
-    t.length = 2;
+
     t.entrance = 2;
     t.seats_row = 2;
     t.rows= 7;
 
     result = rear_function(&t, 0);
+
+    free(t.passengers);
 
     CuAssertTrue(tc, result == -1);
 }
@@ -170,6 +198,9 @@ void test_rear_wronglocations(CuTest *tc)
 
     passenger p0, p1, p2, p3, p4;
     transition_system t;
+
+     t.length = 5;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p0.destination = 2;
     p0.location = 3;
@@ -198,12 +229,13 @@ void test_rear_wronglocations(CuTest *tc)
     t.passengers[3] = p3;
     t.passengers[4] = p4;
 
-    t.length = 5;
     t.entrance = 3;
     t.seats_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 0);
+
+    free(t.passengers);
     CuAssertTrue(tc, result == 1);
 
 }
@@ -214,6 +246,9 @@ void test_rear_manyperson_but_noperson_to_right(CuTest *tc)
 
     passenger p0, p1, p2, p3;
     transition_system t;
+
+    t.length = 4;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p0.destination = 10;
     p0.location = 3;
@@ -237,11 +272,12 @@ void test_rear_manyperson_but_noperson_to_right(CuTest *tc)
     t.passengers[3] = p3;
  
 
-    t.length = 5;
     t.entrance = 3;
     t.seats_row = 2;
     t.rows= 7;
     
+    free(t.passengers);
+
     result = rear_function(&t, 0);
     CuAssertTrue(tc, result == -1);
 

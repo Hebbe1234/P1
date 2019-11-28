@@ -20,12 +20,14 @@ void test_t_system(CuTest *tc)
     t.rows = 10;
     t.seats_per_row = 6;
     t.iterations = 100;
+    t.destination_length = 60;
     t.wait.t_c = 1;
     t.wait.t_m = 2;
     t.wait.t_0 = 3;
     t.wait.t_1 = 4;
     t.wait.t_2 = 5;
     t.wait.t_3 = 6;
+
 
     printf("\n\n---------------------TEST---------------------\n");
     printf("Test of test_t_system in print_t_system_test.c\n");

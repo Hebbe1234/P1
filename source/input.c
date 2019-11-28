@@ -42,7 +42,7 @@ transition_system input_t_system(void){
     t_system.wait = struct_wait;
 
     printf("Write the amount of passengers\n");
-    scanf("%d", &t_system.destination_length);
+    scanf("%d", &t_system.length);
 
     printf("Write the amount of seats per row\n");
     scanf("%d", &t_system.seats_per_row);

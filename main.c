@@ -19,14 +19,8 @@
 
 int main (void)
 {
-    transition_system t;
     srand(time(0));
     
-    
-    t = input_t_system();
-
-    print_t_system(t);
-
     printf("Program ran OK");
 
     return EXIT_SUCCESS;

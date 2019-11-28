@@ -1,6 +1,5 @@
 CC = gcc
-STD = c89
-CFLAGS = -Wall -pedantic -ansi -std=$(STD)
+CFLAGS = -Wall -pedantic -ansi
 TARGET = prog
 TEST_TARGET = unit_test
 BASEDIR = ../..

@@ -53,7 +53,7 @@ transition_system input_t_system(void){
     printf("\nWrite entrance placement\n");
     scanf("%d", &t_system.entrance);
 
-    printf("\nWrite the desired carryon percentage\n");
+    printf("\nWrite the desired carry-on percentage\n");
     scanf("%d", &t_system.carryon_percentage);
 
     printf("\nWrite the number of simulations desired\n");

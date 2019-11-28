@@ -21,7 +21,7 @@ transition_system input_t_system(void){
     transition_system t_system ={0};
     wait_times struct_wait = {0};
 
-    printf("\nWrite carryon time\n");
+    printf("\nWrite carry-on wait time\n");
     scanf("%d", &struct_wait.t_c);
 
     printf("\nWrite movement time\n");

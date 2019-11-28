@@ -18,4 +18,5 @@ typedef struct transition_system {
   int rows;
   int length;
 
+
 } transition_system;

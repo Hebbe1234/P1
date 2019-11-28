@@ -18,7 +18,9 @@ void test_finished_first(CuTest *tc) {
     t.passengers[0] = p1;
     t.passengers[1] = example;
 
-    finished = is_finished(&t, 2);
+    t.length = 2;
+
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
 }
@@ -36,7 +38,9 @@ void test_finished_second(CuTest *tc) {
     t.passengers[0] = p1;
     t.passengers[1] = example;
 
-    finished = is_finished(&t, 2);
+    t.length = 2;
+
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
 }
@@ -57,7 +61,9 @@ void test_finished_third(CuTest *tc) {
     t.passengers[1] = example;
     t.passengers[2] = p2;
 
-    finished = is_finished(&t, 2);
+    t.length = 3;
+
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
 }
@@ -78,7 +84,9 @@ void test_finished_fourth(CuTest *tc) {
     t.passengers[1] = example;
     t.passengers[2] = p2;
 
-    finished = is_finished(&t, 2);
+    t.length = 3;
+
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
 }
@@ -99,7 +107,9 @@ void test_finished_fifth(CuTest *tc) {
     t.passengers[1] = example;
     t.passengers[2] = p2;
 
-    finished = is_finished(&t, 2);
+    t.length = 3;
+
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 1);
 }

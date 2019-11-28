@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-/*Returns a wait_times with the correct input, based on the users input*/
 /*Returns a transistion_system with the correct input, based on the users input*/
 transition_system input_t_system(void){
     transition_system t_system ={0};

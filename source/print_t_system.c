@@ -15,7 +15,7 @@ void print_t_system (transition_system t_system){
     printf("Rows \t\t\t\t%d\n", t_system.rows);
     printf("Seats per row \t\t\t%d \n", t_system.seats_per_row);
     printf("Passengers \t\t\t%d \n", t_system.length);
-    printf("Carry on percentage \t\t%d \n", t_system.carryon_percentage);
+    printf("Carry-on percentage \t\t%d \n", t_system.carryon_percentage);
     printf("Iterations \t\t\t%d \n", t_system.iterations);
     printf("\n");
     printf("Wait time carry-on \t\t%d \n", t_system.wait.t_c);

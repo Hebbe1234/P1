@@ -12,8 +12,6 @@
 
 #endif
 
-/*Skal ændres, rigtige input parameter, der blive modtaget transisien system, som det eneste. */
-
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
 void initialize_passenger_array(int carryon_percentage, int length_of_array, int seats_per_row, 
                                 int entrance_placement, passenger passengers[]) {

@@ -11,6 +11,9 @@ void finalizingtest_first(CuTest *tc) {
     passenger p1;
     transition_system t;
 
+    t.length = 1;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.destination = 54;
     p1.location = -1;
     p1.finish = 0;
@@ -18,13 +21,16 @@ void finalizingtest_first(CuTest *tc) {
     p1.wait_time = 0;
     p1.interference_flag = 0;
 
-    t.length = 1;
+
     t.passengers[0] = p1;
     
+
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+    free(t.passengers);
 
 }
 
@@ -32,6 +38,9 @@ void finalizingtest_first(CuTest *tc) {
 void finalizingtest_second(CuTest *tc) {
     passenger p1;
     transition_system t;
+    t.length = 1;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = 0;
@@ -40,12 +49,14 @@ void finalizingtest_second(CuTest *tc) {
     p1.wait_time = 0;
     p1.interference_flag = 1;
 
-    t.length = 1;
     t.passengers[0] = p1;
     
+
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+    free(t.passengers);
 
 }
 
@@ -54,6 +65,11 @@ void finalizingtest_third(CuTest *tc) {
     passenger p1;
     transition_system t;
 
+    t.length = 1;
+
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
+
     p1.destination = 54;
     p1.location = 0;
     p1.finish = 0;
@@ -63,10 +79,10 @@ void finalizingtest_third(CuTest *tc) {
 
     t.passengers[0] = p1;
     
-    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
+    free(t.passengers);
 
 }
 
@@ -74,6 +90,11 @@ void finalizingtest_third(CuTest *tc) {
 void finalizingtest_fourth(CuTest *tc) {
     passenger p1;
     transition_system t;
+
+    t.length = 1;
+
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = 0;
@@ -84,17 +105,21 @@ void finalizingtest_fourth(CuTest *tc) {
     
     t.passengers[0] = p1;
     
-    t.length = 1;
+
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
 
+    free(t.passengers);
 }
 
 /* in destination but carry on and wait is 0 */
 void finalizingtest_fifth(CuTest *tc) {
     passenger p1;
     transition_system t;
+
+    t.length = 1;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p1.destination = 54;
     p1.location = 9;
@@ -105,10 +130,11 @@ void finalizingtest_fifth(CuTest *tc) {
     
     t.passengers[0] = p1;
     
-    t.length = 1;
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 1);
+
+    free(t.passengers);
 
 }
 
@@ -116,6 +142,10 @@ void finalizingtest_fifth(CuTest *tc) {
 void finalizingtest_sixth(CuTest *tc) {
     passenger p1;
     transition_system t;
+
+    t.length = 1;
+
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p1.destination = 54;
     p1.location = 2;
@@ -126,17 +156,19 @@ void finalizingtest_sixth(CuTest *tc) {
 
     t.passengers[0] = p1;
     
-    t.length = 1;
     finalising_passenger(&t);
-
     CuAssertTrue(tc, t.passengers[0].finish == 0);
-
+    free(t.passengers);
 }
 
 /* not in destination but carry on and wait is 0 */
 void finalizingtest_seventh(CuTest *tc) {
     passenger p1;
     transition_system t;
+
+    t.length = 1;
+
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p1.destination = 13;
     p1.location = 2;
@@ -147,10 +179,12 @@ void finalizingtest_seventh(CuTest *tc) {
 
     t.passengers[0] = p1;
     
-    t.length = 1;
+
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 0);
+
+    free(t.passengers);
 
 }
 
@@ -158,6 +192,11 @@ void finalizingtest_seventh(CuTest *tc) {
 void finalizingtest_eight(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
+
+    t.length = 2;
+
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 13;
     p1.location = 2;
@@ -176,13 +215,12 @@ void finalizingtest_eight(CuTest *tc) {
     t.passengers[0] = p1;
     t.passengers[1] = p2;
 
-    t.length = 2;
+
     finalising_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].finish == 1);
     CuAssertTrue(tc, t.passengers[1].finish == 1);
-
-
+    free(t.passengers);
 }
 
 CuSuite *get_finalizing_suit(void) /*Dette skal op i toppen af alltests.c*/

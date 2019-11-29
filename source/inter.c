@@ -68,6 +68,7 @@ int inter(transition_system *t, passenger p) {
                         return t->wait.t_1;
             }
         }
+
         for(i = 0; i < t->length; i++) {
             if(floor(t->passengers[i].destination/t->seats_per_row) == floor(p.destination/t->seats_per_row) 
                     && t->passengers[i].destination % t->seats_per_row == 2
@@ -95,10 +96,10 @@ int inter(transition_system *t, passenger p) {
                                         return t->wait.t_3;                                       
                                     }
                         }
-
                         return t->wait.t_1;
             }
         }
+        
         for(i = 0; i < t->length; i++) {
             if(floor(t->passengers[i].destination/t->seats_per_row) == floor(p.destination/t->seats_per_row) 
                     && t->passengers[i].destination % t->seats_per_row == 3

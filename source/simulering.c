@@ -8,6 +8,7 @@
 #include "../headers/person_in_front.h"
 #include "../headers/rear.h"
 #include "../headers/initializing.h"
+#include "../headers/print_passenger.h"
 
 #endif
 #include <stdio.h>

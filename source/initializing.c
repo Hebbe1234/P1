@@ -20,8 +20,7 @@ void initialize_passenger(transition_system *t) {
     for (i = 0; i < t->length; i++) {
         p = t->passengers[i];
         P_L = p.location;
-        if (P_L == -1 && (p.spotting == NULL || (p.spotting->location != P_E &&
-                                                 p.spotting->location != -1))) {
+        if (P_L == -1 && (p.spotting == NULL || (p.spotting->location != P_E && p.spotting->location != -1))) {
             t->passengers[i].location = P_E;
             if(rear_function(t, i) != -1){
                 t->passengers[i].spotting = &(t->passengers[rear_function(t, i)]);

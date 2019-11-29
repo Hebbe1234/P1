@@ -24,7 +24,7 @@ int runalltest(void)
     CuSuiteAddSuite(suite, get_finalizing_suit());
     CuSuiteAddSuite(suite, get_movement_suit()); 
     CuSuiteAddSuite(suite, get_person_in_front());
-    CuSuiteAddSuite(suite, get_wait_time_suit());
+    CuSuiteAddSuite(suite, get_wait_time_suit()); 
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

@@ -9,15 +9,21 @@ void wait_test_1 (CuTest *tc) {
     passenger p0;
     transition_system t;
 
+    t.length = 1;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_row = 6;
+
     p0.destination = 54;
     p0.location = 9;
     p0.finish = 1;
-    p0.carry_on = 1;
-    p0.wait_time = 3;
+    p0.carry_on = 0;
+    p0.wait_time = 1;
     p0.spotting = NULL;
 
     wait_time(&t);
-    CuAssertTrue(tc, t.passengers[0].wait_time == 1);
+    CuAssertTrue(tc, t.passengers[0].wait_time >= 1);
+    CuAssertTrue(tc, t.passengers[0].wait_time = 0);
+    free(t.passengers);
 }
 
 CuSuite *get_wait_time_suit (void) {

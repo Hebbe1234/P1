@@ -6,7 +6,7 @@
 #endif
 
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
-void initialize_passenger_array(transition_system t);
+void initialize_passenger_array(transition_system *t);
 /* Resets that passenger array, and gives location -1*/
 void reset_passenger_array(passenger passengers [], int length_of_array);
 /*Produces an array with random numbers, from 0 to that number of seats*/
@@ -18,6 +18,6 @@ void initialize_spotting(passenger passengers[], int length_of_array);
 /*Based on a carryon percentage, the passengers gets carryon*/
 void get_carryon(passenger passengers[], int length_of_array, int carry_on_percentage);
 /*Tests if the seat is replaced by a door, and therefore illegal*/
-int is_illegal_seat(int seat_tested, int entrance_placement, int seats_per_row);
+int is_legal_seat(int seat_tested, int entrance_placement, int seats_per_row);
 /*Used to create random destination, by generating 2 random numbers*/
 void get_random_number(int *k,int *j, int length_of_array, int seats_per_row);

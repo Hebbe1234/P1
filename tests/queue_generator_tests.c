@@ -25,21 +25,21 @@ void test_get_random_number_15(CuTest *tc) {
     }
 }
 /*Tests that when the entrance is 4 and we tests seat 0, 1, 2 is legal*/
-void test_is_illegal_seat_E4(CuTest *tc) {
+void test_is_legal_seat_E4(CuTest *tc) {
     int result, j, i;
     
     for (i = 0, j = 4; i < 3; ++i) {
-        result = is_illegal_seat(i, j, 6);
+        result = is_legal_seat(i, j, 6);
         CuAssertTrue(tc, result==1);
     }
 }
 
 /*Tests that when the entrance is 0 and we tests seat 3,4,5 they are illegal*/
-void test_is_illegal_seat_E0(CuTest *tc) {
+void test_is_legal_seat_E0(CuTest *tc) {
    int result, j, i;
 
    for (i = 3, j = 0; i < 6; ++i) {
-        result = is_illegal_seat(i, j, 6);
+        result = is_legal_seat(i, j, 6);
         CuAssertTrue(tc, result == 0);
     }
 }
@@ -270,8 +270,8 @@ void test_get_random_array_array15(CuTest *tc){
 CuSuite *get_generator_suit(void) { /*Dette skal op i toppen af alltests.c*/
     CuSuite *suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, test_get_random_number_80);
-    SUITE_ADD_TEST(suite, test_is_illegal_seat_E4);
-    SUITE_ADD_TEST(suite, test_is_illegal_seat_E0);
+    SUITE_ADD_TEST(suite, test_is_legal_seat_E4);
+    SUITE_ADD_TEST(suite, test_is_legal_seat_E0);
     SUITE_ADD_TEST(suite, test_get_carryon_A57_CP50);
     SUITE_ADD_TEST(suite, test_get_carryon_A51_CP100);
     SUITE_ADD_TEST(suite, test_get_carryon_A51_CP0);

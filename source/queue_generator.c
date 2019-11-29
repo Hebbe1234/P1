@@ -13,16 +13,16 @@
 #endif
 
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
-void initialize_passenger_array(transition_system t) {
+void initialize_passenger_array(transition_system *t) {
     int *random_destinations; 
 
-    random_destinations = (int*)calloc(t.length + (t.seats_per_row/2), sizeof(int));
+    random_destinations = (int*)calloc(t->length + (t->seats_per_row/2), sizeof(int));
 
-    reset_passenger_array(t.passengers, t.length);
-    get_random_array(random_destinations, t.length, t.seats_per_row, t.entrance);
-    passenger_get_random_destinations(random_destinations, t.passengers, t.length,t.entrance, t.seats_per_row);
-    initialize_spotting(t.passengers, t.length);
-    get_carryon(t.passengers, t.length, t.carryon_percentage);
+    reset_passenger_array(t->passengers, t->length);
+    get_random_array(random_destinations, t->length, t->seats_per_row, t->entrance);
+    passenger_get_random_destinations(random_destinations, t->passengers, t->length, t->entrance, t->seats_per_row);
+    initialize_spotting(t->passengers, t->length);
+    get_carryon(t->passengers, t->length, t->carryon_percentage);
     free(random_destinations);
 }
 
@@ -47,7 +47,7 @@ void get_random_array(int random_destinations[], int length_of_array, int seats_
     i = j = k = tmp_plads = 0;
 
     for(i = 0; (i < length_of_array + (seats_per_row/2)); i++) {
-        if( (is_illegal_seat(i, entrance_placement, seats_per_row))==0) {
+        if( (is_legal_seat(i, entrance_placement, seats_per_row))==0) {
             random_destinations[i] = -1;
         }
         random_destinations[i] = i;
@@ -62,7 +62,7 @@ void get_random_array(int random_destinations[], int length_of_array, int seats_
 }
 
 /*Tests if the seat is replaced by a door, and therefore illegal*/
-int is_illegal_seat(int seat_tested, int entrance_placement, int seats_per_row) {
+int is_legal_seat(int seat_tested, int entrance_placement, int seats_per_row) {
     int i;
     for(i = 0; i < (seats_per_row/2); i++) {
         if(seat_tested == ((entrance_placement * seats_per_row) + (seats_per_row/2) + i)) {
@@ -99,7 +99,7 @@ void initialize_spotting(passenger passengers[], int length_of_array) {
 }
 
 /*Based on a carryon percentage, the passengers gets carryon*/
-void get_carryon(passenger passengers[], int length_of_array, int carry_on_percentage){
+void get_carryon(passenger passengers[], int length_of_array, int carry_on_percentage) {
     int i, j;
 
     for(i = 0; i < length_of_array; i++) {

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*Testing whether or not a person with wait-time 0 is finished*/
 void wait_test_one (CuTest *tc) {
     passenger p0;
     transition_system t;
@@ -23,6 +24,7 @@ void wait_test_one (CuTest *tc) {
     free(t.passengers);
 }
 
+/*Testing if a person with a wait time above one can finsih*/
 void wait_test_two (CuTest *tc) {
     passenger p0;
     transition_system t;
@@ -30,7 +32,7 @@ void wait_test_two (CuTest *tc) {
     t.length = 1;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
-    p0.wait_time = 1;
+    p0.wait_time = 3;
 
     t.passengers[0] = p0;
 
@@ -42,6 +44,7 @@ void wait_test_two (CuTest *tc) {
     free(t.passengers);
 }
 
+/*Checking what happens if a person have negative wait time*/
 void wait_test_three (CuTest *tc) {
     passenger p0;
     transition_system t;
@@ -60,6 +63,7 @@ void wait_test_three (CuTest *tc) {
     free(t.passengers);
 }
 
+/*Checking how multiple people at once works*/
 void wait_test_four (CuTest *tc) {
     passenger p0, p1, p2;
     transition_system t;

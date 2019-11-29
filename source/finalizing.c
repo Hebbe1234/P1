@@ -25,7 +25,7 @@ void finalising_passenger(transition_system *t) {
     {
         p  = t->passengers[i];
         P_L = p.location;
-        if (P_L == floor(p.destination/t->seats_per_row) && p.carry_on == 0 && p.wait_time == 0 && p.interference_flag == 1){
+        if (p.finish == 0 && P_L == floor(p.destination/t->seats_per_row) && p.carry_on == 0 && p.wait_time == 0 && p.interference_flag == 1){
             t->passengers[i].finish = 1;
         }
     }

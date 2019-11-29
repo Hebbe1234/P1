@@ -31,7 +31,7 @@ void run_simulation() {
     t_system.rows = 2;                  /*Bruges ikke*/
     t_system.destination_length = 4;    /*Bruges ikke*/
     t_system.seats_per_row = 6;
-    t_system.length = 237;
+    t_system.length = 6000;
     t_system.carryon_percentage = 0;
 
     t_system.passengers = (passenger*)calloc(t_system.length, sizeof(passenger));
@@ -81,7 +81,7 @@ void simulation(transition_system *t_system) {
     printf("%d\n", t_system->passengers[1].spotting->location);
 
 
-    while (is_finished(t_system) == 0 && t_system->iterations < 2000) {
+    while (is_finished(t_system) == 0 && t_system->iterations <1000000) {
         /* Finish */
         finalising_passenger(t_system);
         person_in_front(t_system);

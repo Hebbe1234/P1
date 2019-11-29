@@ -11,13 +11,14 @@
 
 
 void wait_time(transition_system *t) {
+    int i, p_W;
     passenger p;
-    int i;
 
-    for(i = 0; p.wait_time > 0; i++) {
-        if(p.wait_time > 0) {
-            p.wait_time = 1;
+    for(i = 0; i < t->length; i++) {
+        p = t->passengers[i];
+        p_W = p.wait_time;
+        if(p_W > 0) {
+            t->passengers[i].wait_time -= 1;
         }
     }
-
 }

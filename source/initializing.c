@@ -13,7 +13,7 @@
 
 /* Function to initialize passenger */
 void initialize_passenger(transition_system *t) {
-    int i, P_L, P_E = t->entrance;
+    int i, r, P_L, P_E = t->entrance;
 
     passenger p;
 
@@ -22,8 +22,9 @@ void initialize_passenger(transition_system *t) {
         P_L = p.location;
         if (P_L == -1 && (p.spotting == NULL || (p.spotting->location != P_E && p.spotting->location != -1))) {
             t->passengers[i].location = P_E;
-            if(rear_function(t, i) != -1){
-                t->passengers[i].spotting = &(t->passengers[rear_function(t, i)]);
+            r = rear_function(t, i);
+            if(r != -1){
+                t->passengers[i].spotting = &(t->passengers[r]);
             }
         }
     }

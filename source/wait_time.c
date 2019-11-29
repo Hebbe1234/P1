@@ -20,6 +20,7 @@ void wait_time(transition_system *t) {
         p_W = p.wait_time;
         if(p_W > 0) {
             t->passengers[i].wait_time -= 1;
+
         }
     }
 }

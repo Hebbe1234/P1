@@ -11,6 +11,7 @@ CuSuite *get_finalizing_suit(void);
 CuSuite *get_rear_suit(void);
 CuSuite *get_movement_suit(void);
 CuSuite *get_person_in_front(void);
+CuSuite *get_wait_time_suit(void);
 CuSuite *get_test_t_system(void);
 
 int runalltest(void)

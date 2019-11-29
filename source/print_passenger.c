@@ -32,6 +32,6 @@ void print_passenger_line(passenger *person) {
         P_W = person->wait_time, 
         P_I = person->interference_flag;        
 
-    printf(" Destination: %d | Location: %d | Finished: %d | Location of passenger infront: %d | Carry-on: %d | Wait time: %d | Interference: %d\n",
+    printf(" Destination: %2d | Location: %2d | Finished: %1d | Location of passenger infront: %4d | Carry-on: %1d | Wait time: %2d | Interference: %d\n",
     P_D, P_L, P_F, P_S, P_C, P_W, P_I);
 }

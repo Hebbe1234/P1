@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "../headers/print_passenger.h"
+
 /* function that defines the direction the passenger moves
     and changes passengers location */
 void movement (transition_system *t) {
@@ -24,18 +26,26 @@ void movement (transition_system *t) {
 
         dir = (floor(P_D / t->seats_per_row) - P_L) != 0 ? (floor(P_D / t->seats_per_row) - P_L) / abs(floor(P_D / t->seats_per_row) - P_L) : 0; /* direction; positive is right, negative is left */
 
-        if (P_L > -1) {
+        if (P_L > -1 && t->passengers[i].finish != 1) {
             
             if(P_S == NULL) {
                 t->passengers[i].location += dir;
+                printf("%-15s P%d","MOVING", i);
+                print_passenger_line(&(t->passengers[i]));
+    
             }
             /* if going left and person spotting is more than one 'place' ahead */
             else if (dir == - 1 && P_SL < P_L - 1) {
                 t->passengers[i].location += dir;
+                printf("%-15s P%d","MOVING", i);
+                print_passenger_line(&(t->passengers[i]));
+    
             }
             /* if going right and person spotting is more than one 'place' ahead */
             else if (dir == 1 && P_SL > P_L + 1) {
                 t->passengers[i].location += dir;
+                printf("%-15s P%d","MOVING", i);
+                print_passenger_line(&(t->passengers[i]));
             }
         }
     } 

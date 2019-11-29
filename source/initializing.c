@@ -6,6 +6,7 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+#include "../headers/print_passenger.h"
 
 void initialize_passenger(transition_system *t) {
     int i, 
@@ -19,6 +20,8 @@ void initialize_passenger(transition_system *t) {
         P_L = p.location;
         if (P_L == -1 && (p.spotting == NULL || ( p.spotting->location != P_E && p.spotting->location != -1 ))) {
             t->passengers[i].location = P_E;
-        }    
+            printf("%-15s P%d","INITIALIZING", i);
+            print_passenger_line(&(t->passengers[i]));
+        }
     }  
 }

@@ -7,6 +7,7 @@
 
 #include "headers/input.h"
 #include "headers/print_t_system.h"
+#include "headers/simulation.h"
 
 #include <stdio.h>
 #include <math.h>
@@ -21,6 +22,8 @@ int main (void)
 {
     srand(time(0));
     
+    run_simulation();
+
     printf("Program ran OK");
 
     return EXIT_SUCCESS;

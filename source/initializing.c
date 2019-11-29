@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Function to initialize passenger */
 void initialize_passenger(transition_system *t) {
     int i, P_L, P_E = t->entrance;
 
@@ -25,7 +26,6 @@ void initialize_passenger(transition_system *t) {
             if(rear_function(t, i) != -1){
                 t->passengers[i].spotting = &(t->passengers[rear_function(t, i)]);
             }
-            print_passenger_line(&(t->passengers[i]));
         }
     }
 }

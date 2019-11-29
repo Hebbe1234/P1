@@ -12,6 +12,7 @@ void test_outside_plane(CuTest *tc){
     transition_system t;
     t.length = 2;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = -1;
@@ -42,6 +43,7 @@ void test_in_and_out(CuTest *tc){
     transition_system t;
     t.length = 2;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = -1;
@@ -71,6 +73,7 @@ void test_in_front_of(CuTest *tc){
     transition_system t;
     t.length = 2;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = 4;
@@ -100,6 +103,7 @@ void test_different_direction(CuTest *tc){
     transition_system t;
     t.length = 2;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 6;
     p1.location = 10;
@@ -129,6 +133,7 @@ void test_one_direction(CuTest *tc){
     transition_system t;
     t.length = 2;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = 2;
@@ -158,6 +163,8 @@ void test_location_wrong(CuTest *tc){
     transition_system t;
     t.length = 1;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
+
     p1.destination = 54;
     p1.location = -5;
     p1.finish = 0;
@@ -180,6 +187,7 @@ void test_multiple_passengers(CuTest *tc){
     transition_system t;
     t.length = 3;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 50;
     p1.location = 5;

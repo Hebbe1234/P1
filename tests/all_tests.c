@@ -21,6 +21,7 @@ int runalltest(void)
     CuSuiteAddSuite(suite, get_example_suit());
     CuSuiteAddSuite(suite, get_initialization_suit());
     CuSuiteAddSuite(suite, get_generator_suit());
+    CuSuiteAddSuite(suite, get_finished_suit());
     CuSuiteAddSuite(suite, get_finalizing_suit());
     CuSuiteAddSuite(suite, get_rear_suit());
     CuSuiteAddSuite(suite, get_movement_suit());

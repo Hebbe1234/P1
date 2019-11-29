@@ -23,7 +23,7 @@ void run_simulation() {
     int i;
     
     t_system.iterations = 0;
-    t_system.entrance = 0; 
+    t_system.entrance = 4; 
     t_system.rows = 2;
     t_system.destination_length = 4;
     t_system.seats_per_row = 6;

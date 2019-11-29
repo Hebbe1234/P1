@@ -5,5 +5,5 @@
 
 #endif
 
-/* This function takes a t_system as input and prints its current values */
+/* This function takes a transition system as input and prints its current values */
 void print_t_system (transition_system t_system);

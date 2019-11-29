@@ -1,14 +1,17 @@
 #include "../headers/CuTest.h"
-#include "../headers/queue.generator.h"
+#include "../headers/queue_generator.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 /*Tests that the number generated is between the limits*/
 void test_get_random_number_80(CuTest *tc) {
     int k, j, i;
+    transition_system t;
+    t.seats_per_row = 6; 
+    t.length = 80;
     
     for (i = 0; i < 100; ++i) {
-        get_random_number(&k, &j, 80, 6);
+        get_random_number(&k, &j, &t);
         CuAssertTrue(tc, (k >= 0) && (k < 83));
         CuAssertTrue(tc, (j >= 0) && (j < 83));
     }
@@ -18,28 +21,40 @@ void test_get_random_number_80(CuTest *tc) {
 void test_get_random_number_15(CuTest *tc) {
     int k, j, i;
     
+    transition_system t;
+    t.seats_per_row = 6; 
+    t.length = 15;
+
     for (i = 0; i < 100; ++i) {
-        get_random_number(&k, &j, 15, 6);
+        get_random_number(&k, &j, &t);
         CuAssertTrue(tc, (k >= 0) && (k < 18));
         CuAssertTrue(tc, (j >= 0) && (j < 18));
     }
 }
 /*Tests that when the entrance is 4 and we tests seat 0, 1, 2 is legal*/
 void test_is_legal_seat_E4(CuTest *tc) {
-    int result, j, i;
+    int result, i;
     
-    for (i = 0, j = 4; i < 3; ++i) {
-        result = is_legal_seat(i, j, 6);
+    transition_system t;
+    t.seats_per_row = 6; 
+    t.length = 80;
+    t.entrance = 4;
+    for (i = 0, t.entrance = 4; i < 3; ++i) {
+        result = is_legal_seat(i, &t);
         CuAssertTrue(tc, result==1);
     }
 }
 
 /*Tests that when the entrance is 0 and we tests seat 3,4,5 they are illegal*/
 void test_is_legal_seat_E0(CuTest *tc) {
-   int result, j, i;
-
-   for (i = 3, j = 0; i < 6; ++i) {
-        result = is_legal_seat(i, j, 6);
+   int result, i;
+    transition_system t;
+    t.seats_per_row = 6; 
+    t.length = 80;
+    t.entrance = 0;
+   
+   for (i = 3, t.entrance = 0; i < 6; ++i) {
+        result = is_legal_seat(i, &t);
         CuAssertTrue(tc, result == 0);
     }
 }
@@ -47,10 +62,15 @@ void test_is_legal_seat_E0(CuTest *tc) {
 /*Tests that a passenger either gets carry on 1, or 0*/
 void test_get_carryon_A57_CP50(CuTest *tc) {
     struct passenger *passengers;
+    transition_system t;
     int i, flag0;
     passengers = (struct passenger*)calloc(57, sizeof(passenger));
+    
+    t.seats_per_row = 6; 
+    t.length = 57;
+    t.carryon_percentage = 50;
 
-    get_carryon(passengers, 57, 50);
+    get_carryon(&t);
     
     for(i=0, flag0=1; (i<57) && (flag0==1); i++) {
         if ((passengers[i].carry_on != 0) && (passengers[i].carry_on !=1))
@@ -64,10 +84,14 @@ void test_get_carryon_A57_CP50(CuTest *tc) {
 void test_get_carryon_A51_CP100(CuTest *tc) {
     struct passenger *passengers;
     int i, flag1;
-
+    transition_system t;
     passengers = (struct passenger*)calloc(51, sizeof(passenger));
+    
+    t.seats_per_row = 6; 
+    t.length = 51;
+    t.carryon_percentage = 100;
 
-    get_carryon(passengers, 51, 100);
+    get_carryon(&t);
     for(i=0, flag1=1; (i<51) && (flag1==1); i++) {
         if (passengers[i].carry_on !=1)
             flag1=0;
@@ -81,10 +105,14 @@ void test_get_carryon_A51_CP100(CuTest *tc) {
 void test_get_carryon_A51_CP0(CuTest *tc) {
     struct passenger *passengers;
     int i, flag2;
-
+    transition_system t;
     passengers = (struct passenger*)calloc(51, sizeof(passenger));
-
-    get_carryon(passengers, 51, 0);
+    
+    t.seats_per_row = 6; 
+    t.length = 51;
+    t.carryon_percentage = 0;
+    
+    get_carryon(&t);
     for(i=0, flag2=1; (i<51) && (flag2==1); i++) {
         if (passengers[i].carry_on !=0)
             flag2=0;

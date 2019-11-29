@@ -22,7 +22,7 @@ void movement (transition_system *t) {
         P_S = t->passengers[i].spotting;
         P_SL = (P_S != NULL) ? t->passengers[i].spotting->location : -1;
 
-        dir = (floor(P_D / 6) - P_L) / abs(floor(P_D / 6) - P_L); /* direction; positive is right, negative is left */
+        dir = (floor(P_D / t->seats_per_row) - P_L) != 0 ? (floor(P_D / t->seats_per_row) - P_L) / abs(floor(P_D / t->seats_per_row) - P_L) : 0; /* direction; positive is right, negative is left */
 
         if (P_L > -1) {
             

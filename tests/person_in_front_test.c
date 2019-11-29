@@ -9,6 +9,10 @@
 void test_person_in_front(CuTest *tc) {
     passenger p0, p1, p2, p3, p4;
     transition_system t;
+    t.length = 5;
+
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p0.destination = 54;
     p0.location = 9;
@@ -52,13 +56,13 @@ void test_person_in_front(CuTest *tc) {
     t.passengers[3] = p3;
     t.passengers[4] = p4;
 
-    t.length = 5;
     person_in_front(&t);
     
     CuAssertTrue(tc, t.passengers[4].spotting->destination == 55);
     CuAssertTrue(tc, t.passengers[3].spotting->destination == 55);
     CuAssertTrue(tc, t.passengers[2].spotting->destination == 55);
     CuAssertTrue(tc, t.passengers[1].spotting == NULL); 
+    free(t.passengers);
 
 }
 

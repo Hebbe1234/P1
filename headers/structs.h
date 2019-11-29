@@ -11,8 +11,14 @@ typedef struct wait_times {
 
 typedef struct transition_system {
 
-  passenger passengers[60];
-  int *destinations;
-  int entrance, seats_row, length;
-
+    passenger *passengers;
+    int destination_length;
+    int *destinations;
+    int entrance;
+    int rows;
+    int seats_per_row;
+    int length;
+    int carryon_percentage;
+    int iterations;
+    wait_times wait;
 } transition_system;

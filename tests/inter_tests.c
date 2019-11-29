@@ -259,7 +259,7 @@ void test_inter_window_person_in_aisle(CuTest *tc) {
     result = inter(&t, p);
 
     free(t.passengers);
-    printf(" %d", result);
+
     CuAssertTrue(tc, result == 2);
 }
 
@@ -311,7 +311,7 @@ void test_inter_window_person_in_aisle_and_middle(CuTest *tc) {
     t.seats_per_row = 6;
 
     result = inter(&t, p);
-    printf(" %d", result);
+
     free(t.passengers);
 
     CuAssertTrue(tc, result == 3);

@@ -13,6 +13,7 @@ void finalizingtest_first(CuTest *tc) {
 
     t.length = 1;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = -1;
@@ -40,7 +41,7 @@ void finalizingtest_second(CuTest *tc) {
     transition_system t;
     t.length = 1;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
-
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = 0;
@@ -66,9 +67,8 @@ void finalizingtest_third(CuTest *tc) {
     transition_system t;
 
     t.length = 1;
-
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
-
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = 0;
@@ -92,9 +92,8 @@ void finalizingtest_fourth(CuTest *tc) {
     transition_system t;
 
     t.length = 1;
-
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
-
+    t.seats_per_row = 6;
 
     p1.destination = 54;
     p1.location = 0;
@@ -120,7 +119,8 @@ void finalizingtest_fifth(CuTest *tc) {
 
     t.length = 1;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
-
+    t.seats_per_row = 6;
+    
     p1.destination = 54;
     p1.location = 9;
     p1.finish = 0;
@@ -144,9 +144,9 @@ void finalizingtest_sixth(CuTest *tc) {
     transition_system t;
 
     t.length = 1;
-
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
-
+    t.seats_per_row = 6;
+    
     p1.destination = 54;
     p1.location = 2;
     p1.finish = 0;
@@ -167,8 +167,8 @@ void finalizingtest_seventh(CuTest *tc) {
     transition_system t;
 
     t.length = 1;
-
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.seats_per_row = 6;
 
     p1.destination = 13;
     p1.location = 2;
@@ -196,7 +196,7 @@ void finalizingtest_eight(CuTest *tc) {
     t.length = 2;
 
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
-
+    t.seats_per_row = 6;    
 
     p1.destination = 13;
     p1.location = 2;

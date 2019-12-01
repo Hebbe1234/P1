@@ -31,7 +31,8 @@ void print_passenger_line(passenger *person) {
         P_S = person->spotting != NULL ? person->spotting->location : -100,
         P_C = person->carry_on, 
         P_W = person->wait_time, 
-        P_I = person->interference_flag;        
+        P_I = person->interference_flag;      
+    
     printf(" Destination: %2d | Location: %2d | Finished: %1d | Location of passenger infront: %4d | Carry-on: %1d | Wait time: %2d | Interference: %d\n",
     P_D, P_L, P_F, P_S, P_C, P_W, P_I);
 }

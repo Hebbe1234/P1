@@ -76,7 +76,7 @@ int inter(transition_system *t, passenger p) {
                         return t->wait.t_1;
               }
         }
-            return t->wait.t_0;
+        return t->wait.t_0;
     }
 
 

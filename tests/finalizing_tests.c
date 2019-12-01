@@ -154,6 +154,7 @@ void finalizingtest_sixth(CuTest *tc) {
     p1.carry_on = 0;
     p1.wait_time = 0;
     p1.interference_flag = 1;
+    p1.spotting = NULL;
 
     t.passengers[0] = p1;
     
@@ -177,6 +178,7 @@ void finalizingtest_seventh(CuTest *tc) {
     p1.carry_on = 1;
     p1.wait_time = 0;
     p1.interference_flag = 0;
+    p1.spotting = NULL;
 
     t.passengers[0] = p1;
     
@@ -205,6 +207,7 @@ void finalizingtest_eight(CuTest *tc) {
     p1.carry_on = 0;
     p1.wait_time = 0;
     p1.interference_flag = 1;
+    p1.spotting = NULL;
 
     p2.destination = 13;
     p2.location = 2;
@@ -212,6 +215,7 @@ void finalizingtest_eight(CuTest *tc) {
     p2.carry_on = 0;
     p2.wait_time = 0;
     p2.interference_flag = 1;
+    p2.spotting = &p1;
 
     t.passengers[0] = p1;
     t.passengers[1] = p2;
@@ -232,9 +236,9 @@ CuSuite *get_finalizing_suit(void) /*Dette skal op i toppen af alltests.c*/
     SUITE_ADD_TEST(suite, finalizingtest_third);
     SUITE_ADD_TEST(suite, finalizingtest_fourth);
     SUITE_ADD_TEST(suite, finalizingtest_fifth);
-    /*SUITE_ADD_TEST(suite, finalizingtest_sixth);
+    SUITE_ADD_TEST(suite, finalizingtest_sixth);
     SUITE_ADD_TEST(suite, finalizingtest_seventh);
-    SUITE_ADD_TEST(suite, finalizingtest_eight);*/
+    SUITE_ADD_TEST(suite, finalizingtest_eight);
 
     return suite;
 }

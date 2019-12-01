@@ -58,9 +58,9 @@ void test_person_in_front(CuTest *tc) {
 
     person_in_front(&t);
     
-    
+
     CuAssertTrue(tc, t.passengers[4].spotting->destination == 56);
-    CuAssertTrue(tc, t.passengers[3].spotting->destination == 55);
+    CuAssertTrue(tc, t.passengers[3].spotting->destination == 56);
     CuAssertTrue(tc, t.passengers[2].spotting->destination == 55);
     CuAssertTrue(tc, t.passengers[1].spotting == NULL); 
     free(t.passengers);

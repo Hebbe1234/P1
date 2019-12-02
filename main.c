@@ -32,7 +32,7 @@ int main (int argc, char *argv[])
             silence = 1;
         }
     }
-    print_passenger_line(&passengerq);
+    print_but_with_silence(&passengerq, "HALLO??", 0);
     printf("Program ran OK");
 
     return EXIT_SUCCESS;

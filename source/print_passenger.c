@@ -36,3 +36,12 @@ void print_passenger_line(passenger *person) {
     printf(" Destination: %d | Location: %d | Finished: %d | Location of passenger infront: %d | Carry-on: %d | Wait time: %d | Interference: %d\n",
     P_D, P_L, P_F, P_S, P_C, P_W, P_I);
 }
+
+/* Prints passenger states with option to ignore printing with --silence */
+void print_but_with_silence(passenger *person, char *string, int index) {
+    
+    if(silence == 0) {
+        printf("%-15s P%d\n", string, index);
+        print_passenger_line(person);
+    }
+}

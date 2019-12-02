@@ -14,6 +14,7 @@ CuSuite *get_person_in_front(void);
 CuSuite *get_wait_time_suit(void);
 CuSuite *get_test_t_system(void);
 CuSuite *get_inter_suit(void);
+CuSuite *get_carry_on_suite(void);
 
 int runalltest(void)
 {
@@ -33,7 +34,8 @@ int runalltest(void)
     CuSuiteAddSuite(suite, get_person_in_front());
     CuSuiteAddSuite(suite, get_test_t_system());
     CuSuiteAddSuite(suite, get_inter_suit());
-
+    CuSuiteAddSuite(suite, get_carry_on_suite());
+    
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

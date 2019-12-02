@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../headers/print_passenger.h"
 
 /* Function to initialize passenger */
 void initialize_passenger(transition_system *t) {
@@ -27,6 +26,8 @@ void initialize_passenger(transition_system *t) {
             r = rear_function(t, i);
             if(r != -1){
                 t->passengers[i].spotting = &(t->passengers[r]);
+            } else {
+                t->passengers[i].spotting = NULL;
             }
 
             printf("%-15s P%d","INITIALIZING", i);

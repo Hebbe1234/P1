@@ -46,12 +46,15 @@ void get_random_array(int random_destinations[], transition_system *t) {
     int i, j, k, tmp_plads;
     i = j = k = tmp_plads = 0;
 
-    for(i = 0; (i < t->length + (t->seats_per_row/2)); i++) {
-        if( (is_legal_seat(i, t)) == 0) {
+    for(i = 0; (i < (t->length + (t->seats_per_row/2))); i++) {
+
+        if((is_legal_seat(i, t)) == 0) {
             random_destinations[i] = -1;
+        } else {
+            random_destinations[i] = i;
         }
-        random_destinations[i] = i;
     }
+
 
     for(i = 0; i < 1000000; i = i + 1) {
         get_random_number(&k,&j, t);

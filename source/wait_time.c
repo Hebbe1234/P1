@@ -14,8 +14,8 @@
 void wait_time(transition_system *t) {
     int i;
     for(i = 0; i < t->length; i++) {
-        if(0 < t->passengers[i].wait_time) {
-            --t->passengers[i].wait_time;
+        if(t->passengers[i].wait_time > 0) {
+            t->passengers[i].wait_time--;
         }
     }
 }

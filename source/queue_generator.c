@@ -8,108 +8,115 @@
 #define STRUCTS
 
 #include "../headers/structs.h"
-#include "../headers/queue.generator.h"
+#include "../headers/queue_generator.h"
 
 #endif
 
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
-void initialize_passenger_array(int carryon_percentage, int length_of_array, int seats_per_row, 
-                                int entrance_placement, passenger passengers[]) {
+void initialize_passenger_array(transition_system *t) {
     int *random_destinations; 
 
-    random_destinations = (int*)calloc(length_of_array + (seats_per_row/2), sizeof(int));
+    random_destinations = (int*)calloc(t->length + (t->seats_per_row/2), sizeof(int));
 
-    reset_passenger_array(passengers, length_of_array);
-    get_random_array(random_destinations, length_of_array, seats_per_row);
-    passenger_get_random_destinations(random_destinations, passengers, length_of_array,entrance_placement, seats_per_row);
-    initialize_spotting(passengers, length_of_array);
-    get_carryon(passengers, length_of_array, carryon_percentage);
+    reset_passenger_array(t);
+    get_random_array(random_destinations, t);
+    passenger_get_random_destinations(random_destinations, t);
+    initialize_spotting(t);
+    get_carryon(t);
     free(random_destinations);
 }
 
 
 /* Resets that passenger array, and gives location -1*/
-void reset_passenger_array(passenger passengers [], int length_of_array) {
+void reset_passenger_array(transition_system *t) {
     int i;
-    for (i = 0; i < length_of_array; i++) {
-        passengers [i].destination = 0;
-        passengers [i].location = -1;
-        passengers [i].carry_on = 0;
-        passengers [i].wait_time = 0;
-        passengers [i].finish = 0;
-        passengers [i].interference_flag = 0;
-        passengers [i].spotting = NULL;
+    for (i = 0; i < t->length; i++) {
+        t->passengers[i].destination = 0;
+        t->passengers[i].location = -1;
+        t->passengers[i].carry_on = 0;
+        t->passengers[i].wait_time = 0;
+        t->passengers[i].finish = 0;
+        t->passengers[i].interference_flag = 0;
+        t->passengers[i].spotting = NULL;
     }
 }
 
 /*Produces an array with random numbers, from 0 to that number of seats*/
-void get_random_array(int random_destinations[], int length_of_array, int seats_per_row) {
+void get_random_array(int random_destinations[], transition_system *t) {
     int i, j, k, tmp_plads;
-    i = j = k = tmp_plads=0;
+    i = j = k = tmp_plads = 0;
 
-    for(i = 0; (i < length_of_array + (seats_per_row/2)); i++)
-        random_destinations[i]=i;
+    for(i = 0; (i < t->length + (t->seats_per_row/2)); i++) {
+        if( (is_legal_seat(i, t)) == 0) {
+            random_destinations[i] = -1;
+        }
+        random_destinations[i] = i;
+    }
 
     for(i = 0; i < 1000000; i = i + 1) {
-        get_random_number(&k,&j, length_of_array, seats_per_row);
+        get_random_number(&k,&j, t);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];
         random_destinations[j] = tmp_plads;
     }
 }
 
+/*Tests if the seat is replaced by a door, and therefore illegal*/
+int is_legal_seat(int seat_tested, transition_system* t) {
+    int i;
+    for(i = 0; i < (t->seats_per_row/2); i++) {
+        if(seat_tested == ((t->entrance * t->seats_per_row) + (t->seats_per_row/2) + i)) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 
 /* The passenger array gets filled with random destination, based on the random_destination array*/
-void passenger_get_random_destinations(int *random_destinations, passenger passengers [], int length_of_array, int entrance_placement, int seats_per_row) {
-    int *p_array, i, j;
+void passenger_get_random_destinations(int *random_destinations, transition_system *t) {
+    int *p_array, i;
 
     p_array = random_destinations;
-    for(i=0; i < length_of_array; i++)
-    {
-        for(j=0; j<(seats_per_row/2); j++){
-            if((*(p_array+i)) == is_illegal_seat(j,entrance_placement, seats_per_row))
-                p_array++;
+    for(i=0; i < t->length; i++) {
+        while((*(p_array+i))==-1) {
+            p_array++;
         }
-        passengers [i].destination = *(p_array+i);
+        t->passengers[i].destination = *(p_array+i);
     }
 }
 
 
-/*Tests if the seat is replaced by a door, and therefore illegal*/
-int is_illegal_seat(int i, int entrance_placement, int seats_per_row) {
-    return ((entrance_placement * seats_per_row) + (seats_per_row/2) + i);
-}
-
 /*Passenger 0 is initialized to 0, and the rest, looks at the person in front*/
-void initialize_spotting(passenger passengers[], int length_of_array) {
+void initialize_spotting(transition_system *t) {
     int i;
 
-    passengers [0].spotting = NULL;
+    t->passengers[0].spotting = NULL;
 
-    for(i=1; i < length_of_array; i=i+1) {
-        passengers[i].spotting = &(passengers [i-1]);    
+    for(i = 1; i < t->length; i++) {
+        t->passengers[i].spotting = &(t->passengers [i-1]);    
     }
 }
 
 /*Based on a carryon percentage, the passengers gets carryon*/
-void get_carryon(passenger passengers[], int length_of_array, int carry_on_percentage){
+void get_carryon(transition_system *t) {
     int i, j;
 
-    for(i = 0; i < length_of_array; i++){
+    for(i = 0; i < t->length; i++) {
         j = ((rand() % 100)+1);
-        if(j <= carry_on_percentage) {
-            passengers[i].carry_on = 1;
+        if(j <= t->carryon_percentage) {
+            t->passengers[i].carry_on = 1;
         }
         else {
-            passengers[i].carry_on = 0;        
+            t->passengers[i].carry_on = 0;        
         }
     }
 }
 
 
 /*Used to create random destination, by generating 2 random numbers*/
-void get_random_number(int *k,int *j,int length_of_array, int seats_per_row) {
-    *k = (rand() % (length_of_array+(seats_per_row/2)));
-    *j = (rand() % (length_of_array+(seats_per_row/2)));
+void get_random_number(int *k,int *j,transition_system *t) {
+    *k = (rand() % (t->length + (t->seats_per_row/2)));
+    *j = (rand() % (t->length + (t->seats_per_row/2)));
 }
 

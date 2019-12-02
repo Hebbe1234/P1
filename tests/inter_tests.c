@@ -9,13 +9,17 @@
 void test_inter_aisle_only_person(CuTest *tc) {
     transition_system t;
     passenger p;
-    int result = 1;
+    int result = 1, i;
     
     t.passengers = (struct passenger*)calloc(57, sizeof(passenger));
     t.wait.t_0 = 0;
     t.wait.t_1 = 1;
     t.wait.t_2 = 2;
     t.wait.t_3 = 3;
+
+    for(i = 0; i < 57; i++){
+        t.passengers[i].destination = i;
+    }
 
     p.destination = 2;
 
@@ -33,7 +37,7 @@ void test_inter_aisle_only_person(CuTest *tc) {
 void test_inter_aisle_person_in_middle(CuTest *tc) {
     transition_system t;
     passenger p;
-    int result = 1;
+    int result = 1, i;
     
     t.passengers = (struct passenger*)calloc(15, sizeof(passenger));
     t.wait.t_0 = 0;
@@ -41,11 +45,16 @@ void test_inter_aisle_person_in_middle(CuTest *tc) {
     t.wait.t_2 = 2;
     t.wait.t_3 = 3;
 
+    for(i = 0; i < 15; i++){
+        t.passengers[i].destination = i;
+        t.passengers[i].finish = 1;
+    }
+
     p.destination = 2;
 
-    t.passengers[5].destination = 2;
-    t.passengers[4].destination = 1;
-    t.passengers[4].finish = 1;
+    t.passengers[0].finish = 0;
+    t.passengers[2].finish = 0;
+    t.passengers[1].finish = 1;
     t.seats_per_row = 6;
     
     result = inter(&t, p);
@@ -70,7 +79,7 @@ void test_inter_aisle_person_in_window(CuTest *tc) {
     p.destination = 2;
 
     t.passengers[5].destination = 2;
-    t.passengers[4].destination = 1;
+    t.passengers[4].destination = 0;
     t.passengers[4].finish = 1;
     t.seats_per_row = 6;
 
@@ -156,7 +165,7 @@ void test_inter_middle_person_in_aisle(CuTest *tc) {
 
     free(t.passengers);
 
-    CuAssertTrue(tc, result == 2);
+    CuAssertTrue(tc, result == 1);
 }
 
 /* going to middle seat, one person in window */
@@ -210,7 +219,7 @@ void test_inter_middle_person_in_aisle_and_window(CuTest *tc) {
 
     free(t.passengers);
 
-    CuAssertTrue(tc, result == 2);
+    CuAssertTrue(tc, result == 1);
 }
 
 /* going to window seat, only person */
@@ -259,8 +268,8 @@ void test_inter_window_person_in_aisle(CuTest *tc) {
     result = inter(&t, p);
 
     free(t.passengers);
-    printf(" %d", result);
-    CuAssertTrue(tc, result == 2);
+
+    CuAssertTrue(tc, result == 1);
 }
 
 /* going to window seat one person in middle */
@@ -286,7 +295,7 @@ void test_inter_window_person_in_middle(CuTest *tc) {
 
     free(t.passengers);
 
-    CuAssertTrue(tc, result == 1);
+    CuAssertTrue(tc, result == 2);
 }
 
 /* going to window seat person in aisle and middle */
@@ -311,7 +320,7 @@ void test_inter_window_person_in_aisle_and_middle(CuTest *tc) {
     t.seats_per_row = 6;
 
     result = inter(&t, p);
-    printf(" %d", result);
+
     free(t.passengers);
 
     CuAssertTrue(tc, result == 3);

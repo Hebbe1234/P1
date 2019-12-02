@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../headers/print_passenger.h"
-
 /* function that defines the direction the passenger moves
     and changes passengers location */
 void movement (transition_system *t) {

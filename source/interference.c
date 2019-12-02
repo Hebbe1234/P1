@@ -19,10 +19,6 @@ void interference_function (transition_system *t) {
         t->passengers[i].wait_time += inter(t, t->passengers[i]);
         t->passengers[i].interference_flag = 1;
     
-        printf(" hola");
-        
         }
-
-        printf(" %d", t->length);
     }
 }

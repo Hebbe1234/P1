@@ -10,18 +10,12 @@
 #include <math.h>
 
 
-/*Checking if passengers can finish*/
+/*Decreasing wait time for everyone in the system */
 void wait_time(transition_system *t) {
-    int i, j , p_W;
-    passenger p;
+    int i;
     for(i = 0; i < t->length; i++) {
-        p = t->passengers[i];
-        p_W = p.wait_time;
-        for (j = 0; j < t->passengers[i].wait_time ; j++){
-            if (p_W > 0) {
-                p_W -= 1;
-            }
+        if(0 < t->passengers[i].wait_time) {
+            --t->passengers[i].wait_time;
         }
-    t->passengers[i].wait_time = p_W;
     }
 }

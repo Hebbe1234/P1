@@ -5,5 +5,5 @@
 
 #endif
 
-/* This function takes a passenger as input and prints his current values */
+/*Decreasing wait time for everyone in the system */
 void wait_time (transition_system *t);

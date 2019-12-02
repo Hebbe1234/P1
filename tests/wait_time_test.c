@@ -20,7 +20,6 @@ void wait_test_one (CuTest *tc) {
     wait_time(&t);
 
     CuAssertTrue(tc, t.passengers[0].wait_time == 0);
-    
     free(t.passengers);
 }
 
@@ -38,7 +37,7 @@ void wait_test_two (CuTest *tc) {
 
     wait_time(&t);
 
-    CuAssertTrue(tc, t.passengers[0].wait_time == 0);
+    CuAssertTrue(tc, t.passengers[0].wait_time == 2);
 
     
     free(t.passengers);
@@ -71,9 +70,9 @@ void wait_test_four (CuTest *tc) {
     t.length = 3;
     t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
-    p0.wait_time = -1;
-    p1.wait_time = 0;
-    p2.wait_time = 1;
+    p0.wait_time = 0;
+    p1.wait_time = 3;
+    p2.wait_time = 11;
 
     t.passengers[0] = p0;
     t.passengers[1] = p1;
@@ -81,10 +80,9 @@ void wait_test_four (CuTest *tc) {
 
     wait_time(&t);
 
-    CuAssertTrue(tc, t.passengers[0].wait_time == -1);
-    CuAssertTrue(tc, t.passengers[1].wait_time == 0);
-    CuAssertTrue(tc, t.passengers[2].wait_time == 0);
-    
+    CuAssertTrue(tc, t.passengers[0].wait_time == 0);
+    CuAssertTrue(tc, t.passengers[1].wait_time == 2);
+    CuAssertTrue(tc, t.passengers[2].wait_time == 10);
     
     free(t.passengers);
 }

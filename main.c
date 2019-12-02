@@ -21,10 +21,6 @@ int silence = 0;
 int main (int argc, char *argv[])
 {
     int i;
-    passenger passengerq;
-    passengerq.destination = 5;
-    passengerq.location = 2;
-
     srand(time(0));
     
     for (i = 0; i < argc; i++) {
@@ -32,7 +28,6 @@ int main (int argc, char *argv[])
             silence = 1;
         }
     }
-    print_but_with_silence(&passengerq, "HALLO??", 0);
     printf("Program ran OK");
 
     return EXIT_SUCCESS;

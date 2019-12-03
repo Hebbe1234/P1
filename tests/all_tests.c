@@ -17,6 +17,8 @@ CuSuite *get_inter_suit(void);
 CuSuite *get_interference_suit(void);
 CuSuite *get_carry_on_suite(void);
 
+int silence = 0;
+
 int runalltest(void)
 {
     CuString *output = CuStringNew();

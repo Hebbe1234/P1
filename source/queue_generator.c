@@ -53,7 +53,7 @@ void get_random_array(int random_destinations[], transition_system *t) {
         random_destinations[i] = i;
     }
 
-    for(i = 0; i < 1000000; i = i + 1) {
+    for(i = 0; i < t->length * 100000; i = i++) {
         get_random_number(&k,&j, t);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];

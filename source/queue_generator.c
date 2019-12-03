@@ -53,8 +53,8 @@ void get_random_array(int random_destinations[], transition_system *t) {
         random_destinations[i] = i;
     }
 
-    for(i = 0; i < 1000000; i = i + 1) {
-        get_random_number(&k,&j, t);
+    for(i = 0; i < t->length * t->length * t->length; i++) {
+        get_random_number(&k, &j, t);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];
         random_destinations[j] = tmp_plads;
@@ -78,7 +78,7 @@ void passenger_get_random_destinations(int *random_destinations, transition_syst
     int *p_array, i;
 
     p_array = random_destinations;
-    for(i=0; i < t->length; i++) {
+    for(i = 0; i < t->length; i++) {
         while((*(p_array+i))==-1) {
             p_array++;
         }

@@ -27,7 +27,7 @@ void run_simulation() {
     
 
     t_system.iterations = 1;
-    t_system.entrance = 0; 
+    t_system.entrance = 9; 
     t_system.rows = 10;                  /*bliver beregnet*/
     t_system.destination_length = 4;    /*Bruges ikke indtilvidere*/
     t_system.seats_per_row = 6;
@@ -38,7 +38,7 @@ void run_simulation() {
     t_system.wait.t_2 = 3;
     t_system.wait.t_3 = 4;
     t_system.wait.t_c = 5;
-    t_system.wait.t_m = 1;
+    t_system.wait.t_m = 2;
 
     t_system.passengers = (passenger*)calloc(t_system.length, sizeof(passenger));
 
@@ -52,6 +52,7 @@ void simulation(transition_system *t_system) {
     int j, i;
 
     while (is_finished(t_system) == 0 && t_system->iterations <10000) {
+        printf("\n-----ITERATION %d-----\n", t_system->iterations);
         /* Finish */
         finalising_passenger(t_system);
         person_in_front(t_system);
@@ -65,6 +66,9 @@ void simulation(transition_system *t_system) {
         movement(t_system);  
         /* Entering */
         initialize_passenger(t_system);
+
+        printf("-----ITERATION %2d-----\n", t_system->iterations);
+
         t_system->iterations += 1;
     }
 

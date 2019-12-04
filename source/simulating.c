@@ -10,7 +10,8 @@
 #include "../headers/initializing.h"
 #include "../headers/print_passenger.h"
 #include "../headers/simulation.h"
-#include "../headers/queue_generator.h"
+#include "../headers/initialize_passenger_array.h"
+#include "../headers/random_boarding_generator.h"
 #include "../headers/wait_time.h"
 #include "../headers/interference.h"
 #include "../headers/carry_on.h"
@@ -23,59 +24,63 @@
 
 void run_simulation() {
     
-    transition_system t_system;
-    
+    transition_system t;
+    int *destination;
 
-    t_system.iterations = 1;
-    t_system.entrance = 9; 
-    t_system.rows = 10;                  /*bliver beregnet*/
-    t_system.destination_length = 4;    /*Bruges ikke indtilvidere*/
-    t_system.seats_per_row = 6;
-    t_system.length = 57;
-    t_system.carryon_percentage = 50;
-    t_system.wait.t_0 = 0;
-    t_system.wait.t_1 = 2;
-    t_system.wait.t_2 = 3;
-    t_system.wait.t_3 = 4;
-    t_system.wait.t_c = 5;
-    t_system.wait.t_m = 2;
+    t.iterations = 1;
+    t.entrance = 9; 
+    t.rows = 10;                  /*bliver beregnet*/
+    t.destination_length = 4;    /*Bruges ikke indtilvidere*/
+    t.seats_per_row = 6;
+    t.length = 57;
+    t.carryon_percentage = 50;
+    t.wait.t_0 = 0;
+    t.wait.t_1 = 2;
+    t.wait.t_2 = 3;
+    t.wait.t_3 = 4;
+    t.wait.t_c = 5;
+    t.wait.t_m = 2;
 
-    t_system.passengers = (passenger*)calloc(t_system.length, sizeof(passenger));
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
-    initialize_passenger_array(&t_system);
+    destination = (int*)calloc(t.length, sizeof(int));
 
-    simulation(&t_system);
+    random_boarding_generator(&t, destination);
+
+    initialize_passenger_array(&t, destination);
+
+    simulation(&t);
 }
 
-void simulation(transition_system *t_system) {
+void simulation(transition_system *t) {
     /*int index;*/
     int j, i;
 
-    while (is_finished(t_system) == 0 && t_system->iterations <10000) {
-        printf("\n-----ITERATION %d-----\n", t_system->iterations);
+    while (is_finished(t) == 0 && t->iterations <10000) {
+        printf("\n-----ITERATION %d-----\n", t->iterations);
         /* Finish */
-        finalising_passenger(t_system);
-        person_in_front(t_system);
+        finalising_passenger(t);
+        person_in_front(t);
         /*Waiting*/
-        wait_time(t_system);
+        wait_time(t);
         /*Carry_on*/
-        carry_on(t_system);
+        carry_on(t);
         /*Interference*/
-        interference_function(t_system);
+        interference_function(t);
         /* Movement */
-        movement(t_system);  
+        movement(t);  
         /* Entering */
-        initialize_passenger(t_system);
+        initialize_passenger(t);
 
-        printf("-----ITERATION %2d-----\n", t_system->iterations);
+        printf("-----ITERATION %2d-----\n", t->iterations);
 
-        t_system->iterations += 1;
+        t->iterations += 1;
     }
 
-    printf("%d\n", t_system->iterations);
+    printf("%d\n", t->iterations);
 
-    for(j=0, i=0; j<t_system->length; j++){
-        if (t_system->passengers[j].finish ==1)
+    for(j=0, i=0; j<t->length; j++){
+        if (t->passengers[j].finish ==1)
             i++;
     }
     printf("\nFinished passenger amount %d\n", i);

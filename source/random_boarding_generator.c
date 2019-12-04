@@ -20,10 +20,10 @@ void random_boarding_generator(transition_system *t, int *random_destinations) {
     i = j = k = tmp_plads = 0;
 
     for(i = 0; (i < t->length + (t->seats_per_row/2)); i++) {
+        random_destinations[i] = i;
         if( (is_legal_seat(i, t)) == 0) {
             random_destinations[i] = -1;
         }
-        random_destinations[i] = i;
     }
 
     for(i = 0; i < 1000000; i++) {

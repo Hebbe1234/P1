@@ -50,20 +50,6 @@ void get_carryon(transition_system *t) {
     }
 }
 
-
-/* The passenger array gets filled with random destination, based on the random_destination array*/
-void passenger_get_random_destinations(int *random_destinations, transition_system *t) {
-    int *p_array, i;
-
-    p_array = random_destinations;
-    for(i = 0; i < t->length; i++) {
-        while((*(p_array+i))==-1) {
-            p_array++;
-        }
-    }
-}
-
-
 /*Passenger 0 is initialized to 0, and the rest, looks at the person in front*/
 void initialize_spotting(transition_system *t) {
     int i;

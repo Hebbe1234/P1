@@ -32,9 +32,11 @@ void outsidein_boarding_generator(transition_system *t, int *destinations) {
         }
     } 
 
-    for(i = 0; i < t->rows*t->seats_per_row; i++){
-        printf("%d - %d\n",i, destinations[i]);
+    for(i = 0; i < t->seats_per_row/2; i++){
+        free(arrays[i]);
     }
+
+    free(arrays);
 }
 /*Fills the given array with legal destinations that is shuffled*/
 void random_boarding_generator(transition_system *t, int *random_destinations) {

@@ -50,9 +50,6 @@ int main (int argc, char *argv[])
         }
     }
 
-    outsidein_boarding_generator(&t, destination);
-
-
     printf("Program ran OK");
     
 

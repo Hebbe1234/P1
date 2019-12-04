@@ -1,5 +1,6 @@
 #include "../headers/CuTest.h"
-#include "../headers/queue_generator.h"
+#include "../headers/initialize_passenger_array.h"
+#include "../headers/random_boarding_generator.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -166,7 +167,7 @@ void test_passenger_get_random_destinations_array57_entrance4(CuTest *tc) {
 
     t.passengers = (struct passenger*)calloc(57, sizeof(passenger));
 
-    passenger_get_random_destinations(destination, &t);
+    initialize_destination(destination, &t);
     for(i=0, flag0=1; i<57; i++){
         if((t.passengers[i].destination == -1)) {
             flag0=0;
@@ -199,9 +200,9 @@ void test_passenger_get_random_destinations_array51_entrance0(CuTest *tc){
         destination1[i] = i;
     }
 
-    get_random_array(destination1, &t);
+    random_boarding_generator(&t, destination1);
 
-    passenger_get_random_destinations(destination1, &t);
+    initialize_destination(destination1, &t);
 
     for(i=0, flag1=1; i<51; i++) {
         if((t.passengers[i].destination == -1)) {
@@ -259,7 +260,7 @@ void test_get_random_array_array57(CuTest *tc){
     t.seats_per_row = 6;
     t.length = 57;
     t.entrance = 4;
-    get_random_array(destination, &t);
+    random_boarding_generator(&t, destination);
 
     for(i=0, flag0=1; i<60; i++){
         if(!(destination[i]>=0 && destination[i]<60))
@@ -285,7 +286,7 @@ void test_get_random_array_array15(CuTest *tc){
     t.length = 15;
     t.entrance = 2;
 
-    get_random_array(destination1, &t);
+    random_boarding_generator(&t, destination1);
 
     for(i=0, flag1=1; i<18; i++){
         if(!(destination1[i]>=0 && destination1[i]<18))

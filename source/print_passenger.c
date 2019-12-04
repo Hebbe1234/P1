@@ -6,6 +6,7 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+extern int silence;
 /* This function takes a passenger as input and prints his current values */
 void print_passenger (passenger *person) {
     int P_D = person->destination, 
@@ -35,4 +36,14 @@ void print_passenger_line(passenger *person) {
     
     printf(" Destination: %2d | Location: %2d | Finished: %1d | Location of passenger infront: %4d | Carry-on: %1d | Wait time: %2d | Interference: %d\n",
     P_D, P_L, P_F, P_S, P_C, P_W, P_I);
+}
+
+/* Prints passenger states with option to ignore printing with --silence */
+void print_but_with_silence(passenger *person, char *string, int index) {
+
+    if(silence == 0) {
+        printf("%-15s P%d\n", string, index);
+        print_passenger_line(person);
+    }
+    
 }

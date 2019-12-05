@@ -14,7 +14,8 @@
 
 #include <stdio.h>      
 #include <stdlib.h>
-#include <math.h>
+
+#include "../headers/destination_row.h"
 
 /* Checks if a passenger is finished by destination wait time and carry on */
 void finalising_passenger(transition_system *t) {
@@ -25,7 +26,7 @@ void finalising_passenger(transition_system *t) {
     {
         p  = t->passengers[i];
         P_L = p.location;
-        if (p.finish == 0 && P_L == floor(p.destination/t->seats_per_row) && p.carry_on == 0 && p.wait_time == 0 && p.interference_flag == 1){
+        if (p.finish == 0 && P_L == d_row(&p, t) && p.carry_on == 0 && p.wait_time == 0 && p.interference_flag == 1){
             t->passengers[i].finish = 1;
         }
     }

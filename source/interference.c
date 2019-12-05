@@ -17,7 +17,7 @@ void interference_function (transition_system *t) {
 
         if (t->passengers[i].location == floor(t->passengers[i].destination / t->seats_per_row) && t->passengers[i].interference_flag == 0) {
  
-            t->passengers[i].wait_time += inter(t, t->passengers[i]);
+            t->passengers[i].wait_time += inter(t, i);
             t->passengers[i].interference_flag = 1;
  
         }

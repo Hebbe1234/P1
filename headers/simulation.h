@@ -6,6 +6,7 @@
 #endif
 
 /* Checks if a passenger is finished by destination wait time and carry on */
-void run_simulation();
+int run_simulations(void);
+void run_simulation(transition_system *t);
 void simulation(transition_system *t_system);
 

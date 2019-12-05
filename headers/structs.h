@@ -19,6 +19,7 @@ typedef struct transition_system {
     int seats_per_row;
     int length;
     int carryon_percentage;
+    int simulations;
     int iterations;
     wait_times wait;
 } transition_system;

@@ -23,12 +23,19 @@ void initialize_passenger(transition_system *t) {
 
         if (P_L == -1 && (p.spotting == NULL || (p.spotting->location != P_E && p.spotting->location != -1))) {
             t->passengers[i].location = P_E;
+            
             r = rear_function(t, i);
             t->passengers[i].wait_time += t->wait.t_m;
 
             if(r != -1){
                 t->passengers[i].spotting = &(t->passengers[r]);
+            } else {
+                t->passengers[i].spotting = NULL;
             }
+            print_but_with_silence(&(t->passengers[i]), "INITIALIZE", i);
         }
-    }
+    }  
+           
+        
+    
 }

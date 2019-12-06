@@ -1,16 +1,15 @@
 CC = gcc
-CFLAGS = -Wall -pedantic -ansi 
+CFLAGS = -Wall -pedantic -ansi
 TARGET = prog
 TEST_TARGET = unit_test
 BASEDIR = ../..
-
 EXT = .exe
 
 SOURCE =  $(wildcard source/*.c)
 TESTS =  $(wildcard tests/*.c)
 
 $(TARGET): main.c
-	$(CC) $(CFLAGS) main.c $(SOURCE) -o $(TARGET)$(EXT)
+	$(CC) $(CFLAGS) main.c $(SOURCE) -o $(TARGET)$(EXT) 
 
 $(TEST_TARGET): 
 	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) -o $(TEST_TARGET)$(EXT)

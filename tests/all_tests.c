@@ -16,6 +16,7 @@ CuSuite *get_test_t_system(void);
 CuSuite *get_inter_suit(void);
 CuSuite *get_interference_suit(void);
 CuSuite *get_carry_on_suite(void);
+CuSuite *get_simulation_suite(void);
 
 int silence = 0;
 
@@ -38,6 +39,7 @@ int runalltest(void)
     CuSuiteAddSuite(suite, get_inter_suit());
     CuSuiteAddSuite(suite, get_interference_suit());
     CuSuiteAddSuite(suite, get_carry_on_suite());
+    CuSuiteAddSuite(suite, get_simulation_suite());
     
 
     CuSuiteRun(suite);

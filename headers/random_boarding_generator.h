@@ -13,6 +13,6 @@ void random_boarding_generator(transition_system *t, int *random_destinations);
 int is_legal_seat(int seat_tested, transition_system *t);
 /*Used to create random destination, by generating 2 random numbers*/
 void get_random_number(int *k,int *j, int length);
-
+/*Takes and array and shuffles it based on the lenght of the array. */
 void shuffle_array(int *array, int length);
 

@@ -289,32 +289,37 @@ void test_get_random_array_array57(CuTest *tc){
 /*tests that the destinations is between the legal seats
   and no to destinations are the same */
 void test_get_random_array_array15(CuTest *tc){
-    int i, j, flag1;
-    int destination1[18] = {0};
+    int i, j, flag0=1;
+    int destination[18] = {0};
     transition_system t;
     t.seats_per_row = 6;
     t.length = 15;
-    t.entrance = 2;
+    t.entrance = 4;
     t.destination_length = 18;
 
-    random_boarding_generator(&t, destination1);
+    random_boarding_generator(&t, destination);
 
-    for(i=0, flag1=1; i<18; i++){
-        while(destination1[i] == -1){
+    for(i = 0, flag0 = 1; i < 18; i++){
+        while(destination[i] == -1){
             i++;
         }
-        if(!(destination1[i]>=0 && destination1[i]<18))
-            flag1=0;
+        if(!(destination[i] >= 0 && destination[i] < 18)) {
+            flag0 = 0;
+        }
+            while(destination[i] == -1) {
+                i++;
+            }
+        for(j = 0; j < 18; j++){
 
-
-        for(j=0; j<18; j++){
-            if(i==j)
+            if(i == j){
                 j++;
-            if ((destination1[i] == destination1[j]) && destination1[i] != -1 && destination1[j] != -1)
-                flag1=0;
+            }
+            if ((destination[i] == destination[j]) && destination[i] != -1 && destination[j] != -1){
+                flag0 = 0;
+            }
         }
     }
-    CuAssertTrue(tc, flag1 == 1);
+    CuAssertTrue(tc, flag0 == 1);
 }
 
 

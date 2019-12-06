@@ -1,4 +1,4 @@
-3    Entrance 
+0    Entrance 
 114     Passenger count
 20     Rows in plane
 6     Seats per row

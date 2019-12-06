@@ -21,6 +21,7 @@
 #include "../headers/carry_on.h"
 #include "../headers/input.h"
 #include "../headers/print_t_system.h"
+#define CHARACTERS_IN_LINE 100
 
 /* runs multiple simulations and returns the average */
 int run_simulations(void){
@@ -61,7 +62,7 @@ void run_simulation(transition_system *t) {
 /* run single simulation of transition system */
 void simulation(transition_system *t) {
 
-    while (is_finished(t) == 0 && t->iterations <10000) {
+    while (is_finished(t) == 0) {
         if(silence == 0) {
             printf("\n-----ITERATION %d-----\n", t->iterations);
         }
@@ -88,7 +89,7 @@ void simulation(transition_system *t) {
 /* Reads the input file (input.txt) into the transition system */
 void load_input(transition_system *t_input) {
     FILE *infile;
-    char line[100] = "";
+    char line[CHARACTERS_IN_LINE] = "";
     
     infile = fopen("input.txt", "r");
 
@@ -96,29 +97,29 @@ void load_input(transition_system *t_input) {
         printf("Couldnt load file properly, Error");
         return;
     }
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->entrance);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->length);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->rows);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->seats_per_row);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->wait.t_0);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->wait.t_1);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->wait.t_2);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->wait.t_3);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->wait.t_c);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->wait.t_m);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->carryon_percentage);
-    fgets(line, 100, infile);
+    fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->simulations);
 
     t_input->destination_length = t_input->rows * t_input->seats_per_row;

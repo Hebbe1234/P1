@@ -6,6 +6,7 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+#define NUMBER_OF_SHUFFLES_PER_DESTINATION 100
 
 
 /*Fills the given array with legal destinations that is shuffled so its similar to outside in boarding*/
@@ -26,7 +27,7 @@ void random_boarding_generator(transition_system *t, int *random_destinations) {
         }
     }
 
-    for(i = 0; i < 100000; i++) {
+    for(i = 0; i < t->destination_length * NUMBER_OF_SHUFFLES_PER_DESTINATION; i++) {
         get_random_number(&k,&j, t);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];

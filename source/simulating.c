@@ -61,7 +61,7 @@ void run_simulation(transition_system *t) {
 /* run single simulation of transition system */
 void simulation(transition_system *t) {
 
-    while (is_finished(t) == 0 && t->iterations <10000) {
+    while (is_finished(t) == 0) {
         if(silence == 0) {
             printf("\n-----ITERATION %d-----\n", t->iterations);
         }

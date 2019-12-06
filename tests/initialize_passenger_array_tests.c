@@ -8,13 +8,12 @@
 void test_get_random_number_80(CuTest *tc) {
     int k, j, i;
     transition_system t;
-    t.seats_per_row = 6; 
-    t.length = 80;
+    t.destination_length = 80;
     
     for (i = 0; i < 100; ++i) {
         get_random_number(&k, &j, &t);
-        CuAssertTrue(tc, (k >= 0) && (k < 83));
-        CuAssertTrue(tc, (j >= 0) && (j < 83));
+        CuAssertTrue(tc, (k >= 0) && (k < 80));
+        CuAssertTrue(tc, (j >= 0) && (j < 80));
     }
 }
 
@@ -195,6 +194,7 @@ void test_passenger_get_random_destinations_array51_entrance0(CuTest *tc){
     t.length = 51;
     t.seats_per_row = 6;
     t.entrance = 0; 
+    t.destination_length = 54;
 
     for(i=0; i<54; i++) {
         destination1[i] = i;
@@ -254,23 +254,34 @@ void test_reset_passenger_array(CuTest *tc){
 /*tests that the destinations is between the legal seats
   and no to destinations are the same */
 void test_get_random_array_array57(CuTest *tc){
-    int i, j, flag0;
+    int i, j, flag0=1;
     int destination[60] = {0};
     transition_system t;
     t.seats_per_row = 6;
     t.length = 57;
     t.entrance = 4;
+    t.destination_length = 60;
+
     random_boarding_generator(&t, destination);
 
-    for(i=0, flag0=1; i<60; i++){
-        if(!(destination[i]>=0 && destination[i]<60))
-            flag0=0;
+    for(i = 0, flag0 = 1; i < 60; i++){
+        while(destination[i] == -1){
+            i++;
+        }
+        if(!(destination[i] >= 0 && destination[i] < 60)) {
+            flag0 = 0;
+        }
+            while(destination[i] == -1) {
+                i++;
+            }
+        for(j = 0; j < 60; j++){
 
-        for(j=0; j<60; j++){
-            if(i==j)
+            if(i == j){
                 j++;
-            if (destination[i] == destination[j])
-                flag0=0;
+            }
+            if ((destination[i] == destination[j]) && destination[i] != -1 && destination[j] != -1){
+                flag0 = 0;
+            }
         }
     }
     CuAssertTrue(tc, flag0 == 1);
@@ -285,16 +296,22 @@ void test_get_random_array_array15(CuTest *tc){
     t.seats_per_row = 6;
     t.length = 15;
     t.entrance = 2;
+    t.destination_length = 18;
 
     random_boarding_generator(&t, destination1);
 
     for(i=0, flag1=1; i<18; i++){
+        while(destination1[i] == -1){
+            i++;
+        }
         if(!(destination1[i]>=0 && destination1[i]<18))
             flag1=0;
+
+
         for(j=0; j<18; j++){
             if(i==j)
                 j++;
-            if (destination1[i] == destination1[j])
+            if ((destination1[i] == destination1[j]) && destination1[i] != -1 && destination1[j] != -1)
                 flag1=0;
         }
     }

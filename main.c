@@ -22,7 +22,7 @@ int silence = 0;
 int main (int argc, char *argv[])
 {
     int i, result;
-    srand(time(0));
+    srand(time(NULL));
 
     for (i = 0; i < argc; i++) {
         if (strcmp("--silence", argv[i]) == 0) {

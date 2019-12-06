@@ -19,19 +19,20 @@ void random_boarding_generator(transition_system *t, int *random_destinations) {
     int i, j, k, tmp_plads;
     i = j = k = tmp_plads = 0;
 
-    for(i = 0; (i < t->length + (t->seats_per_row/2)); i++) {
+    for(i = 0; i < t->destination_length; i++) {
         random_destinations[i] = i;
         if( (is_legal_seat(i, t)) == 0) {
             random_destinations[i] = -1;
         }
     }
 
-    for(i = 0; i < 1000000; i++) {
+    for(i = 0; i < 100000; i++) {
         get_random_number(&k,&j, t);
         tmp_plads = random_destinations[k];
         random_destinations[k] = random_destinations[j];
         random_destinations[j] = tmp_plads;
     }
+    return;
 }
 
 /*Tests if the seat is replaced by a door, and therefore illegal*/
@@ -47,6 +48,6 @@ int is_legal_seat(int seat_tested, transition_system* t) {
 
 /*Used to create random destination, by generating 2 random numbers*/
 void get_random_number(int *k,int *j,transition_system *t) {
-    *k = (rand() % (t->length + (t->seats_per_row/2)));
-    *j = (rand() % (t->length + (t->seats_per_row/2)));
+    *k = (rand() % (t->destination_length));
+    *j = (rand() % (t->destination_length));
 }

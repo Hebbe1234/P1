@@ -22,8 +22,7 @@ void test_get_random_number_15(CuTest *tc) {
     int k, j, i;
     
     transition_system t;
-    t.seats_per_row = 6; 
-    t.length = 15;
+    t.destination_length = 18;
 
     for (i = 0; i < 100; ++i) {
         get_random_number(&k, &j, &t);

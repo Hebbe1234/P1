@@ -10,7 +10,6 @@
 #include <math.h>
 #include "../headers/print_passenger.h"
 
-
 /* checks for every passenger and assign a waiting time base on current interference */
 void interference_function (transition_system *t) {
     int i;
@@ -21,8 +20,7 @@ void interference_function (transition_system *t) {
  
             t->passengers[i].wait_time += inter(t, t->passengers[i]);
             t->passengers[i].interference_flag = 1;
-            printf("%-15s P%d","INTERFERENCE", i);
-            print_passenger_line(&(t->passengers[i]));
+            print_but_with_silence(&(t->passengers[i]), "INTERFERENCE", i);
         }
     }
 }

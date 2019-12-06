@@ -36,18 +36,16 @@ int run_simulations(void){
     t_input.length = 57;
     t_input.rows = 10;
     t_input.seats_per_row = 6;
-    t_input.simulations = 10;
+    t_input.simulations = 30;
     t_input.wait.t_0 = 50;
     t_input.wait.t_1 = 100;
-    t_input.wait.t_2 = 150;
+    t_input.wait.t_2 = 110;
     t_input.wait.t_3 = 220;
     t_input.wait.t_c = 250;
     t_input.wait.t_m = 15;
     t_input.destination_length = t_input.rows * t_input.seats_per_row;
 
-/*
-    t_input = input_t_system();
-*/
+
     t1 = t2 = t_input;
 
     if((t_input.rows % 2) == 1) {
@@ -66,8 +64,8 @@ int run_simulations(void){
         run_simulation(&t1);
         run_simulation(&t2);
         iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
-        printf("\n\n\n\n\n %d iterations %d iteration t1, %d iteration t2 \n\n\n\n\n", iterations, t1.iterations, t2.iterations);
         t1.iterations = t2.iterations = 0;
+        printf("Hej ;), %d\n", i);
     }
     return (iterations / i); 
 }
@@ -91,10 +89,11 @@ void run_simulation(transition_system *t) {
 
 void simulation(transition_system *t) {
     /*int index;*/
-    int j, i;
 
     while (is_finished(t) == 0 && t->iterations <10000) {
-        printf("\n-----ITERATION %d-----\n", t->iterations);
+        if(silence == 0) {
+            printf("\n-----ITERATION %d-----\n", t->iterations);
+        }
         /* Finish */
         finalising_passenger(t);
         person_in_front(t);
@@ -108,38 +107,9 @@ void simulation(transition_system *t) {
         movement(t);  
         /* Entering */
         initialize_passenger(t);
-
-        printf("-----ITERATION %2d-----\n", t->iterations);
-
+        if(silence == 0) {
+            printf("-----ITERATION %2d-----\n", t->iterations);
+        }
         t->iterations += 1;
     }
-
-    printf("%d\n", t->iterations);
-
-    for(j=0, i=0; j<t->length; j++){
-        if (t->passengers[j].finish ==1)
-            i++;
-    }
-    printf("\nFinished passenger amount %d\n", i);
 }
-
-
-/*
-
-    
-
-    t.iterations = 1;
-    t.entrance = 0; 
-    t.rows = 10;                 bliver beregnet
-    t.destination_length = 4;    Bruges ikke indtilvidere
-    t.seats_per_row = 6;
-    t.length = 57;
-    t.carryon_percentage = 50;
-    t.wait.t_0 = 50;
-    t.wait.t_1 = 100;
-    t.wait.t_2 = 110;
-    t.wait.t_3 = 220;
-    t.wait.t_c = 180;
-    t.wait.t_m = 15;
-
-    */

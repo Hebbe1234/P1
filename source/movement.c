@@ -32,22 +32,19 @@ void movement (transition_system *t) {
             if(P_S == NULL ) {
                 t->passengers[i].location += dir;
                 t->passengers[i].wait_time += t->wait.t_m;
-                printf("%-15s P%d","MOVING", i);
-                print_passenger_line(&(t->passengers[i]));
+                print_but_with_silence(&(t->passengers[i]), "MOVEMENT", i);
             }
             /* if going left and person spotting is more than one 'place' ahead */
             else if (dir == -1 && P_SL < P_L - 1) {
                 t->passengers[i].location += dir;
                 t->passengers[i].wait_time += t->wait.t_m;
-                printf("%-15s P%d","MOVING", i);
-                print_passenger_line(&(t->passengers[i]));
+                print_but_with_silence(&(t->passengers[i]), "MOVEMENT", i);
             }
             /* if going right and person spotting is more than one 'place' ahead */
             else if (dir == 1 && P_SL > P_L + 1) {
                 t->passengers[i].location += dir;
                 t->passengers[i].wait_time += t->wait.t_m;
-                printf("%-15s P%d","MOVING", i);
-                print_passenger_line(&(t->passengers[i]));
+                print_but_with_silence(&(t->passengers[i]), "MOVEMENT", i);
             }
         }
     } 

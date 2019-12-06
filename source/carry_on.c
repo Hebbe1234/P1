@@ -20,8 +20,7 @@ void carry_on(transition_system *t) {
            t->passengers[i].location == floor(t->passengers[i].destination / t->seats_per_row)) {
                t->passengers[i].carry_on = 0;
                t->passengers[i].wait_time += t->wait.t_c;
-                printf("%-15s P%d","CARRY_ON", i);
-                print_passenger_line(&(t->passengers[i]));
+            print_but_with_silence(&(t->passengers[i]), "CARRY-ON", i);
            }
     }
 }

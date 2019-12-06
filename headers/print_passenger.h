@@ -4,6 +4,9 @@
 #include "../headers/structs.h"
 
 #endif
+
+extern int silence;
+
 /* This function takes a passenger as input and prints his current values */
 void print_passenger (passenger *person);
 

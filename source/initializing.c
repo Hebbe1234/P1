@@ -32,9 +32,7 @@ void initialize_passenger(transition_system *t) {
             } else {
                 t->passengers[i].spotting = NULL;
             }
-
-            printf("%-15s P%d","INITIALIZING", i);
-            print_passenger_line(&(t->passengers[i]));
+            print_but_with_silence(&(t->passengers[i]), "INITIALIZE", i);
         }
     }  
            

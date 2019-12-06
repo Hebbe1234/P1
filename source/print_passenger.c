@@ -6,7 +6,9 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
-extern int silence;
+
+#include "../headers/print_passenger.h"
+
 /* This function takes a passenger as input and prints his current values */
 void print_passenger (passenger *person) {
     int P_D = person->destination, 

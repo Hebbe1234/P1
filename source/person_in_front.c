@@ -25,8 +25,7 @@ void person_in_front(transition_system *t){
     for(i = 0; i < t->length; i++){
         if(t->passengers[i].spotting != NULL && t->passengers[i].spotting->finish == 1 && t->passengers[i].finish != 1){
             t->passengers[i].spotting = t->passengers[i].spotting->spotting;
-            printf("%-15s P%d","SPOTTING", i);
-            print_passenger_line(&(t->passengers[i]));
+            print_but_with_silence(&(t->passengers[i]), "SPOTTING", i);
         }
     }
 }

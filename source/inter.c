@@ -6,7 +6,8 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+
+#include "../headers/destination_row.h"
 
 /* Returns a given passengers waittime, based on the location of other passengers in their 'row' */
 int inter(transition_system *t, passenger p) {
@@ -24,7 +25,7 @@ int inter(transition_system *t, passenger p) {
            
         for(i = 0; i < t->length; i++) {
 
-            if(floor(t->passengers[i].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                   && t->passengers[i].destination % t->seats_per_row == 2
                   && t->passengers[i].finish == 1) {
                         return t->wait.t_1;
@@ -39,7 +40,7 @@ int inter(transition_system *t, passenger p) {
 
         for(i = 0; i < t->length; i++) {
 
-            if(floor(t->passengers[i].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                   && t->passengers[i].destination % t->seats_per_row == 3
                   && t->passengers[i].finish == 1) {
                         return t->wait.t_1;
@@ -54,12 +55,12 @@ int inter(transition_system *t, passenger p) {
 
         for(i = 0; i < t->length; i++) {
 
-            if(floor(t->passengers[i].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                   && t->passengers[i].destination % t->seats_per_row == 1
                   && t->passengers[i].finish == 1) {
                         
                         for(j = 0; j < t->length; j++) {
-                            if(floor(t->passengers[j].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+                            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                                   && t->passengers[j].destination % t->seats_per_row == 2
                                   && t->passengers[j].finish == 1) {
                                         return t->wait.t_3;                                       
@@ -70,7 +71,7 @@ int inter(transition_system *t, passenger p) {
         }
 
         for(i = 0; i < t->length; i++) {
-            if(floor(t->passengers[i].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                   && t->passengers[i].destination % t->seats_per_row == 2
                   && t->passengers[i].finish == 1) {
                         return t->wait.t_1;
@@ -85,12 +86,12 @@ int inter(transition_system *t, passenger p) {
 
         for(i = 0; i < t->length; i++) {
 
-            if(floor(t->passengers[i].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                   && t->passengers[i].destination % t->seats_per_row == 4
                   && t->passengers[i].finish == 1) {
                         
                         for(j = 0; j < t->length; j++) {
-                            if(floor(t->passengers[j].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+                            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                                   && t->passengers[j].destination % t->seats_per_row == 3
                                   && t->passengers[j].finish == 1) {
                                         return t->wait.t_3;                                       
@@ -101,7 +102,7 @@ int inter(transition_system *t, passenger p) {
         }
 
         for(i = 0; i < t->length; i++) {
-            if(floor(t->passengers[i].destination / t->seats_per_row) == floor(p.destination / t->seats_per_row) 
+            if(d_row(&(t->passengers[i]), t) == d_row(&p, t)
                   && t->passengers[i].destination % t->seats_per_row == 3
                   && t->passengers[i].finish == 1) {
                         return t->wait.t_1;

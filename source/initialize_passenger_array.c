@@ -67,7 +67,7 @@ void initialize_destination(int *destination_a, transition_system *t) {
     int *p_array, i;
 
     p_array = destination_a;
-    for(i=0; i < t->length; i++) {
+    for(i = 0; i < t->length; i++) {
         while((*(p_array+i))==-1) {
             p_array++;
         }

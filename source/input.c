@@ -57,11 +57,10 @@ transition_system input_t_system(void){
     scanf("%d", &t_system.carryon_percentage);
 
     printf("\nWrite the number of simulations desired\n");
-    scanf("%d", &t_system.iterations);
+    scanf("%d", &t_system.simulations);
 
     t_system.destination_length = t_system.rows * t_system.seats_per_row;
 
-    t_system.passengers = (passenger*)calloc(t_system.length, sizeof(passenger));
 
     return t_system;
 }

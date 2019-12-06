@@ -21,7 +21,9 @@ int silence = 0;
 
 int main (int argc, char *argv[])
 {
-    int i, result;
+    int i, result = 0;
+    int *results = (int *)calloc(1, sizeof(int));
+    setbuf(stdout, NULL);
     srand(time(NULL));
 
     for (i = 0; i < argc; i++) {
@@ -30,8 +32,8 @@ int main (int argc, char *argv[])
         }
     }
     
-    result = run_simulations();
-
+    /*result = run_simulations();*/
+    run_simulations_with_multiple_entrances(results);
     printf("\n\n%d iterations gennemsnit osv\n", result);
 
     printf("Program ran OK");

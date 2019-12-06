@@ -42,6 +42,32 @@ int run_simulations(void){
     return (iterations / t_input.simulations); 
 }
 
+/* simulates every possible placement of the entrance in the input plane. Returns an int-array as an output parameter */
+void run_simulations_with_multiple_entrances(int* results){
+    int i, j, iterations;
+    transition_system t_input, t1, t2;
+
+    load_input(&t_input);
+
+    results = (int *)calloc(t_input.rows/2, sizeof(int));
+
+    for(j = 0; j < t_input.rows/2; j++){
+        t_input.entrance = j;
+        split_plane(&t_input, &t1, &t2);
+
+        for(i = 0, iterations = 0; i < t_input.simulations; i++) {
+            run_simulation(&t1);
+            run_simulation(&t2);
+            iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
+            t1.iterations = t2.iterations = 0;
+            printf("|");
+        }
+        printf("\nE: %d - %d iterations\n", j, (iterations / t_input.simulations));
+
+    }
+    results[j] = (iterations / t_input.simulations); 
+}
+
 /* makes a transition system for the simulation */
 void run_simulation(transition_system *t) {
     int *destination;

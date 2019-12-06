@@ -12,6 +12,7 @@
 
 #endif
 
+#include "../headers/print_passenger.h"
 #include <stdio.h>      
 #include <stdlib.h>
 #include <math.h>
@@ -22,7 +23,10 @@ void person_in_front(transition_system *t){
     int i;
     
     for(i = 0; i < t->length; i++){
-        while(t->passengers[i].spotting != NULL && t->passengers[i].spotting->finish == 1)
+        if(t->passengers[i].spotting != NULL && t->passengers[i].spotting->finish == 1 && t->passengers[i].finish != 1){
             t->passengers[i].spotting = t->passengers[i].spotting->spotting;
+            print_but_with_silence(&(t->passengers[i]), "SPOTTING", i);
+        }
     }
 }
+            

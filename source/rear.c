@@ -39,7 +39,7 @@ int rear_function (transition_system *t, int i) {
         
         for(j = 0; j < t->length; j++) {
 
-            if(t->passengers[i].location > t->passengers[j].location && t->passengers[j].location < q.location 
+            if(t->passengers[i].location > t->passengers[j].location && t->passengers[j].location >= q.location 
                                          && t->passengers[j].finish == 0) {
                 q = t->passengers[j];
                 index = j;

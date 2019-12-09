@@ -24,7 +24,7 @@ void test_rear_basic(CuTest *tc)
     t.passengers[1] = p2;
     t.length = 2;
     t.entrance = 0;
-    t.seats_row = 6;
+    t.seats_per_row = 6;
     t.rows= 5;
 
     result = rear_function(&t, 1);
@@ -52,7 +52,7 @@ void test_rear_noperson(CuTest *tc)
     t.passengers[1] = p2;
     t.length = 2;
     t.entrance = 3;
-    t.seats_row = 2;
+    t.seats_per_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 1);
@@ -96,7 +96,7 @@ void test_rear_manyperson(CuTest *tc)
 
     t.length = 5;
     t.entrance = 3;
-    t.seats_row = 2;
+    t.seats_per_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 0);
@@ -122,7 +122,7 @@ void test_rear_weird(CuTest *tc)
     t.passengers[1] = p2;
     t.length = 2;
     t.entrance = 2;
-    t.seats_row = 2;
+    t.seats_per_row = 2;
     t.rows= 7;
 
     result = rear_function(&t, 1);
@@ -155,7 +155,7 @@ void test_rear_forward(CuTest *tc)
     t.passengers[2] = p3;
     t.length = 2;
     t.entrance = 2;
-    t.seats_row = 2;
+    t.seats_per_row = 2;
     t.rows= 7;
 
     result = rear_function(&t, 0);
@@ -200,7 +200,7 @@ void test_rear_wronglocations(CuTest *tc)
 
     t.length = 5;
     t.entrance = 3;
-    t.seats_row = 2;
+    t.seats_per_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 0);
@@ -239,7 +239,7 @@ void test_rear_manyperson_but_noperson_to_right(CuTest *tc)
 
     t.length = 5;
     t.entrance = 3;
-    t.seats_row = 2;
+    t.seats_per_row = 2;
     t.rows= 7;
     
     result = rear_function(&t, 0);

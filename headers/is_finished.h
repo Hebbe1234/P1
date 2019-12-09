@@ -7,4 +7,4 @@
 
 
 /* Checks if entire transition system is finished */
-int is_finished (transition_system *t, int length);
+int is_finished (transition_system *t);

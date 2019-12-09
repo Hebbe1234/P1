@@ -12,15 +12,20 @@ void test_finished_first(CuTest *tc) {
     transition_system t;
     int finished = 0;
 
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.finish = 0;
     example.finish = 0;
 
     t.passengers[0] = p1;
     t.passengers[1] = example;
 
-    finished = is_finished(&t, 2);
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
+
+    free(t.passengers);
 }
 
 /* if one passenger is finished */
@@ -30,15 +35,20 @@ void test_finished_second(CuTest *tc) {
     transition_system t;
     int finished = 0;
 
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.finish = 1;
     example.finish = 0;
 
     t.passengers[0] = p1;
     t.passengers[1] = example;
 
-    finished = is_finished(&t, 2);
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
+
+    free(t.passengers);
 }
 
 /* if one passenger is not finished */
@@ -49,6 +59,9 @@ void test_finished_third(CuTest *tc) {
     transition_system t;
     int finished = 0;
 
+    t.length = 3;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.finish = 1;
     p2.finish = 1;
     example.finish = 0;
@@ -57,9 +70,11 @@ void test_finished_third(CuTest *tc) {
     t.passengers[1] = example;
     t.passengers[2] = p2;
 
-    finished = is_finished(&t, 2);
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
+
+    free(t.passengers);
 }
 
 /* if one passenger finish is wrong */
@@ -70,6 +85,9 @@ void test_finished_fourth(CuTest *tc) {
     transition_system t;
     int finished = 0;
 
+    t.length = 3;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.finish = 1;
     p2.finish = -4;
     example.finish = 0;
@@ -78,9 +96,11 @@ void test_finished_fourth(CuTest *tc) {
     t.passengers[1] = example;
     t.passengers[2] = p2;
 
-    finished = is_finished(&t, 2);
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 0);
+
+    free(t.passengers);
 }
 
 /* if all passengers are finished */
@@ -89,7 +109,11 @@ void test_finished_fifth(CuTest *tc) {
     passenger p1;
     passenger p2;
     transition_system t;
+
     int finished = 0;
+
+    t.length = 3;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
 
     p1.finish = 1;
     p2.finish = 1;
@@ -99,9 +123,11 @@ void test_finished_fifth(CuTest *tc) {
     t.passengers[1] = example;
     t.passengers[2] = p2;
 
-    finished = is_finished(&t, 2);
+    finished = is_finished(&t);
 
     CuAssertTrue(tc, finished == 1);
+
+    free(t.passengers);
 }
 
 CuSuite *get_finished_suit(void) /*Dette skal op i toppen af alltests.c*/

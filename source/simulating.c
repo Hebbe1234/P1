@@ -42,6 +42,32 @@ int run_simulations(void){
     return (iterations / t_input.simulations); 
 }
 
+/* simulates every possible placement of the entrance in the input plane. Returns an int-array as an output parameter */
+void run_simulations_with_multiple_entrances(int* results){
+    int i, j, iterations;
+    transition_system t_input, t1, t2;
+
+    load_input(&t_input);
+
+    results = (int *)calloc(t_input.rows/2, sizeof(int));
+
+    for(j = 0; j < t_input.rows/2; j++){
+        t_input.entrance = j;
+        split_plane(&t_input, &t1, &t2);
+
+        for(i = 0, iterations = 0; i < t_input.simulations; i++) {
+            run_simulation(&t1);
+            run_simulation(&t2);
+            iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
+            t1.iterations = t2.iterations = 0;
+            printf("|");
+        }
+        printf("\nE: %d - %d iterations\n", j, (iterations / t_input.simulations));
+
+    }
+    results[j] = (iterations / t_input.simulations); 
+}
+
 /* makes a transition system for the simulation */
 void run_simulation(transition_system *t) {
     int *destination;
@@ -50,7 +76,11 @@ void run_simulation(transition_system *t) {
 
     destination = (int*)calloc(t->destination_length, sizeof(int));
 
-    random_boarding_generator(t, destination);
+    if(t->boarding_method == 0){
+        random_boarding_generator(t, destination);
+    } else {
+        outsidein_boarding_generator(t, destination);
+    }
 
     initialize_passenger_array(t, destination);
 
@@ -98,29 +128,32 @@ void load_input(transition_system *t_input) {
         return;
     }
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->entrance);
+    sscanf(line, " %d ", &t_input->entrance);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->length);
+    sscanf(line, " %d ", &t_input->length);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->rows);
+    sscanf(line, " %d ", &t_input->rows);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->seats_per_row);
+    sscanf(line, " %d ", &t_input->seats_per_row);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->wait.t_0);
+    sscanf(line, " %d ", &t_input->wait.t_0);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->wait.t_1);
+    sscanf(line, " %d ", &t_input->wait.t_1);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->wait.t_2);
+    sscanf(line, " %d ", &t_input->wait.t_2);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->wait.t_3);
+    sscanf(line, " %d ", &t_input->wait.t_3);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->wait.t_c);
+    sscanf(line, " %d ", &t_input->wait.t_c);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->wait.t_m);
+    sscanf(line, " %d ", &t_input->wait.t_m);
     fgets(line, CHARACTERS_IN_LINE, infile);
-    sscanf(line, "%d ", &t_input->carryon_percentage);
+    sscanf(line, " %d ", &t_input->carryon_percentage);
     fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->simulations);
+    fgets(line, CHARACTERS_IN_LINE, infile);
+    sscanf(line, "%d ", &t_input->boarding_method);
+
 
     t_input->destination_length = t_input->rows * t_input->seats_per_row;
     t_input->iterations = 0;

@@ -76,7 +76,11 @@ void run_simulation(transition_system *t) {
 
     destination = (int*)calloc(t->destination_length, sizeof(int));
 
-    random_boarding_generator(t, destination);
+    if(t->boarding_method == 0){
+        random_boarding_generator(t, destination);
+    } else {
+        outsidein_boarding_generator(t, destination);
+    }
 
     initialize_passenger_array(t, destination);
 
@@ -147,6 +151,8 @@ void load_input(transition_system *t_input) {
     sscanf(line, "%d ", &t_input->carryon_percentage);
     fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->simulations);
+    fgets(line, CHARACTERS_IN_LINE, infile);
+    sscanf(line, "%d ", &t_input->boarding_method);
 
     t_input->destination_length = t_input->rows * t_input->seats_per_row;
     t_input->iterations = 0;

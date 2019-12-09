@@ -20,5 +20,6 @@ typedef struct transition_system {
     int carryon_percentage;
     int simulations;
     int iterations;
+    int boarding_method;
     wait_times wait;
 } transition_system;

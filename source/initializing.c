@@ -21,7 +21,6 @@ void initialize_passenger(transition_system *t) {
 
         if (p.location == -1 && (p.spotting == NULL || (p.spotting->location != t->entrance && p.spotting->location != -1))) {
             t->passengers[i].location = t->entrance;
-            
             t->passengers[i].wait_time += t->wait.t_m;
             r = rear_function(t, i);
 

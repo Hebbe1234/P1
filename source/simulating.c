@@ -32,7 +32,7 @@ int run_simulations(void){
 
     split_plane(&t_input, &t1, &t2);
 
-    for(i = 0, iterations = 0; i < t_input.simulations; i++) {
+    for (i = 0, iterations = 0; i < t_input.simulations; i++) {
         run_simulation(&t1);
         run_simulation(&t2);
         iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
@@ -63,7 +63,8 @@ void run_simulation(transition_system *t) {
 void simulation(transition_system *t) {
 
     while (is_finished(t) == 0) {
-        if(silence == 0) {
+        
+        if (silence == 0) {
             printf("\n-----ITERATION %d-----\n", t->iterations);
         }
         /* Finish */
@@ -79,6 +80,7 @@ void simulation(transition_system *t) {
         movement(t);  
         /* Entering */
         initialize_passenger(t);
+
         if(silence == 0) {
             printf("-----ITERATION %2d-----\n", t->iterations);
         }
@@ -93,10 +95,11 @@ void load_input(transition_system *t_input) {
     
     infile = fopen("input.txt", "r");
 
-    if(infile == NULL) {
+    if (infile == NULL) {
         printf("Couldnt load file properly, Error");
         return;
     }
+
     fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, "%d ", &t_input->entrance);
     fgets(line, CHARACTERS_IN_LINE, infile);
@@ -129,27 +132,29 @@ void load_input(transition_system *t_input) {
 /* divides the rows and passengers into 'front and back' of plane for the two transition systems
     and assigns the entrance for both */
 void split_plane(transition_system *t_input, transition_system *t1, transition_system *t2) {
-
     *t1 = *t2 = *t_input;
     
-    if((t_input->length % 2) == 1) {
+    if ((t_input->length % 2) == 1) {
         t1->length = (t_input->length - 1) / 2;
         t2->length = (t_input->length + 1) / 2;
-    } else {
+    } 
+    else {
         t1->length = t2->length = t_input->length / 2;
     }
 
-    if((t_input->rows % 2) == 1) {
+    if ((t_input->rows % 2) == 1) {
         t1->rows = (t_input->rows - 1) / 2;
         t2->rows = (t_input->rows + 1) / 2;
-    } else {
+    } 
+    else {
         t1->rows = t2->rows = t_input->rows / 2;
     }
 
     t1->entrance = t_input->entrance;
-    if(t_input->rows % 2 == 1) {
+    if (t_input->rows % 2 == 1) {
         t2->entrance = (t_input->rows - 1) / 2 - t_input->entrance;
-    } else {
+    } 
+    else {
         t2->entrance = ((t_input->rows / 2) - 1)  - t_input->entrance;
     }
 

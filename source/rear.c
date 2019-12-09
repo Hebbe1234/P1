@@ -23,9 +23,9 @@ int rear_function (transition_system *t, int i) {
 
         q.location = t->rows - 1;
 
-        for(j = 0; j < t->length; j++) {
+        for (j = 0; j < t->length; j++) {
 
-            if( j != i && t->passengers[i].location < t->passengers[j].location && 
+            if (j != i && t->passengers[i].location < t->passengers[j].location && 
                 t->passengers[j].location - t->entrance <= q.location - t->entrance && 
                 t->passengers[j].location > -1 && 
                 t->passengers[j].finish == 0) {

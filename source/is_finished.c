@@ -19,6 +19,5 @@ int is_finished (transition_system *t) {
             finished = 0;
         }
     }
-
     return finished;
 }

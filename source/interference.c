@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 #include "../headers/print_passenger.h"
 #include "../headers/destination_row.h"
 

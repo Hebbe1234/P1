@@ -8,7 +8,6 @@
 #include <stdlib.h>
 
 #include "../headers/print_passenger.h"
-
 #include "../headers/destination_row.h"
 
 /*Gives a waittime based on having carryon, and removes carryon*/

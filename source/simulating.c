@@ -6,21 +6,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../headers/is_finished.h"
-#include "../headers/finalizing.h"
-#include "../headers/movement.h"
-#include "../headers/person_in_front.h"
-#include "../headers/rear.h"
-#include "../headers/initializing.h"
-#include "../headers/print_passenger.h"
-#include "../headers/simulation.h"
-#include "../headers/initialize_passenger_array.h"
-#include "../headers/random_boarding_generator.h"
-#include "../headers/wait_time.h"
-#include "../headers/interference.h"
-#include "../headers/carry_on.h"
 #include "../headers/input.h"
+#include "../headers/simulation.h"
+#include "../headers/boarding_generator.h"
+#include "../headers/initialize_passenger_array.h"
+#include "../headers/finalizing.h"
 #include "../headers/print_t_system.h"
+#include "../headers/transition_rules.h"
+
 #define CHARACTERS_IN_LINE 100
 
 /* runs multiple simulations and returns the average */

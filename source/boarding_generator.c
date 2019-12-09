@@ -2,7 +2,7 @@
 #define STRUCTS
 
 #include "../headers/structs.h"
-#include "../headers/random_boarding_generator.h"
+#include "../headers/boarding_generator.h"
 #endif
 #include <stdio.h>
 #include <stdlib.h>

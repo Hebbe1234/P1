@@ -23,8 +23,6 @@ int silence = 0;
 int main (int argc, char *argv[])
 {
     int i, result = 0, start = 0;
-    int *results = (int *)calloc(1, sizeof(int));
-    setbuf(stdout, NULL);
     srand(time(NULL));
 
 
@@ -33,13 +31,12 @@ int main (int argc, char *argv[])
             silence = 1;
         }
     }
-    
-    /*result = run_simulations();*/
-    
+        
     start = time(0);
-    run_simulations_with_multiple_entrances(results);
-    printf("\n\n%d iterations gennemsnit osv\n", result);
+    result = run_simulations();
+    printf("\nIT TOOK %d SECONDS\n", time(0) - start);
 
+    printf("It took %d iterations on average\n", result);
     printf("Program ran OK");
     
     return EXIT_SUCCESS;

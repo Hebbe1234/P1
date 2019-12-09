@@ -11,7 +11,7 @@ void test_get_random_number_80(CuTest *tc) {
     t.destination_length = 80;
     
     for (i = 0; i < 100; ++i) {
-        get_random_number(&k, &j, &t);
+        get_random_number(&k, &j, t.destination_length);
         CuAssertTrue(tc, (k >= 0) && (k < 80));
         CuAssertTrue(tc, (j >= 0) && (j < 80));
     }
@@ -25,7 +25,7 @@ void test_get_random_number_15(CuTest *tc) {
     t.destination_length = 18;
 
     for (i = 0; i < 100; ++i) {
-        get_random_number(&k, &j, &t);
+        get_random_number(&k, &j, t.destination_length);
         CuAssertTrue(tc, (k >= 0) && (k < 18));
         CuAssertTrue(tc, (j >= 0) && (j < 18));
     }

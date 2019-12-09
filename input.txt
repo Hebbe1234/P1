@@ -9,4 +9,9 @@
 105     Carry-on time
 18     Movement time
 60     Carry-on Percentage
+<<<<<<< HEAD
 1000     Simulations
+=======
+100     Simulations
+1     Boarding method, 0 is random, 1 is outside in
+>>>>>>> 11dcf946798ef72bca08d44eb61426273978e1f4

@@ -10,8 +10,9 @@
 #include "../headers/destination_row.h"
 
 /* Returns a given passengers waittime, based on the location of other passengers in their 'row' */
-int inter(transition_system *t, passenger p) {
+int inter(transition_system *t, int index) {
     int i, j;
+    passenger p = t->passengers[index];
 
     /*This is the aisle seats*/
     if(p.destination % t->seats_per_row == 2 || 

@@ -9,11 +9,7 @@
 #include "headers/print_t_system.h"
 #include "headers/simulation.h"
 #include "headers/print_passenger.h"
-<<<<<<< HEAD
 #include "headers/boarding_generator.h"
-=======
-#include "headers/random_boarding_generator.h"
->>>>>>> master
 
 #include <stdio.h>
 #include <math.h>

@@ -17,30 +17,30 @@ int rear_function (transition_system *t, int i) {
     int index = -1;
     int j = 0;
 
-    if (t->entrance <= floor(t->passengers[i].destination / t->seats_row) 
+    if (t->entrance <= floor(t->passengers[i].destination / t->seats_per_row) 
                       && t->passengers[i].finish == 0 && t->passengers[i].location > -1) {
 
         q.location = t->rows - 1;
 
         for(j = 0; j < t->length; j++) {
 
-            if(j != i && t->passengers[i].location < t->passengers[j].location && t->passengers[j].location - t->entrance <= q.location - t->entrance 
-                                            && t->passengers[j].location > -1 && t->passengers[j].finish == 0) {
+            if(t->passengers[i].location < t->passengers[j].location && t->passengers[j].location <= q.location
+                                         && t->passengers[j].finish == 0) {
                 q = t->passengers[j];
                 index = j;
             }
         } 
     }
 
-    else if (t->entrance > floor(t->passengers[i].destination / t->seats_row) 
+    else if (t->entrance > floor(t->passengers[i].destination / t->seats_per_row) 
                     && t->passengers[i].finish == 0 && t->passengers[i].location > -1) {
 
         q.location = 0;
         
         for(j = 0; j < t->length; j++) {
 
-            if(j != i && t->passengers[i].location > t->passengers[j].location && t->entrance - t->passengers[j].location < t->entrance - q.location 
-                                  && t->passengers[j].location > -1 && t->passengers[j].finish == 0) {
+            if(t->passengers[i].location > t->passengers[j].location && t->passengers[j].location < q.location 
+                                         && t->passengers[j].finish == 0) {
                 q = t->passengers[j];
                 index = j;
             }

@@ -11,6 +11,9 @@ void testInitializing_first(CuTest *tc) {
     transition_system t;
     int E = 4;
 
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
     p1.destination = 54;
     p1.location = -1;
     p1.finish = 0;
@@ -26,10 +29,13 @@ void testInitializing_first(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == 4);
     CuAssertTrue(tc, t.passengers[1].location == 5); 
+
+    free(t.passengers);
 
 }
 
@@ -38,6 +44,10 @@ void testInitializing_second(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
     int E = 4;
+    
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = -1;
@@ -54,10 +64,12 @@ void testInitializing_second(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
+    free(t.passengers);
 
 }
 
@@ -66,6 +78,9 @@ void testInitializing_third(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
     int E = 4;
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = E + 1;
@@ -82,12 +97,13 @@ void testInitializing_third(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+
+    initialize_passenger(&t);
 
 
     CuAssertTrue(tc, t.passengers[0].location == 5);
     CuAssertTrue(tc, t.passengers[1].location == 6); 
-
+    free(t.passengers);
 }
 
 /* If p1 is in queue and example is in queue */
@@ -95,6 +111,9 @@ void testInitializing_fourth(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
     int E = 4;
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = -1;
@@ -111,11 +130,12 @@ void testInitializing_fourth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 3);
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
 
+    free(t.passengers);
 }
 
 /* If p1 is in queue and example is in queue and both spotting NULL */
@@ -123,6 +143,9 @@ void testInitializing_fifth(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
     int E = 4;
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = -1;
@@ -139,12 +162,13 @@ void testInitializing_fifth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    initialize_passenger(&t);
 
 
     CuAssertTrue(tc, t.passengers[0].location == 4);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
 
+    free(t.passengers);
 }
 
 /* If p1 is in queue and example is in queue and seeing eachother */
@@ -152,6 +176,9 @@ void testInitializing_sixth(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
     int E = 4;
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = -1;
@@ -168,11 +195,12 @@ void testInitializing_sixth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == -1); 
 
+    free(t.passengers);
 }
 
 /* If p1 is in plane and p2 is in plane but finished */
@@ -180,6 +208,9 @@ void testInitializing_seventh(CuTest *tc) {
     passenger p1, p2;
     transition_system t;
     int E = 4;
+    t.length = 2;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = -1;
@@ -196,10 +227,12 @@ void testInitializing_seventh(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 2);
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == -1);
     CuAssertTrue(tc, t.passengers[1].location == 4); 
+
+    free(t.passengers);
 }
 
 /* tests for multiple passengers */
@@ -207,6 +240,9 @@ void testInitializing_eigth(CuTest *tc) {
     passenger p1, p2, p3;
     transition_system t;
     int E = 4;
+    t.length = 3;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+
 
     p1.destination = 54;
     p1.location = 7;
@@ -229,14 +265,53 @@ void testInitializing_eigth(CuTest *tc) {
 
     t.entrance = E;
 
-    initialize_passenger(&t, 3);
+    initialize_passenger(&t);
 
     CuAssertTrue(tc, t.passengers[0].location == 7);
     CuAssertTrue(tc, t.passengers[1].location == 5); 
     CuAssertTrue(tc, t.passengers[2].location == 4);
 
+    free(t.passengers);
 }
 
+/* tests for wait time */
+void testInitializing_waittimes(CuTest *tc) { 
+    passenger p1, p2, p3;
+    transition_system t;
+    int E = 4;
+    t.length = 3;
+    t.passengers = (passenger*)calloc(t.length, sizeof(passenger));
+    t.wait.t_m = 1;
+
+
+    p1.destination = 54;
+    p1.location = 7;
+    p1.finish = 0;
+    p1.spotting = NULL;
+
+    p2.destination = 54;
+    p2.location = 5;
+    p2.finish = 0;
+    p2.spotting = &p1;
+
+    p3.destination = 54;
+    p3.location = -1;
+    p3.finish = 0;
+    p3.spotting = &p2;
+    p3.wait_time = 0;
+
+    t.passengers[0] = p1;
+    t.passengers[1] = p2;
+    t.passengers[2] = p3;
+
+    t.entrance = E;
+
+    initialize_passenger(&t);
+
+    CuAssertTrue(tc, t.passengers[2].wait_time == 1);
+
+    free(t.passengers);
+}
 
 CuSuite *get_initialization_suit(void) /*Dette skal op i toppen af alltests.c*/
 {
@@ -249,5 +324,6 @@ CuSuite *get_initialization_suit(void) /*Dette skal op i toppen af alltests.c*/
     SUITE_ADD_TEST(suite, testInitializing_sixth);
     SUITE_ADD_TEST(suite, testInitializing_seventh);
     SUITE_ADD_TEST(suite, testInitializing_eigth);
+    SUITE_ADD_TEST(suite, testInitializing_waittimes);
     return suite;
 }

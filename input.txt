@@ -1,0 +1,12 @@
+0    Entrance 
+114     Passenger count
+20     Rows in plane
+6     Seats per row
+60     Type 0 inteference
+100     Type 1 inteference
+110     Type 2 inteference
+220     Type 3 inteference
+105     Carry-on time
+18     Movement time
+60     Carry-on Percentage
+201     Simulations

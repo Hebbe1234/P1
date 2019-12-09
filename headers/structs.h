@@ -10,7 +10,6 @@ typedef struct wait_times {
 } wait_times;
 
 typedef struct transition_system {
-
     passenger *passengers;
     int destination_length;
     int entrance;

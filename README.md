@@ -46,7 +46,6 @@ This is the repository for all software developed for the P1 project by group A4
         } else {
            i = 12;
         }
-
     }
 ```
 

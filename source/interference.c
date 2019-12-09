@@ -19,7 +19,7 @@ void interference_function (transition_system *t) {
 
         if (t->passengers[i].location == d_row(&(t->passengers[i]), t) && t->passengers[i].interference_flag == 0) {
  
-            t->passengers[i].wait_time += inter(t, t->passengers[i]);
+            t->passengers[i].wait_time += inter(t, i);
             t->passengers[i].interference_flag = 1;
             print_but_with_silence(&(t->passengers[i]), "INTERFERENCE", i);
         }

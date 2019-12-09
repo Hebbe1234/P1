@@ -23,16 +23,15 @@ void movement (transition_system *t) {
               (d_row(&(t->passengers[i]), t) - t->passengers[i].location) / abs(d_row(&(t->passengers[i]), t) - t->passengers[i].location) : 0;
 
         if (t->passengers[i].location > -1 && t->passengers[i].wait_time == 0 && dir != 0) {
-            if (t->passengers[i].spotting == NULL) {
-
+            
+            if (t->passengers[i].spotting == NULL) {                
                 t->passengers[i].location += dir;
                 t->passengers[i].wait_time += t->wait.t_m;
 
                 print_but_with_silence(&(t->passengers[i]), "MOVEMENT", i);
             }
             /* if going left and person spotting is more than one 'place' ahead */
-            else if (dir == -1 && P_SL < t->passengers[i].location - 1) {
-
+            else if (dir == -1 && P_SL < t->passengers[i].location - 1) {                
                 t->passengers[i].location += dir;
                 t->passengers[i].wait_time += t->wait.t_m;
 
@@ -40,7 +39,6 @@ void movement (transition_system *t) {
             }
             /* if going right and person spotting is more than one 'place' ahead */
             else if (dir == 1 && P_SL > t->passengers[i].location + 1) {
-
                 t->passengers[i].location += dir;
                 t->passengers[i].wait_time += t->wait.t_m;
                 

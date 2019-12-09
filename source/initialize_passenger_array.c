@@ -73,7 +73,6 @@ void initialize_destination(int *destination_a, transition_system *t) {
         while ((*(p_array+i)) == - 1) {
             p_array++;
         }
-
         t->passengers[i].destination = *(p_array+i);
     }
 }

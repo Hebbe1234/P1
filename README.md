@@ -41,7 +41,7 @@ This is the repository for all software developed for the P1 project by group A4
             printf("The current value of i is: %d", i);
         }
         
-        if(i = 10) {
+        if(i == 10) {
            i = 11;
         } else {
            i = 12;

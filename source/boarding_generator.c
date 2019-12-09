@@ -48,7 +48,7 @@ int is_legal_seat(int seat_tested, transition_system* t) {
 }
 
 /*Used to create random destination, by generating 2 random numbers*/
-void get_random_number(int *k,int *j,transition_system *t) {
+void get_random_number(int *k, int *j, transition_system *t) {
     *k = (rand() % (t->destination_length));
     *j = (rand() % (t->destination_length));
 }

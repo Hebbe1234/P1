@@ -15,10 +15,10 @@ int is_finished (transition_system *t) {
     int i;
 
     for (i = 0; i < t->length; i++) {
+        
         if (t->passengers[i].finish == 0) {
             finished = 0;
         }
     }
-
     return finished;
 }

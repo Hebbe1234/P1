@@ -11,3 +11,4 @@
 int d_row(passenger *p, transition_system *t) {
     return floor(p->destination / t->seats_per_row);
 }
+

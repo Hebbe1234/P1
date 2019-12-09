@@ -25,10 +25,9 @@ void initialize_passenger(transition_system *t) {
             t->passengers[i].wait_time += t->wait.t_m;
             r = rear_function(t, i);
 
-            if (r != -1){
+            if (r != -1) {
                 t->passengers[i].spotting = &(t->passengers[r]);
-            } 
-            else {
+            } else {
                 t->passengers[i].spotting = NULL;
             }
             print_but_with_silence(&(t->passengers[i]), "INITIALIZE", i);

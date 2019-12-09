@@ -45,8 +45,7 @@ void get_carryon(transition_system *t) {
 
         if (j <= t->carryon_percentage) {
             t->passengers[i].carry_on = 1;
-        }         
-        else {
+        } else {
             t->passengers[i].carry_on = 0;        
         }
     }

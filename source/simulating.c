@@ -18,7 +18,7 @@
 #define CHARACTERS_IN_LINE 100
 
 /* runs multiple simulations and returns the average */
-int run_simulations(void){
+int run_simulations(void) {
     int i, iterations;
     transition_system t_input, t1, t2;
 
@@ -37,7 +37,7 @@ int run_simulations(void){
 }
 
 /* simulates every possible placement of the entrance in the input plane. Returns an int-array as an output parameter */
-void run_simulations_with_multiple_entrances(int* results){
+void run_simulations_with_multiple_entrances(int* results) {
     int i, j, iterations;
     transition_system t_input, t1, t2;
 
@@ -45,11 +45,11 @@ void run_simulations_with_multiple_entrances(int* results){
 
     results = (int *)calloc(t_input.rows/2, sizeof(int));
 
-    for(j = 0; j < t_input.rows/2; j++){
+    for (j = 0; j < t_input.rows/2; j++) {
         t_input.entrance = j;
         split_plane(&t_input, &t1, &t2);
 
-        for(i = 0, iterations = 0; i < t_input.simulations; i++) {
+        for (i = 0, iterations = 0; i < t_input.simulations; i++) {
             run_simulation(&t1);
             run_simulation(&t2);
             iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
@@ -70,7 +70,7 @@ void run_simulation(transition_system *t) {
 
     destination = (int*)calloc(t->destination_length, sizeof(int));
 
-    if(t->boarding_method == 0){
+    if (t->boarding_method == 0) {
         random_boarding_generator(t, destination);
     } else {
         outsidein_boarding_generator(t, destination);
@@ -105,7 +105,7 @@ void simulation(transition_system *t) {
         /* Entering */
         initialize_passenger(t);
 
-        if(silence == 0) {
+        if (silence == 0) {
             printf("-----ITERATION %2d-----\n", t->iterations);
         }
         t->iterations += 1;
@@ -164,24 +164,21 @@ void split_plane(transition_system *t_input, transition_system *t1, transition_s
     if ((t_input->length % 2) == 1) {
         t1->length = (t_input->length - 1) / 2;
         t2->length = (t_input->length + 1) / 2;
-    } 
-    else {
+    } else {
         t1->length = t2->length = t_input->length / 2;
     }
 
     if ((t_input->rows % 2) == 1) {
         t1->rows = (t_input->rows - 1) / 2;
         t2->rows = (t_input->rows + 1) / 2;
-    } 
-    else {
+    } else {
         t1->rows = t2->rows = t_input->rows / 2;
     }
 
     t1->entrance = t_input->entrance;
     if (t_input->rows % 2 == 1) {
         t2->entrance = (t_input->rows - 1) / 2 - t_input->entrance;
-    } 
-    else {
+    } else {
         t2->entrance = ((t_input->rows / 2) - 1)  - t_input->entrance;
     }
 

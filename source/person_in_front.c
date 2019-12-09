@@ -15,7 +15,6 @@
 #include "../headers/print_passenger.h"
 #include <stdio.h>      
 #include <stdlib.h>
-#include <math.h>
 
 
 /*This function takes the transitionsystem, and changes who is spotting who, based on finished passengers. */

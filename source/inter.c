@@ -26,9 +26,9 @@ int inter(transition_system *t, int index) {
         for (i = 0; i < t->length; i++) {
 
             if (d_row(&(t->passengers[i]), t) == d_row(&p, t) 
-                    && t->passengers[i].destination % t->seats_per_row == 2
-                    && t->passengers[i].finish == 1) {
-                        return t->wait.t_1;
+                     && t->passengers[i].destination % t->seats_per_row == 2
+                     && t->passengers[i].finish == 1) {
+                         return t->wait.t_1;
             }
         }
         return t->wait.t_0;
@@ -40,9 +40,9 @@ int inter(transition_system *t, int index) {
         for (i = 0; i < t->length; i++) {
 
             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                    && t->passengers[i].destination % t->seats_per_row == 3
-                    && t->passengers[i].finish == 1) {
-                        return t->wait.t_1;
+                     && t->passengers[i].destination % t->seats_per_row == 3
+                     && t->passengers[i].finish == 1) {
+                         return t->wait.t_1;
             }
         }
         return t->wait.t_0;
@@ -54,15 +54,15 @@ int inter(transition_system *t, int index) {
         for (i = 0; i < t->length; i++) {
 
             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                    && t->passengers[i].destination % t->seats_per_row == 1
-                    && t->passengers[i].finish == 1) {
+                     && t->passengers[i].destination % t->seats_per_row == 1
+                     && t->passengers[i].finish == 1) {
                         
                         for (j = 0; j < t->length; j++) {
                             
                             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                                    && t->passengers[j].destination % t->seats_per_row == 2
-                                    && t->passengers[j].finish == 1) {
-                                        return t->wait.t_3;                                       
+                                     && t->passengers[j].destination % t->seats_per_row == 2
+                                     && t->passengers[j].finish == 1) {
+                                         return t->wait.t_3;                                       
                             }
                         }
                         return t->wait.t_2; 
@@ -71,9 +71,9 @@ int inter(transition_system *t, int index) {
 
         for (i = 0; i < t->length; i++) {
             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                    && t->passengers[i].destination % t->seats_per_row == 2
-                    && t->passengers[i].finish == 1) {
-                        return t->wait.t_1;
+                     && t->passengers[i].destination % t->seats_per_row == 2
+                     && t->passengers[i].finish == 1) {
+                         return t->wait.t_1;
             }
         }
         return t->wait.t_0;
@@ -85,14 +85,14 @@ int inter(transition_system *t, int index) {
         for (i = 0; i < t->length; i++) {
 
             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                    && t->passengers[i].destination % t->seats_per_row == 4
-                    && t->passengers[i].finish == 1) {
+                     && t->passengers[i].destination % t->seats_per_row == 4
+                     && t->passengers[i].finish == 1) {
                         
                         for (j = 0; j < t->length; j++) {
                             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                                    && t->passengers[j].destination % t->seats_per_row == 3
-                                    && t->passengers[j].finish == 1) {
-                                        return t->wait.t_3;                                       
+                                     && t->passengers[j].destination % t->seats_per_row == 3
+                                     && t->passengers[j].finish == 1) {
+                                         return t->wait.t_3;                                       
                             }
                         }
                         return t->wait.t_2;
@@ -101,9 +101,9 @@ int inter(transition_system *t, int index) {
 
         for (i = 0; i < t->length; i++) {
             if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                    && t->passengers[i].destination % t->seats_per_row == 3
-                    && t->passengers[i].finish == 1) {
-                        return t->wait.t_1;
+                     && t->passengers[i].destination % t->seats_per_row == 3
+                     && t->passengers[i].finish == 1) {
+                         return t->wait.t_1;
             }
         }
         return t->wait.t_0;

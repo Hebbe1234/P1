@@ -12,6 +12,7 @@
 #include "../headers/initialize_passenger_array.h"
 #include "../headers/finalizing.h"
 #include "../headers/print_t_system.h"
+#include "../headers/print_passenger.h"
 #include "../headers/transition_rules.h"
 
 #define CHARACTERS_IN_LINE 100

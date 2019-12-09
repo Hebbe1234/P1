@@ -1,6 +1,6 @@
 #include "../headers/CuTest.h"
 #include "../headers/initialize_passenger_array.h"
-#include "../headers/random_boarding_generator.h"
+#include "../headers/boarding_generator.h"
 #include <stdlib.h>
 #include <stdio.h>
 

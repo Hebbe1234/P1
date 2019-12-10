@@ -11,11 +11,10 @@
 #include "../headers/finalizing.h"
 
 #endif
-
-#include "../headers/print_passenger.h"
 #include <stdio.h>      
 #include <stdlib.h>
 
+#include "../headers/print_passenger.h"
 
 /*This function takes the transitionsystem, and changes who is spotting who, based on finished passengers. */
 void person_in_front(transition_system *t) {

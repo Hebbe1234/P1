@@ -1,4 +1,4 @@
-0    Entrance 
+4    Entrance 
 114     Passenger count
 20     Rows in plane
 6     Seats per row
@@ -9,5 +9,5 @@
 105     Carry-on time
 18     Movement time
 60     Carry-on Percentage
-100     Simulations
-1     Boarding method, 0 is random, 1 is outside in
+30     Simulations
+0     Boarding method, 0 is random, 1 is outside in

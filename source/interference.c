@@ -2,12 +2,12 @@
 #define STRUCTS
 
 #include "../headers/structs.h"
-#include "../headers/inter.h"
 
 #endif
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../headers/inter.h"
 #include "../headers/print_passenger.h"
 #include "../headers/destination_row.h"
 

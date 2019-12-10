@@ -1,12 +1,12 @@
 #ifndef STRUCTS
 #define STRUCTS
+
 #include "../headers/structs.h"
+
 #endif
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#include "../headers/input.h"
 #include "../headers/simulation.h"
 #include "../headers/boarding_generator.h"
 #include "../headers/initialize_passenger_array.h"
@@ -14,7 +14,6 @@
 #include "../headers/print_t_system.h"
 #include "../headers/print_passenger.h"
 #include "../headers/transition_rules.h"
-
 #define CHARACTERS_IN_LINE 100
 
 /* runs multiple simulations and returns the average */

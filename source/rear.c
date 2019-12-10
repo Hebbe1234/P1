@@ -6,6 +6,7 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../headers/destination_row.h"
 
 /* Checks which passenger the last initialized passenger must look at 

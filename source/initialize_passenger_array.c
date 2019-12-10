@@ -1,16 +1,13 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include "../headers/main.h"
-#include <time.h>
-
 #ifndef STRUCTS
 #define STRUCTS
 
 #include "../headers/structs.h"
-#include "../headers/initialize_passenger_array.h"
 
 #endif
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "../headers/initialize_passenger_array.h"
 
 /*Produces a passenger array, that contains a random destination, and carryon for each passenger*/
 void initialize_passenger_array(transition_system *t, int *destination_array) {          
@@ -61,7 +58,6 @@ void initialize_spotting(transition_system *t) {
         t->passengers[i].spotting = &(t->passengers[i-1]);    
     }
 }
-
 
 /* The passenger array gets filled with random destination, based on the random_destination array*/
 void initialize_destination(int *destination_a, transition_system *t) {

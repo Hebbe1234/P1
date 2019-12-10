@@ -4,19 +4,13 @@
 #include "headers/structs.h"
 
 #endif
-
-#include "headers/input.h"
-#include "headers/print_t_system.h"
-#include "headers/simulation.h"
-#include "headers/print_passenger.h"
-#include "headers/boarding_generator.h"
-
 #include <stdio.h>
-#include <math.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
+#include <math.h>
 #include <string.h>
-#include "headers/main.h"
+
+#include "headers/simulation.h"
 
 int silence = 0;
 
@@ -40,5 +34,3 @@ int main (int argc, char *argv[])
     
     return EXIT_SUCCESS;
 }
-
-

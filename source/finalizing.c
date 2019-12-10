@@ -11,11 +11,9 @@
 #include "../headers/finalizing.h"
 
 #endif
-#include "../headers/print_passenger.h"
-
-#include <stdio.h>      
+#include <stdio.h>
 #include <stdlib.h>
-
+#include "../headers/print_passenger.h"
 #include "../headers/destination_row.h"
 
 /* Checks if a passenger is finished by destination wait time and carry on */

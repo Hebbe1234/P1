@@ -2,12 +2,13 @@
 #define STRUCTS
 
 #include "../headers/structs.h"
-#include "../headers/boarding_generator.h"
+
 #endif
 #include <stdio.h>
 #include <stdlib.h>
-#define NUMBER_OF_SHUFFLES_PER_DESTINATION 100
 
+#include "../headers/boarding_generator.h"
+#define NUMBER_OF_SHUFFLES_PER_DESTINATION 100
 
 /*Fills the given array with legal destinations that is shuffled so its similar to outside in boarding*/
 void outsidein_boarding_generator(transition_system *t, int *destinations) {

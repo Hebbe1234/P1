@@ -7,5 +7,3 @@
 
 /* Checks if a passenger is finished by destination wait time and carry on */
 void finalising_passenger(transition_system *t);
-
-

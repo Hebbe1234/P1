@@ -4,12 +4,11 @@
 #include "../headers/structs.h"
 
 #endif
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "../headers/rear.h"
 #include "../headers/print_passenger.h"
-
-#include <stdio.h>
-#include <stdlib.h>
 
 /* Function to initialize passenger */
 void initialize_passenger(transition_system *t) {

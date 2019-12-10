@@ -5,7 +5,6 @@
 
 #endif
 
-
 /* runs multiple simulations and returns the average */
 int run_simulations(void); 
 /* makes a transition system for the simulation */
@@ -19,4 +18,3 @@ void load_input(transition_system *t);
 /* divides the rows and passengers into 'front and back' of plane for the two transition systems
     and assigns the entrance for both */
 void split_plane(transition_system *t_input, transition_system *t1, transition_system *t2) ;
-

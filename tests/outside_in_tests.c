@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "../headers/random_boarding_generator.h"
+#include "../headers/boarding_generator.h"
 
 
 /*tests that the destinations is between the legal seats

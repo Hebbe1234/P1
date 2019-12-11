@@ -17,7 +17,8 @@ int inter(transition_system *t, int index) {
     /*This is the aisle seats*/
     if (p.destination % t->seats_per_row == 2 || 
         p.destination % t->seats_per_row == 3) {
-            return t->wait.t_0;
+           return t->wait.t_0;
+
     }
 
     /*This is the top middle seats*/
@@ -25,10 +26,8 @@ int inter(transition_system *t, int index) {
            
         for (i = 0; i < t->length; i++) {
 
-            if (d_row(&(t->passengers[i]), t) == d_row(&p, t) 
-                     && t->passengers[i].destination % t->seats_per_row == 2
-                     && t->passengers[i].finish == 1) {
-                         return t->wait.t_1;
+            if (is_passenger_at_seat(t, p, i, 2) == 1) {
+                return t->wait.t_1;
             }
         }
         return t->wait.t_0;
@@ -39,10 +38,8 @@ int inter(transition_system *t, int index) {
 
         for (i = 0; i < t->length; i++) {
 
-            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                     && t->passengers[i].destination % t->seats_per_row == 3
-                     && t->passengers[i].finish == 1) {
-                         return t->wait.t_1;
+            if (is_passenger_at_seat(t, p, i, 3) == 1) {
+                return t->wait.t_1;
             }
         }
         return t->wait.t_0;
@@ -53,27 +50,22 @@ int inter(transition_system *t, int index) {
 
         for (i = 0; i < t->length; i++) {
 
-            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                     && t->passengers[i].destination % t->seats_per_row == 1
-                     && t->passengers[i].finish == 1) {
-                        
-                        for (j = 0; j < t->length; j++) {
-                            
-                            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                                     && t->passengers[j].destination % t->seats_per_row == 2
-                                     && t->passengers[j].finish == 1) {
-                                         return t->wait.t_3;                                       
-                            }
-                        }
-                        return t->wait.t_2; 
+            if (is_passenger_at_seat(t, p, i, 1) == 1) {
+                
+                for (j = 0; j < t->length; j++) {
+
+                    if (is_passenger_at_seat(t, p, j, 2) == 1) {
+                        return t->wait.t_3;                                       
+                    }
+                }
+                return t->wait.t_2; 
             }
         }
 
         for (i = 0; i < t->length; i++) {
-            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                     && t->passengers[i].destination % t->seats_per_row == 2
-                     && t->passengers[i].finish == 1) {
-                         return t->wait.t_1;
+
+            if (is_passenger_at_seat(t, p, i, 2) == 1) {
+                return t->wait.t_1;
             }
         }
         return t->wait.t_0;
@@ -84,29 +76,35 @@ int inter(transition_system *t, int index) {
 
         for (i = 0; i < t->length; i++) {
 
-            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                     && t->passengers[i].destination % t->seats_per_row == 4
-                     && t->passengers[i].finish == 1) {
+            if (is_passenger_at_seat(t, p, i, 4) == 1) {
                         
-                        for (j = 0; j < t->length; j++) {
-                            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                                     && t->passengers[j].destination % t->seats_per_row == 3
-                                     && t->passengers[j].finish == 1) {
-                                         return t->wait.t_3;                                       
-                            }
-                        }
-                        return t->wait.t_2;
+                for (j = 0; j < t->length; j++) {
+                    if (is_passenger_at_seat(t, p, j, 3) == 1) {
+                        return t->wait.t_3;                                       
+                    }
+                }
+                return t->wait.t_2;
             }
         }
 
         for (i = 0; i < t->length; i++) {
-            if (d_row(&(t->passengers[i]), t) == d_row(&p, t)
-                     && t->passengers[i].destination % t->seats_per_row == 3
-                     && t->passengers[i].finish == 1) {
-                         return t->wait.t_1;
+          
+            if (is_passenger_at_seat(t, p, i, 3) == 1) {
+                return t->wait.t_1;
             }
         }
         return t->wait.t_0;
     }
     return -1;
+}
+
+/* Returns a value true or false whether a passenger is occupying seat */
+int is_passenger_at_seat(transition_system *t, passenger p, int i, int seat) {
+    
+    if (d_row(&(t->passengers[i]), t) == d_row(&p, t) && 
+        t->passengers[i].destination % t->seats_per_row == seat && 
+        t->passengers[i].finish == 1) {
+            return 1;
+    }
+    return 0;
 }

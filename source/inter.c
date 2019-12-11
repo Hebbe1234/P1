@@ -9,8 +9,6 @@
 
 #include "../headers/destination_row.h"
 
-int is_passenger_at_seat(transition_system *t, passenger p, int i, int seat);
-
 /* Returns a given passengers waittime, based on the location of other passengers in their 'row' */
 int inter(transition_system *t, int index) {
     int i, j;
@@ -98,6 +96,7 @@ int inter(transition_system *t, int index) {
     return -1;
 }
 
+/* Returns a value true or false whether a passenger is occupying seat */
 int is_passenger_at_seat(transition_system *t, passenger p, int i, int seat) {
     
     if (d_row(&(t->passengers[i]), t) == d_row(&p, t) && 

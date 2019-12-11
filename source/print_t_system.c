@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 /* This function takes a t_system as input and prints its current values */
-void print_t_system (transition_system t_system){
+void print_t_system (transition_system t_system) {
 
     printf("Destination \t\t\t%d \n", t_system.destination_length);
     printf("Entrance \t\t\t%d \n", t_system.entrance);

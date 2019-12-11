@@ -6,6 +6,7 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../headers/destination_row.h"
 
 /* Checks which passenger the last initialized passenger must look at 
@@ -20,35 +21,31 @@ int rear_function (transition_system *t, int i) {
     if (t->entrance <= d_row(&(t->passengers[i]), t) && 
         t->passengers[i].finish == 0 && t->passengers[i].location > -1) {
 
-        q.location = t->rows - 1;
+            q.location = t->rows - 1;
 
-        for(j = 0; j < t->length; j++) {
-
+        for (j = 0; j < t->length; j++) {
           
-            if(t->passengers[i].location < t->passengers[j].location && t->passengers[j].location <= q.location
-                                         && t->passengers[j].finish == 0) {
+            if (t->passengers[i].location < t->passengers[j].location && 
+               t->passengers[j].location <= q.location && t->passengers[j].finish == 0) {
 
                 q = t->passengers[j];
                 index = j;
-                
             }
         } 
     }
-
+    
     else if (t->entrance > d_row(&(t->passengers[i]), t) && 
              t->passengers[i].finish == 0 && t->passengers[i].location > -1) {
 
-
-        q.location = 0;
+                q.location = 0;
         
-        for(j = 0; j < t->length; j++) {
+        for (j = 0; j < t->length; j++) {
 
-            if(t->passengers[i].location > t->passengers[j].location && t->passengers[j].location >= q.location 
-                                         && t->passengers[j].finish == 0) {
+            if (t->passengers[i].location > t->passengers[j].location && 
+               t->passengers[j].location >= q.location && t->passengers[j].finish == 0) {
 
                 q = t->passengers[j];
                 index = j;
-                
             }
         }
     }

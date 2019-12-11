@@ -20,6 +20,7 @@ int inter(transition_system *t, int index) {
     if (p.destination % t->seats_per_row == 2 || 
         p.destination % t->seats_per_row == 3) {
            return t->wait.t_0;
+
     }
 
     /*This is the top middle seats*/
@@ -89,6 +90,7 @@ int inter(transition_system *t, int index) {
         }
 
         for (i = 0; i < t->length; i++) {
+          
             if (is_passenger_at_seat(t, p, i, 3) == 1) {
                 return t->wait.t_1;
             }

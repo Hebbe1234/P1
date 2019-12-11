@@ -1,30 +1,23 @@
 #ifndef STRUCTS
 #define STRUCTS
+
 #include "../headers/structs.h"
+
 #endif
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#include "../headers/is_finished.h"
-#include "../headers/finalizing.h"
-#include "../headers/movement.h"
-#include "../headers/person_in_front.h"
-#include "../headers/rear.h"
-#include "../headers/initializing.h"
-#include "../headers/print_passenger.h"
 #include "../headers/simulation.h"
+#include "../headers/boarding_generator.h"
 #include "../headers/initialize_passenger_array.h"
-#include "../headers/random_boarding_generator.h"
-#include "../headers/wait_time.h"
-#include "../headers/interference.h"
-#include "../headers/carry_on.h"
-#include "../headers/input.h"
+#include "../headers/finalizing.h"
 #include "../headers/print_t_system.h"
+#include "../headers/print_passenger.h"
+#include "../headers/transition_rules.h"
 #define CHARACTERS_IN_LINE 100
 
 /* runs multiple simulations and returns the average */
-int run_simulations(void){
+int run_simulations(void) {
     int i, iterations;
     transition_system t_input, t1, t2;
 
@@ -32,7 +25,7 @@ int run_simulations(void){
 
     split_plane(&t_input, &t1, &t2);
 
-    for(i = 0, iterations = 0; i < t_input.simulations; i++) {
+    for (i = 0, iterations = 0; i < t_input.simulations; i++) {
         run_simulation(&t1);
         run_simulation(&t2);
         iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
@@ -43,7 +36,7 @@ int run_simulations(void){
 }
 
 /* simulates every possible placement of the entrance in the input plane. Returns an int-array as an output parameter */
-void run_simulations_with_multiple_entrances(int* results){
+void run_simulations_with_multiple_entrances(int* results) {
     int i, j, iterations;
     transition_system t_input, t1, t2;
 
@@ -51,11 +44,11 @@ void run_simulations_with_multiple_entrances(int* results){
 
     results = (int *)calloc(t_input.rows/2, sizeof(int));
 
-    for(j = 0; j < t_input.rows/2; j++){
+    for (j = 0; j < t_input.rows/2; j++) {
         t_input.entrance = j;
         split_plane(&t_input, &t1, &t2);
 
-        for(i = 0, iterations = 0; i < t_input.simulations; i++) {
+        for (i = 0, iterations = 0; i < t_input.simulations; i++) {
             run_simulation(&t1);
             run_simulation(&t2);
             iterations += t1.iterations < t2.iterations ? t2.iterations : t1.iterations; 
@@ -76,7 +69,7 @@ void run_simulation(transition_system *t) {
 
     destination = (int*)calloc(t->destination_length, sizeof(int));
 
-    if(t->boarding_method == 0){
+    if (t->boarding_method == 0) {
         random_boarding_generator(t, destination);
     } else {
         outsidein_boarding_generator(t, destination);
@@ -93,7 +86,8 @@ void run_simulation(transition_system *t) {
 void simulation(transition_system *t) {
 
     while (is_finished(t) == 0) {
-        if(silence == 0) {
+        
+        if (silence == 0) {
             printf("\n-----ITERATION %d-----\n", t->iterations);
         }
         /* Finish */
@@ -109,7 +103,8 @@ void simulation(transition_system *t) {
         movement(t);  
         /* Entering */
         initialize_passenger(t);
-        if(silence == 0) {
+
+        if (silence == 0) {
             printf("-----ITERATION %2d-----\n", t->iterations);
         }
         t->iterations += 1;
@@ -123,10 +118,11 @@ void load_input(transition_system *t_input) {
     
     infile = fopen("input.txt", "r");
 
-    if(infile == NULL) {
+    if (infile == NULL) {
         printf("Couldnt load file properly, Error");
         return;
     }
+
     fgets(line, CHARACTERS_IN_LINE, infile);
     sscanf(line, " %d ", &t_input->entrance);
     fgets(line, CHARACTERS_IN_LINE, infile);
@@ -162,17 +158,16 @@ void load_input(transition_system *t_input) {
 /* divides the rows and passengers into 'front and back' of plane for the two transition systems
     and assigns the entrance for both */
 void split_plane(transition_system *t_input, transition_system *t1, transition_system *t2) {
-
     *t1 = *t2 = *t_input;
     
-    if((t_input->length % 2) == 1) {
+    if ((t_input->length % 2) == 1) {
         t1->length = (t_input->length - 1) / 2;
         t2->length = (t_input->length + 1) / 2;
     } else {
         t1->length = t2->length = t_input->length / 2;
     }
 
-    if((t_input->rows % 2) == 1) {
+    if ((t_input->rows % 2) == 1) {
         t1->rows = (t_input->rows - 1) / 2;
         t2->rows = (t_input->rows + 1) / 2;
     } else {
@@ -180,7 +175,7 @@ void split_plane(transition_system *t_input, transition_system *t1, transition_s
     }
 
     t1->entrance = t_input->entrance;
-    if(t_input->rows % 2 == 1) {
+    if (t_input->rows % 2 == 1) {
         t2->entrance = (t_input->rows - 1) / 2 - t_input->entrance;
     } else {
         t2->entrance = ((t_input->rows / 2) - 1)  - t_input->entrance;

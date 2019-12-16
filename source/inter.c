@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "../headers/destination_row.h"
+#include "../headers/inter.h"
 
 /* Returns a given passengers waittime, based on the location of other passengers in their 'row' */
 int inter(transition_system *t, int index) {

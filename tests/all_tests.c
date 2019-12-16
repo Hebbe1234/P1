@@ -60,4 +60,3 @@ int main(void)
 {
     return runalltest();
 }
-

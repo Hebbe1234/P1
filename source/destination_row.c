@@ -4,7 +4,6 @@
 #include "../headers/structs.h"
 
 #endif
-
 #include <math.h>
 
 /* Encapsulation of the formula for getting the destination row */

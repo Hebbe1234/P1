@@ -38,7 +38,7 @@ int main (int argc, char *argv[]) {
         run_simulations_with_multiple_entrances(result_multiple_entrance);
     }
 
-    printf("\nIT TOOK %d SECONDS \n", ((int)time(0)) - start);
+    printf("\nIT TOOK %d SECONDS TO RUN THE PROGRAM\n", ((int)time(0)) - start);
     printf("Program ran OK");
     
     return EXIT_SUCCESS;
